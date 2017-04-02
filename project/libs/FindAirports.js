@@ -1,4 +1,4 @@
-var airports = require('./airports')
+var airports = require('./../../airports')
 var _ = require('lodash');
 var Autocomplete = require('triecomplete');
 

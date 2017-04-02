@@ -16,7 +16,7 @@
 // console.log(airports.at(0).get('name'));
 
 // var _ = require('lodash');
-var index = require('./FindAirports');
+var index = require('./project/libs/FindAirports');
 console.log(index.lookupByIataCode('LAX'));
 console.log(index.searchByCityName('Las Vegas'));
 

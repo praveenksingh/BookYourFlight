@@ -6,25 +6,25 @@ module.exports = function (app, utils) {
         var val = utils.validateUtil;
 
         if(!val.validateRequestData(details))
-                response.sendStatus(400);
+            response.status(400).send("Enter All Details");
         else {
             if(!val.validateCities(details.source, details.dest)){
-                response.sendStatus(400);
+                response.status(400).send("Enter Valid City Names");
             }else {
-                var requestData = val.createRequest(details.source, details.dest, details.count, details.depart);
-
-                request.post(apiPath,
-                    {
-                        json: true,
-                        body: requestData
-                    },
-
-                    function (err, res, body) {
-                        console.log(res);
-                        response.send(res);
-                    });
+                if(new Date(details.depart) < new Date())
+                    response.status(400).send("Date cannot be past date");
+                else {
+                    var requestData = val.createRequest(details.source, details.dest, details.count, details.depart);
+                    request.post(apiPath,
+                        {
+                            json: true,
+                            body: requestData
+                        },
+                        function (err, res, body) {
+                            response.send(res);
+                        });
+                }
             }
-            //response.sendStatus(200);
         }
 
     }
