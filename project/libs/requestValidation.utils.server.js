@@ -9,10 +9,10 @@ module.exports = function () {
 
     // console.log(airportsData.findWhere({name : "Chicago"}));
 
-    var index = require('airportsjs');
+    var index = require('../../FindAirports');
     // console.log(index.lookupByIataCode('LAX'));
 
-    console.log(index.searchByAirportName('Los Angeles'));
+    console.log(index.searchByCityName('Los Angeles'));
 
     var api = {
         validateCity: validateCity,
@@ -36,12 +36,12 @@ module.exports = function () {
 
     function validateCity(cityName) {
         // return airports.findWhere({city: cityName}) !== undefined;
-        return index.searchByAirportName(cityName).length != 0;
+        return index.searchByCityName(cityName).length != 0;
     }
 
     function getCityIata(cityName) {
         if(validateCity(cityName)){
-            return index.searchByAirportName(cityName)[0].iata;
+            return index.searchByCityName(cityName)[0].iata;
             // return airports.findWhere({city: cityName}).get('iata');
         }
     }
