@@ -1,11 +1,25 @@
 body{
-    background-color: #525252;
+    /*background-color: #525252;*/
 }
 .centered-form{
     margin-top: 60px;
 }
 
 .centered-form .panel{
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(204, 255, 209, 0.8);
     box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
+
+/*.panel-group .list-group {*/
+    /*margin-bottom: 0;*/
+/*}*/
+
+/*.panel-group .list-group .list-group-item {*/
+    /*border-radius: 0;*/
+    /*border-left: none;*/
+    /*border-right: none;*/
+/*}*/
+
+/*.panel-group .list-group .list-group-item:last-child {*/
+    /*border-bottom: none;*/
+/*}*/

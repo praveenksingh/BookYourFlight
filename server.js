@@ -1,4 +1,5 @@
 var express = require('express');
+global.request = require('request');
 var app = express();
 
 var bodyParser = require('body-parser');
@@ -17,9 +18,18 @@ app.use(session({
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(request);
+
+global.apiPath = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=API_KEY";
+var key = process.env.GOOGLE_KEY ||"AIzaSyDKbf5xMjHgx2AxbT8XYiemow5DPfBEj0I";
+apiPath = apiPath.replace("API_KEY", key);
+
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+
+var project = require("./project/app.js");
+project(app);
 
 var port = process.env.PORT || 3000;
 

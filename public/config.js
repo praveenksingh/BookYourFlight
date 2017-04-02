@@ -13,6 +13,11 @@
                 templateUrl: "views/home/templates/home.view.client.html",
                 controller: "HomeController",
                 controllerAs: "model"
+            })
+            .when("/flightDetails", {
+                templateUrl: "views/flights/templates/flightdetails.view.client.html",
+                controller: "FlightDetailsController",
+                controllerAs: "model"
             });
     }
 })();
