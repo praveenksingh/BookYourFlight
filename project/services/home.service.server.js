@@ -4,10 +4,12 @@ module.exports = function (app, utils) {
     function flightDetails(req, response) {
         var details = req.body;
         var val = utils.validateUtil;
+        var responseCreator = utils.responseCreator;
 
         //TODO Remove this block after testing
         var res = require('../../testResponse.json');
-        response.send(res);
+        var respo = responseCreator.createResponse(res);
+        response.send(respo);
         //TODO uncommend down block
 
         // if(!val.validateRequestData(details))
@@ -26,7 +28,8 @@ module.exports = function (app, utils) {
         //                     body: requestData
         //                 },
         //                 function (err, res, body) {
-        //                     response.send(res);
+        //                     var respo = responseCreator.createResponse(res);
+        //                     response.send(respo);
         //                 });
         //         }
         //     }

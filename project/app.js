@@ -1,8 +1,9 @@
 module.exports = function (app) {
     var validateUtil = require('./libs/requestValidation.utils.server')();
-
+    var responseCreator = require('./libs/createResponse.utils.server')();
     var utils = {
-        validateUtil: validateUtil
+        validateUtil: validateUtil,
+        responseCreator: responseCreator
     };
     require("./services/home.service.server")(app, utils);
     // require("./services/website.service.server")(app);
