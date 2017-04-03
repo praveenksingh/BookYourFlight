@@ -15,7 +15,7 @@ module.exports = function (app) {
         //TODO add body in the data.body
         airport = data.trips.data.airport;
         aircraft = data.trips.data.aircraft;
-        carrier = data.trips.data.aircraft;
+        carrier = data.trips.data.carrier;
         city = data.trips.data.city;
         return createResponseDetails(data.trips.tripOption);
     }
@@ -28,25 +28,24 @@ module.exports = function (app) {
                 price : tripOption.saleTotal.slice(3,10),
                 departureTime : tripOption.slice[0].segment[0].leg[0].departureTime.slice(11, 16),
                 arrivalTime : tripOption.slice[0].segment[0].leg[tripOption.slice[0].segment[0].leg.length - 1].arrivalTime.slice(11, 16),
-                stops : tripOption.slice[0].segment.length,
-                trip : tripOption.slice[0].segment
+                stops : tripOption.slice[0].segment.length - 1,
+                legs : tripOption.slice[0].segment
                     .map(function(element){
-                        var item = {
-                            origin : getCityName(element.leg[0].origin),
-                            destination : getCityName(element.leg[0].destination),
-                            duration : element.duration,
-                            carrier : getCarrier(element.flight.carrier),
-                            flightCode : element.flight.carrier + " " + element.flight.number,
-                            meal : element.leg[0].meal,
-                            departureTime : element.leg[0].departureTime,
-                            originAirport : getAirportName(element.leg[0].origin),
-                            originTerminal : element.leg[0].originTerminal,
+                        return {
+                            origin: getCityName(element.leg[0].origin),
+                            destination: getCityName(element.leg[0].destination),
+                            duration: element.duration,
+                            carrier: getCarrier(element.flight.carrier),
+                            flightCode: element.flight.carrier + " " + element.flight.number,
+                            meal: element.leg[0].meal,
+                            departureTime: element.leg[0].departureTime,
+                            originAirport: getAirportName(element.leg[0].origin),
+                            originTerminal: element.leg[0].originTerminal,
                             arrivalTime: element.leg[0].arrivalTime,
                             destinationAirport: getAirportName(element.leg[0].destination),
-                            destinationTerminal : element.leg[0].destinationTerminal,
-                            aircraft : getAircraft(element.leg[0].aircraft)
+                            destinationTerminal: element.leg[0].destinationTerminal,
+                            aircraft: getAircraft(element.leg[0].aircraft)
                         };
-                        return item;
                     })
             };
             details.push(trip);
@@ -64,14 +63,14 @@ module.exports = function (app) {
     function getCarrier(code) {
         for(var v in carrier){
             if(carrier[v].code === code)
-                return city[v].name;
+                return carrier[v].name;
         }
     }
 
     function getAirportName(code) {
         for(var v in airport){
             if(airport[v].code === code)
-                return aircraft[v].name;
+                return airport[v].name;
         }
     }
 

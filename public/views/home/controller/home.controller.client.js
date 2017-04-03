@@ -7,10 +7,15 @@
         var vm = this;
         vm.flight = {};
         vm.searchFlight = searchFlight;
-
+        vm.onSet = onSet;
+        
+        function onSet() {
+            console.log(vm.flight.depart);
+        }
 
         function init() {
             vm.flight.depart = new Date();
+            HomeService.setFlightDetails();
         }
         init();
 
