@@ -9,7 +9,14 @@ body{
     background: rgba(204, 255, 209, 0.8);
     box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+ml, body, .container-fluid, .row-fluid, .blue, .lightgrey {height:100%;}
+.my-panels{
+    margin-top:5px!important;
+    background: rgba(41, 237, 252, 0.9);
+    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 
+}
 /*.panel-group .list-group {*/
     /*margin-bottom: 0;*/
 /*}*/

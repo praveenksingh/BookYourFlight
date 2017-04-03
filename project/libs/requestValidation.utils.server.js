@@ -59,7 +59,7 @@ module.exports = function () {
                     childCount: 0,
                     seniorCount: 0
                 },
-                solutions: 2,
+                solutions: 10,
                 refundable: false
             }
         }

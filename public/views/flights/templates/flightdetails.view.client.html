@@ -1,2 +1,47 @@
-{{model.flight.body.trips}}
+<!--{{model.flight}}-->
+
+<div class="container-fluid">
+    <uib-accordion close-others="oneAtATime" class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+        <div ng-repeat="trips in model.flight.trips.tripOption">
+            <div uib-accordion-group class="panel panel-success my-panels">
+                 <!--heading="Departure: {{trips.slice[0].segment[0].leg[0].departureTime.slice(11, 16)}}   -->
+                          <!--Arrival: {{trips.slice[0].segment[0].leg[trips.slice[0].segment[0].leg.length - 1].arrivalTime.slice(11, 16)}}-->
+                          <!--Stops: {{trips.slice[0].segment.length}}     $ {{trips.saleTotal.slice(4,10)}}">-->
+
+                <!---->
+                <uib-accordion-heading>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            Departure: {{trips.slice[0].segment[0].leg[0].departureTime.slice(11, 16)}}
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-md-3">
+                            Arrival: {{trips.slice[0].segment[0].leg[trips.slice[0].segment[0].leg.length - 1].arrivalTime.slice(11, 16)}}
+                        </div>
+                        <div class="col-sm-3 col-md-3 hidden-xs">
+                            Stops: {{trips.slice[0].segment.length}}
+                        </div>
+                        <div class="col-xs-4 col-sm-2 col-md-2">
+                            ${{trips.saleTotal.slice(4,10)}}
+                        </div>
+
+
+                    </div>
+                </uib-accordion-heading>
+
+                <div class="panel-body">
+                    <p>{{trips}}</p>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading clearfix">
+                            <i class="icon-calendar"></i>
+                            <h3 class="panel-title">Panel Primary</h3>
+                        </div>
+                        <!--<div class="panel-body">-->
+                        <!--Panel content-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-accordion>
+</div>
 
