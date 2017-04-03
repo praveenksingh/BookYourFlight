@@ -3,17 +3,13 @@
         .module("BookYourTrip")
         .controller("HomeController", homeController);
 
-    function homeController(HomeService, $location) {
+    function homeController(HomeService, $location, $timeout) {
         var vm = this;
         vm.flight = {};
         vm.searchFlight = searchFlight;
-        vm.onSet = onSet;
-        
-        function onSet() {
-            console.log(vm.flight.depart);
-        }
 
         function init() {
+            vm.load = false;
             vm.flight.depart = new Date();
             HomeService.setFlightDetails();
         }
@@ -23,6 +19,7 @@
             if(flight === undefined)
                 vm.error = "Please fill All Details";
             else {
+                vm.load = true;
                 flight.depart = vm.flight.depart.toISOString().slice(0, 10);
                 var promise = HomeService.findFlightsByDetails(flight);
                 promise.success(function (data) {

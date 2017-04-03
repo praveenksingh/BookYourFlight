@@ -26,8 +26,8 @@ module.exports = function (app) {
             var tripOption = inp[trips];
             var trip = {
                 price : tripOption.saleTotal.slice(3,10),
-                departureTime : tripOption.slice[0].segment[0].leg[0].departureTime.slice(11, 16),
-                arrivalTime : tripOption.slice[0].segment[0].leg[tripOption.slice[0].segment[0].leg.length - 1].arrivalTime.slice(11, 16),
+                departureTime : tripOption.slice[0].segment[0].leg[0].departureTime,
+                arrivalTime : tripOption.slice[0].segment[tripOption.slice[0].segment.length - 1].leg[0].arrivalTime,
                 stops : tripOption.slice[0].segment.length - 1,
                 legs : tripOption.slice[0].segment
                     .map(function(element){

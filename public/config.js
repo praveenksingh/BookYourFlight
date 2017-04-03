@@ -18,6 +18,11 @@
                 templateUrl: "views/flights/templates/flightdetails.view.client.html",
                 controller: "FlightDetailsController",
                 controllerAs: "model"
+            })
+            .when("/login", {
+                templateUrl: "views/user/templates/login.view.client.html",
+                controller: "HomeController",
+                controllerAs: "model"
             });
     }
 })();

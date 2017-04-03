@@ -49,19 +49,21 @@
         </ul>
     </div>
 </nav>
+
 <div class="container">
+    <div class="section"></div>
     <div class="offset-s6">
     <ul class="collapsible popout" data-collapsible="accordion" watch>
         <li ng-repeat="trips in model.details">
             <div class="collapsible-header z-depth-5">
                 <div class="row">
                     <div class="col s4 m4 l4 flow-text">
-                        Departure: {{trips.departureTime}}
+                        Departure: {{trips.departureTime | date:'shortTime'}}
                     </div>
-                    <div class="col s4 m3 l3 flow-text">
-                        Arrival: {{trips.arrivalTime}}
+                    <div class="col s4 m4 l4 flow-text">
+                        Arrival: {{trips.arrivalTime | date:'shortTime'}}
                     </div>
-                    <div class="col m3 l3 hidden-xs flow-text">
+                    <div class="col m2 l2 hidden-xs flow-text">
                         Stops: {{trips.stops}}
                     </div>
                     <div class="col s4 m2 l2 flow-text">
@@ -69,11 +71,32 @@
                     </div>
                 </div>
             </div>
-            <div class="collapsible-body my-shadow">
-                <div>{{trips}}</div>
+            <div class="collapsible-body my-shadow teal accent-1">
+                <div class="form-group gap offset-s6">
+                    <!--<div>{{trips}}</div>-->
+                    <div class="row">
+                        <div class="input-field col s4 m4 l4">
+                            <label class="active" for="departure-time">Arrival</label>
+                            <input value="{{trips.legs[0].departureTime | date:'medium'}}" id="departure-time" type="text" class="validate">
+                        </div>
+                        <div class="input-field col s4 m4 l4">
+                            <label class="active" for="arrival-time">Arrival</label>
+                            <input value="{{trips.legs[0].arrivalTime | date:'medium'}}" id="arrival-time" type="text" class="validate">
+                        </div>
+                    </div>
+                </div>
             </div>
         </li>
     </ul>
     </div>
+
 </div>
 
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
