@@ -59,12 +59,12 @@
         </div>
 
         <div class="col s12 m8 l9 ">
-            <div class="parallax-container" ng-repeat="trips in model.airportPhotos">
-                <div parallax><img src={{trips.route}}></div>
-            </div>
-            <!--{{model.airportPhotos}}-->
+            <!--<div class="parallax-container" ng-repeat="trips in model.airportPhotos">-->
+                <!--<div parallax><img src={{trips}}></div>-->
+            <!--</div>-->
+            <!--{{model.airportPhotos.length}}-->
 
-            <div ng-show="model.airportPhotos.length" class="slider" data-images="model.airportPhotos">
+            <div ng-if="model.airportPhotos.length" class="slider" data-images="model.airportPhotos">
 
             </div>
         </div>

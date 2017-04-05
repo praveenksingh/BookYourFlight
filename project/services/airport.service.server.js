@@ -75,17 +75,51 @@ module.exports = function (app, utils) {
 
     function airportPhotos(req, res) {
         var photosList = req.body;
-        var optionsPhoto = {
-            uri: getPathForImage(photosList.photo_reference, photosList.width)
-        };
-        getPhotosForAirport(optionsPhoto)
-            .then(function (photos) {
-                // console.log(photos);
-                res.status(200).send(photos);
+        // var optionsPhoto = {
+        //     uri: getPathForImage(photosList.photo_reference, photosList.width)
+        // };
+        // getPhotosForAirport(optionsPhoto)
+        //     .then(function (photos) {
+        //         // console.log(photos);
+        //         res.status(200).send(photos);
+        //
+        //     }, function (err) {
+        //         res.status(500).send(err);
+        //     });
 
-            }, function (err) {
-                res.status(500).send(err);
-            });
+        //TODO Remove this block after testing
+        var resu = require('../../test/pics.json');
+        res.status(200).send(resu);
+        //TODO uncommend down block
+
+        // photosWrapper(photosList)
+        //     .then(function (photos) {
+        //         res.status(200).send(photos);
+        //     }, function (err) {
+        //         res.status(500).send(err);
+        //     })
+    }
+
+    function photosWrapper(list){
+        var objList = [];
+        var deferred = q.defer();
+        for(var i in list){
+            var loopStep = i;
+            var photosList = list[i];
+            var optionsPhoto = {
+                uri: getPathForImage(photosList.photo_reference, photosList.width)
+            };
+            getPhotosForAirport(optionsPhoto)
+                .then(function (photos) {
+                    objList.push(photos);
+                    if(loopStep == objList.length - 1){
+                        deferred.resolve(objList);
+                    }
+                }, function (err) {
+
+                });
+        }
+        return deferred.promise;
     }
     
     function getPhotosForAirport(optionsPhoto) {

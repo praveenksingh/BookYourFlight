@@ -11,7 +11,7 @@ function slider($document) {
         },
         template: '<ul class="slides">'
         + '<li data-ng-repeat="img in images">'
-        + '<img data-ng-src="{{img.route}}">'
+        + '<img data-ng-src="{{img}}">'
         // + '<div class="caption {{img.align}}-align">'
         // + '<h3>{{img.caption}}</h3>'
         // + '<h5 class="light grey-text text-lighten-3">{{img.slogan}}</h5>'
