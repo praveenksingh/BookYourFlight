@@ -51,17 +51,26 @@ body {
     padding-top: 20px;
 }
 
-#slides_control > div{
-    height: 200px;
+#myCarousel {
+    margin-top: 15px;
+    margin-bottom: 30px;
 }
-img{
-    margin:auto;
-    width: 400px;
+
+.my-container{
+    padding-top: 10px;
 }
-#slides_control {
-    position:absolute;
-    width: 400px;
-    left:50%;
-    top:20px;
-    margin-left:-200px;
+
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+.wordwrap
+{
+    /* wrap long text and urls */
+    white-space: pre; /* CSS 2.0 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3.0 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    white-space: -moz-pre-wrap; /* Mozilla */
+    word-wrap: break-word; /* IE 5+ */
 }

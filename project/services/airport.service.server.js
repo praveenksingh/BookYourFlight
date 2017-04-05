@@ -6,7 +6,8 @@ module.exports = function (app, utils) {
     var rp = require('request-promise');
 
     var val = utils.validateUtil;
-    var placesAPI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT_LONG&radius=500&keyword=CODE&type=airport&key=API_KEY";
+    // var placesAPI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT_LONG&radius=500&keyword=CODE&type=airport&key=API_KEY";
+    var placesAPI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT_LONG&radius=500&type=airport&key=API_KEY";
     var placesDeatilsAPI = "https://maps.googleapis.com/maps/api/place/details/json?placeid=PLACE_ID&key=API_KEY";
     var placePhoto = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=PIC_WID&photoreference=PHOTO_REF&key=API_KEY";
 
@@ -18,37 +19,38 @@ module.exports = function (app, utils) {
         var code = req.params['code'];
 
         //TODO Remove this block after testing
-        // var res = require('../../test/testAirport.json');
-        // response.status(200).send(res);
+        var res = require('../../test/testAirport.json');
+        response.status(200).send(res);
         //TODO uncommend down block
 
-        if(!val.validateAirportCode(code))
-            response.status(400).send("Not A Valid Airport Code");
-        else {
-            var options = {
-                uri: getPathForAirport(code),
-                json: true
-            };
-
-            rp(options)
-                .then(function (repos) {
-
-                    var optionsPlaceDetails = {
-                        uri: getPathForAirportDetails(repos.results[0].place_id),
-                        json: true
-                    };
-                    rp(optionsPlaceDetails)
-                        .then(function (responseDetails) {
-                            response.status(200).send(responseDetails.result);
-                        })
-                        .catch(function (err) {
-                            response.status(400).send('Error:', err);
-                        });
-                })
-                .catch(function (err) {
-                    response.status(400).send('Error:', err);
-                });
-        }
+        // if(!val.validateAirportCode(code))
+        //     response.status(400).send("Not A Valid Airport Code");
+        // else {
+        //     var options = {
+        //         uri: getPathForAirport(code),
+        //         json: true
+        //     };
+        //
+        //     rp(options)
+        //         .then(function (repos) {
+        //             // console.log(repos);
+        //             var optionsPlaceDetails = {
+        //                 uri: getPathForAirportDetails(repos.results[0].place_id),
+        //                 json: true
+        //             };
+        //             rp(optionsPlaceDetails)
+        //                 .then(function (responseDetails) {
+        //                     // console.log(responseDetails);
+        //                     response.status(200).send(responseDetails.result);
+        //                 })
+        //                 .catch(function (err) {
+        //                     response.status(400).send('Error:', err);
+        //                 });
+        //         })
+        //         .catch(function (err) {
+        //             response.status(400).send('Error:', err);
+        //         });
+        // }
     }
 
     function getLatLong(code) {
@@ -60,7 +62,7 @@ module.exports = function (app, utils) {
         var path = String(placesAPI);
         var latLong = getLatLong(code);
         path = path.replace("LAT_LONG", latLong);
-        path = path.replace("CODE", code);
+        // path = path.replace("CODE", code);
         return path;
     }
 
@@ -78,6 +80,7 @@ module.exports = function (app, utils) {
         };
         getPhotosForAirport(optionsPhoto)
             .then(function (photos) {
+                // console.log(photos);
                 res.status(200).send(photos);
 
             }, function (err) {
@@ -91,7 +94,6 @@ module.exports = function (app, utils) {
         request.get(optionsPhoto.uri, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
-                // console.log(data);
                 deferred.resolve(data);
             }
         });

@@ -1,33 +1,100 @@
-<head>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li>Sass</li>
-                <li>Components</li>
-                <li>JavaScript</li>
-            </ul>
-        </div>
-    </nav>
-</head>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>Sass</li>
+            <li>Components</li>
+            <li>JavaScript</li>
+        </ul>
+    </div>
+</nav>
 
-<main>
+<div class="container-fluid my-container">
     <div ng-show="modal.load" class="progress">
         <div class="indeterminate"></div>
     </div>
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
     </div>
+    <div></div>
+    <h2 class="flow-text center">{{model.airportData[0].name}}</h2>
+    <!-- Page Layout here -->
+    <div class="row">
+        <div class="col s12 m4 l3 teal lighten-4">
+            <p class="flow-text">Airport Details</p>
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <img src={{model.airportData[0].icon}} alt="" class="circle">
+                    <span class="title">Name</span>
+                    <p >{{model.airportData[0].name}}</p>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle">location_on</i>
+                    <span class="title">Address</span>
+                    <p>{{model.airportData[0].formatted_address}}</p>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle green">business</i>
+                    <span class="title">Vicinity</span>
+                    <p>{{model.airportData[0].vicinity}}</p>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle green">my_location</i>
+                    <span class="title">Geometry</span>
+                    <p>Latitude : {{model.airportData[0].geometry.location.lat}}</p>
+                    <p>Longitude : {{model.airportData[0].geometry.location.lng}}</p>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle green">contact_phone</i>
+                    <span class="title">Contact Details</span>
+                    <p>{{model.airportData[0].international_phone_number}}</p>
+                </li>
+                <li class="collection-item avatar">
+                    <i class="material-icons circle red">http</i>
+                    <span class="title">Website</span>
+                    <a class="wordwrap" ng-href="{{model.airportData[0].website}}" target="_blank">{{model.airportData[0].website}}</a>
+                </li>
+            </ul>
 
+        </div>
 
-<div ng-repeat="trips in model.airportPhotos">
-    <div>
-        <img src={{trips}} alt="Red dot" />
+        <div class="col s12 m8 l9 ">
+            <div class="parallax-container" ng-repeat="trips in model.airportPhotos">
+                <div parallax><img src={{trips.route}}></div>
+            </div>
+            <!--{{model.airportPhotos}}-->
+
+            <div ng-show="model.airportPhotos.length" class="slider" data-images="model.airportPhotos">
+
+            </div>
+        </div>
+
     </div>
+
+
+
+
+
+    <!--<div class="col s12 m7">-->
+        <!--<div class="card" ng-repeat="trips in model.airportPhotos">-->
+            <!--<div class="card-image">-->
+                <!--<img src={{trips}}>-->
+                <!--<span class="card-title">Card Title</span>-->
+            <!--</div>-->
+            <!--<div class="card-content">-->
+                <!--<p>I am a very simple card. I am good at containing small bits of information.-->
+                    <!--I am convenient because I require little markup to use effectively.</p>-->
+            <!--</div>-->
+            <!--<div class="card-action">-->
+                <!--<a href="#">This is a link</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+
 </div>
 
-
-</main>
 <footer class="page-footer">
     <div class="footer-copyright">
         <div class="container">

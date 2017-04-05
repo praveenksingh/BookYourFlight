@@ -3,7 +3,7 @@
         .module("BookYourTrip")
         .factory("AirportService", airportService);
 
-    function airportService($http, $q) {
+    function airportService($http) {
         var api = {
             "findAirportDetailsByCode": findAirportDetailsByCode,
             "findPhotosOfAirport": findPhotosOfAirport
@@ -17,7 +17,6 @@
         function findPhotosOfAirport(photos) {
             return $http.post("/api/airportPhotos/",photos);
         }
-
 
     }
 })();
