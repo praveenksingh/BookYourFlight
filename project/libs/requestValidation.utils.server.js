@@ -15,7 +15,9 @@ module.exports = function () {
         getCityIata: getCityIata,
         createRequest: createRequest,
         validateRequestData: validateRequestData,
-        validateCities: validateCities
+        validateCities: validateCities,
+        validateAirportCode: validateAirportCode,
+        getAirportDetailsByCode: getAirportDetailsByCode
     };
     return api;
 
@@ -33,6 +35,17 @@ module.exports = function () {
     function validateCity(cityName) {
         // return airports.findWhere({city: cityName}) !== undefined;
         return index.searchByCityName(cityName).length != 0;
+    }
+
+    function validateAirportCode(code){
+        // console.log(index.lookupByIataCode(code));
+        return index.lookupByIataCode(code) !== undefined;
+    }
+
+    function getAirportDetailsByCode(code) {
+        if(validateAirportCode(code)){
+            return index.lookupByIataCode(code);
+        }
     }
 
     function getCityIata(cityName) {

@@ -21,7 +21,12 @@
             })
             .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
-                controller: "HomeController",
+                controller: "LoginController",
+                controllerAs: "model"
+            })
+            .when("/airport/:airportCode", {
+                templateUrl: "views/airport/templates/airport.view.client.html",
+                controller: "AirportController",
                 controllerAs: "model"
             });
     }

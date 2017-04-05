@@ -24,7 +24,5 @@
             return $http.post("/api/flightDetails",flightData);
         }
 
-
-
     }
 })();

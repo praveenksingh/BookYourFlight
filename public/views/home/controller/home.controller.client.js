@@ -3,7 +3,7 @@
         .module("BookYourTrip")
         .controller("HomeController", homeController);
 
-    function homeController(HomeService, $location, $timeout) {
+    function homeController(HomeService, $location) {
         var vm = this;
         vm.flight = {};
         vm.searchFlight = searchFlight;

@@ -7,7 +7,7 @@ module.exports = function (app, utils) {
         var responseCreator = utils.responseCreator;
 
         //TODO Remove this block after testing
-        var res = require('../../testResponse.json');
+        var res = require('../../test/testResponse.json');
         var respo = responseCreator.createResponse(res);
         response.send(respo);
         //TODO uncommend down block
