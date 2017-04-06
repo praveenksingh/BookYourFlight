@@ -5,8 +5,15 @@ module.exports = function (app) {
         validateUtil: validateUtil,
         responseCreator: responseCreator
     };
-    require("./services/home.service.server")(app, utils);
-    require("./services/airport.service.server")(app, utils);
+
+    var userModel = require('./model/user/user.model.server')();
+    var model = {
+      userModel : userModel
+    };
+
+    require("./services/home.service.server")(app, utils, model);
+    require("./services/airport.service.server")(app, utils, model);
+    require("./services/user.service.server")(app, utils, model);
     // require("./services/website.service.server")(app);
     // require("./services/page.service.server")(app);
     // require("./services/widget.service.server")(app);

@@ -30,6 +30,7 @@ apiPath = apiPath.replace("API_KEY", key);
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
+require ("./mongo/app.js")();
 var project = require("./project/app.js");
 project(app);
 

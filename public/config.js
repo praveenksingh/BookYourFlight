@@ -24,6 +24,16 @@
                 controller: "LoginController",
                 controllerAs: "model"
             })
+            .when("/register", {
+                templateUrl: "views/user/templates/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/user/:userid", {
+                templateUrl: "views/user/templates/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model"
+            })
             .when("/airport/:airportCode", {
                 templateUrl: "views/airport/templates/airport.view.client.html",
                 controller: "AirportController",

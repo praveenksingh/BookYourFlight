@@ -3,29 +3,29 @@
         .module("BookYourTrip")
         .controller("LoginController", loginController);
 
-    function loginController($location, $scope) {
+    function loginController(UserService, $location) {
         var vm = this;
+        vm.login = login;
 
         function init() {
-            $scope.myInterval = 3000;
-            $scope.slides = [
-                {
-                    image: 'http://lorempixel.com/400/200/'
-                },
-                {
-                    image: 'http://lorempixel.com/400/200/food'
-                },
-                {
-                    image: 'http://lorempixel.com/400/200/sports'
-                },
-                {
-                    image: 'http://lorempixel.com/400/200/people'
-                }
-            ];
+
         }
         init();
 
-
-
+        function login(user) {
+            var promise = UserService.findUserByCredentials(user.username, user.password);
+            promise
+                .success(function (user) {
+                    var loginUser = user;
+                    if(loginUser != null) {
+                        $location.url('/user/' + loginUser._id);
+                    } else {
+                        vm.error = 'user not found';
+                    }
+                })
+                .error(function(err) {
+                    vm.error = 'user not found';
+                });
+        }
     }
 })();

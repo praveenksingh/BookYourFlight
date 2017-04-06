@@ -1,4 +1,4 @@
-module.exports = function (app, utils) {
+module.exports = function (app, utils, model) {
     app.post("/api/flightDetails", flightDetails);
 
     function flightDetails(req, response) {

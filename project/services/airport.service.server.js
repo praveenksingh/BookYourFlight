@@ -1,6 +1,6 @@
-module.exports = function (app, utils) {
+module.exports = function (app, utils, model) {
     app.get("/api/airport/:code", airportDetails);
-    app.post("/api/airportPhotos/", airportPhotos);
+    app.post("/api/airport/photos", airportPhotos);
 
     var q = require('q');
     var rp = require('request-promise');

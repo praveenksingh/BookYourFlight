@@ -7,5 +7,5 @@ module.exports = function () {
         comment : String,
         dateCreated : { type: Date, default: Date.now }
     }, {collection: 'webdev.mongo.project.comments'});
-    return airportSchema;
+    return commentsSchema;
 };

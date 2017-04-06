@@ -15,7 +15,7 @@
         }
 
         function findPhotosOfAirport(photos) {
-            return $http.post("/api/airportPhotos/",photos);
+            return $http.post("/api/airport/photos/",photos);
         }
 
     }
