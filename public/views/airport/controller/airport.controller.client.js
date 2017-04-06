@@ -5,6 +5,7 @@
 
     function airportController($routeParams, AirportService, $q, $http) {
         var vm = this;
+        vm.load = true;
         vm.myInterval = 3000;
         var airportCode = $routeParams['airportCode'];
 
@@ -18,7 +19,7 @@
                     AirportService.findPhotosOfAirport(data.photos)
                         .success(function (ob) {
                             vm.airportPhotos = ob;
-                            // console.log(vm.airportPhotos);
+                            vm.load = false;
                         })
                 }).error(function (err) {
                     vm.error = "Error loading airport Data"
