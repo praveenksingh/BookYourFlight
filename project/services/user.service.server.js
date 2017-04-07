@@ -1,5 +1,5 @@
 module.exports = function (app, utils, model) {
-    // app.get("/api/user", findUser);
+    // app.get("/api/user", findUserByUsername);
     // app.get("/api/user/:userId", findUserByUserId);
     // app.put("/api/user/:userId", updateUser);
     // app.delete("/api/user/:userId", deleteUser);
@@ -17,11 +17,12 @@ module.exports = function (app, utils, model) {
     passport.deserializeUser(deserializeUser);
 
     app.post('/api/login', passport.authenticate('local'), login);
+    app.get("/api/user", findUserByUsername);
     app.post('/api/loggedin', loggedin);
     app.post('/api/logout', logout);
     app.post('/api/user', register);
     app.post('/api/isAdmin', isAdmin);
-    app.get('/api/user', findAllUsers);
+    app.get('/api/allUsers', findAllUsers);
     app.delete('/api/user/:userId', deleteUser);
     app.put('/api/user/:userId', updateUser);
     app.put('/api/profile/:userId', updateProfile);
@@ -78,14 +79,11 @@ module.exports = function (app, utils, model) {
     }
 
     function localStrategy(username, password, done) {
-        console.log(username);
-        console.log(password);
         userModel
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
                     console.log('[0]');
-                    console.log(user);
                     if (!user) {
                         console.log('[1]');
                         return done(null, false);
@@ -100,9 +98,11 @@ module.exports = function (app, utils, model) {
     }
 
     function updateUser(req, res) {
-        if(req.user && req.user.role=='ADMIN') {
+        //TODO uncomment
+        // if(req.user && req.user.role=='ADMIN') {
+        if(req.user) {
             userModel
-                .updateUser(req.body)
+                .updateUser(req.body._id, req.body)
                 .then(function (status) {
                     res.send(200);
                 });
@@ -124,7 +124,7 @@ module.exports = function (app, utils, model) {
     }
 
     function login(req, res) {
-        console.log('[login]');
+        // console.log('[login]');
         var user = req.user;
         res.json(user);
     }
@@ -175,7 +175,9 @@ module.exports = function (app, utils, model) {
     }
 
     function deleteUser(req, res) {
-        if(req.user && req.user.role=='ADMIN') {
+        //TODO uncomment
+        // if(req.user && req.user.role=='ADMIN') {
+        if(req.user && res.user._doc._id === req.params.userId) {
             userModel
                 .deleteUser(req.params.userId)
                 .then(function (status) {
@@ -201,6 +203,22 @@ module.exports = function (app, utils, model) {
                 }
             );
     }
+
+    function findUserByUsername(req, res) {
+            var username = req.query['username'];
+            userModel
+                .findUser(username)
+                .then(function (user) {
+                    if(user) {
+                        res.send(user);
+                    } else {
+                        res.status(404).send('User not found for username: ' + username);
+                    }
+                }, function (err) {
+                    res.sendStatus(500).send(err);
+                });
+
+        }
 
     // var userModel = model.userModel;
     //

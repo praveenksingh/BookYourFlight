@@ -7,11 +7,6 @@
         var vm = this;
         vm.login = login;
 
-        function init() {
-
-        }
-        init();
-
         // function login(user) {
         //     var promise = UserService.findUserByCredentials(user.username, user.password);
         //     promise
@@ -35,7 +30,7 @@
                         $location.url('/profile');
                     }
                 }, function (err) {
-                    model.error = err;
+                    vm.error = err.statusText;
                 });
         }
     }

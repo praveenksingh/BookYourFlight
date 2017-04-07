@@ -10,7 +10,7 @@
             "logout": logout,
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
-            "createUser": createUser,
+            "createUser": register,
             "updateUser": updateUser,
             "findUserByUserName": findUserByUserName,
             "deleteUser" : deleteUser,
@@ -54,6 +54,20 @@
                 });
         }
 
+        function deleteUser(userId) {
+            return $http.delete('/api/user/' + userId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function register(user) {
+            return $http.post('/api/register', user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
         function findUserByUserName(username) {
             return $http.get("/api/user?username="+username);
         }
@@ -70,13 +84,13 @@
             return $http.get("/api/user?username="+username+"&password="+password);
         }
 
-        function deleteUser(userId) {
-            return $http.delete("/api/user/"+userId);
-        }
-
-        function createUser(user) {
-            return $http.post("/api/user", user);
-        }
+        // function deleteUser(userId) {
+        //     return $http.delete("/api/user/"+userId);
+        // }
+        //
+        // function createUser(user) {
+        //     return $http.post("/api/user", user);
+        // }
 
     }
 })();

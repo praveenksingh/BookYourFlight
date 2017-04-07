@@ -28,12 +28,18 @@
             .when("/login", {
                 templateUrl: "views/user/user/templates/login.view.client.html",
                 controller: "LoginController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: alreadyLoggedIn
+                }
             })
             .when("/register", {
                 templateUrl: "views/user/user/templates/register.view.client.html",
                 controller: "RegisterController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: alreadyLoggedIn
+                }
             })
             .when("/profile/", {
                 templateUrl: "views/user/user/templates/profile.view.client.html",
@@ -54,7 +60,10 @@
             .otherwise({
                 templateUrl: 'views/home/templates/home.view.client.html',
                 controller: "HomeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedInUser
+                }
             });
     }
 
@@ -68,6 +77,21 @@
                 } else {
                     $location.url('/login');
                     deferred.reject();
+                }
+            });
+        return deferred.promise;
+    }
+
+    function alreadyLoggedIn($q, UserService, $location) {
+        var deferred = $q.defer();
+        UserService
+            .loggedIn()
+            .then(function (user) {
+                if(user != '0') {
+                    $location.url('/profile');
+                    deferred.reject();
+                } else {
+                    deferred.resolve(user);
                 }
             });
         return deferred.promise;

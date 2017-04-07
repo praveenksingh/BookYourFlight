@@ -44,11 +44,8 @@
            type="password"
            placeholder="req4321"/>
 
-    <a href="#/user/{{model.user._id}}/website" class="btn btn-success btn-block">Websites</a>
     <a ng-click="model.unregisterUser(model.user)" class="btn btn-danger btn-block">Delete</a>
     <a ng-click="model.update(model.user)" class="btn btn-primary btn-block">Update</a>
-    <button ng-click="model.logout()" class="pull-right btn btn-danger">
-        Logout
-    </button>
-    <a href="#/" class="btn btn-danger btn-block">Logout</a>
+
+    <a ng-click="model.logout()" class="btn btn-danger btn-block">Logout</a>
 </div>

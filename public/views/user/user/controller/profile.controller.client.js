@@ -3,17 +3,15 @@
         .module("BookYourTrip")
         .controller("ProfileController", profileController);
 
-    function profileController($routeParams, $location, UserService, currentUser) {
+    function profileController($location, UserService, currentUser) {
         var vm = this;
-        var userId = $routeParams['userid'];
         vm.unregisterUser = unregisterUser;
         vm.logout = logout;
-        vm.currentUser = currentUser;
+        vm.update = update;
+        vm.user = currentUser;
 
         function init() {
-            // UserService
-            //     .findUserById(userId)
-            //     .success(renderUser);
+
         }
         init();
 
@@ -27,12 +25,11 @@
 
         function unregisterUser(user) {
             var answer = confirm("Are you sure?");
-            // console.log(answer);
             if(answer) {
                 UserService
                     .deleteUser(user._id)
                     .success(function () {
-                        $location.url("/login");
+                        $location.url("/");
                     })
                     .error(function () {
                         vm.error = 'unable to remove user';
@@ -40,15 +37,9 @@
             }
         }
 
-        function renderUser(user) {
-            vm.user = user;
-            // console.log(user);
-        }
-
-        vm.update = function (newUser) {
-            // console.log(newUser.emailId);
+        function update (newUser) {
             UserService
-                .updateUser(userId, newUser)
+                .updateUser(vm.user._id, newUser)
                 .success(function (response) {
                     vm.message = "user successfully updated"
                 })

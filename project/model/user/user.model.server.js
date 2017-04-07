@@ -12,7 +12,7 @@ module.exports = function () {
         findUserById: findUserById,
         deleteUser: deleteUser,
         updateUser: updateUser,
-        // findUser: findUser,
+        findUser: findUser,
         findUserByCredentials: findUserByCredentials
 
     };
@@ -48,5 +48,9 @@ module.exports = function () {
 
     function findUserById(userId) {
         return userModel.findById(userId);
+    }
+
+    function findUser(username) {
+        return userModel.findOne({username: username});
     }
 };
