@@ -2,7 +2,7 @@ module.exports = function () {
     var mongoose = require('mongoose');
 
     var airportSchema = mongoose.Schema({
-        code: String,
+        airportCode: String,
         placeId: String,
         name : String,
         dateCreated : { type: Date, default: Date.now },

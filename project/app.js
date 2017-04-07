@@ -1,11 +1,4 @@
 module.exports = function (app) {
-    // var passport      = require('passport');
-    // var LocalStrategy = require('passport-local').Strategy;
-    // var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-    // var passportUtil = {
-    //
-    // };
-
     var validateUtil = require('./libs/requestValidation.utils.server')();
     var responseCreator = require('./libs/createResponse.utils.server')();
     var utils = {
@@ -14,14 +7,15 @@ module.exports = function (app) {
     };
 
     var userModel = require('./model/user/user.model.server')();
+    var commentsModel = require('./model/comments/comments.model.server')();
+    var airportModel = require('./model/airport/airport.model.server')();
     var model = {
-      userModel : userModel
+        userModel : userModel,
+        commentsModel : commentsModel,
+        airportModel : airportModel
     };
 
     require("./services/home.service.server")(app, utils, model);
     require("./services/airport.service.server")(app, utils, model);
     require("./services/user.service.server")(app, utils, model);
-    // require("./services/website.service.server")(app);
-    // require("./services/page.service.server")(app);
-    // require("./services/widget.service.server")(app);
 };
