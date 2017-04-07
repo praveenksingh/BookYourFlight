@@ -16,10 +16,9 @@
                 .error(function(){
                     UserService
                         .createUser(user)
-                        .success(function(user){
+                        .then(function (user) {
                             $location.url('/profile');
-                        })
-                        .error(function () {
+                        }, function (err) {
                             vm.error = 'sorry could not register';
                         });
                 });

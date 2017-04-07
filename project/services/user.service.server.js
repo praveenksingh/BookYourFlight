@@ -20,7 +20,7 @@ module.exports = function (app, utils, model) {
     app.get("/api/user", findUserByUsername);
     app.post('/api/loggedin', loggedin);
     app.post('/api/logout', logout);
-    app.post('/api/user', register);
+    app.post('/api/register', register);
     app.post('/api/isAdmin', isAdmin);
     app.get('/api/allUsers', findAllUsers);
     app.delete('/api/user/:userId', deleteUser);
@@ -38,7 +38,7 @@ module.exports = function (app, utils, model) {
     var googleConfig = {
         clientID     :  "534459517532-rdcgmlc3abh4923abssbst98khhnq31e.apps.googleusercontent.com",
         clientSecret : "6YiHgFQz4iSYViWeVEeBEvv-",
-        callbackURL  :  "http://localhost:3000/user/profile"
+        callbackURL  :  "http://127.0.0.1:3000/user/profile"
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
@@ -124,7 +124,6 @@ module.exports = function (app, utils, model) {
     }
 
     function login(req, res) {
-        // console.log('[login]');
         var user = req.user;
         res.json(user);
     }
@@ -177,7 +176,7 @@ module.exports = function (app, utils, model) {
     function deleteUser(req, res) {
         //TODO uncomment
         // if(req.user && req.user.role=='ADMIN') {
-        if(req.user && res.user._doc._id === req.params.userId) {
+        if(req.user && req.user._doc._id == req.params.userId) {
             userModel
                 .deleteUser(req.params.userId)
                 .then(function (status) {

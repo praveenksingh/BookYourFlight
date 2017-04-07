@@ -28,10 +28,9 @@
             if(answer) {
                 UserService
                     .deleteUser(user._id)
-                    .success(function () {
+                    .then(function () {
                         $location.url("/");
-                    })
-                    .error(function () {
+                    }, function (err) {
                         vm.error = 'unable to remove user';
                     });
             }
@@ -40,12 +39,11 @@
         function update (newUser) {
             UserService
                 .updateUser(vm.user._id, newUser)
-                .success(function (response) {
+                .then(function () {
                     vm.message = "user successfully updated"
-                })
-                .error(function () {
+                }, function (err) {
                     vm.error = "unable to update user";
                 });
-        };
+        }
     }
 })();
