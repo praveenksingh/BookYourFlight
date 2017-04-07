@@ -3,9 +3,10 @@
         .module("BookYourTrip")
         .controller("FlightDetailsController", flightDetailsController);
 
-    function flightDetailsController(HomeService, $scope, $location) {
+    function flightDetailsController(HomeService, $location, currentUser) {
         var vm = this;
-        $scope.oneAtATime = true;
+        vm.oneAtATime = true;
+        vm.currentUser = currentUser;
 
         function init() {
             vm.details = HomeService.getFlightDetails();

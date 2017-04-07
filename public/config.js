@@ -12,12 +12,18 @@
             .when("/", {
                 templateUrl: "views/home/templates/home.view.client.html",
                 controller: "HomeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedInUser
+                }
             })
             .when("/flightDetails", {
                 templateUrl: "views/flights/templates/flightdetails.view.client.html",
                 controller: "FlightDetailsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedInUser
+                }
             })
             .when("/login", {
                 templateUrl: "views/user/user/templates/login.view.client.html",
@@ -62,6 +68,31 @@
                 }
             });
         return deferred.promise;
+    }
+
+    function checkLoggedInUser($q, UserService) {
+        var deferred = $q.defer();
+        UserService
+            .loggedIn()
+            .then(function (user) {
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
+
+    function checkAdmin($q, userService, $location) {
+        var defer = $q.defer();
+        userService
+            .isAdmin()
+            .then(function (user) {
+                if(user != '0') {
+                    defer.resolve(user);
+                } else {
+                    defer.reject();
+                    $location.url('/profile');
+                }
+            });
+        return defer.promise;
     }
 
 })();

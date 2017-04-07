@@ -13,7 +13,9 @@
             "createUser": createUser,
             "updateUser": updateUser,
             "findUserByUserName": findUserByUserName,
-            "deleteUser" : deleteUser
+            "deleteUser" : deleteUser,
+            "isAdmin" :isAdmin,
+            "updateProfile" :updateProfile
         };
         return api;
 
@@ -33,6 +35,20 @@
 
         function logout() {
             return $http.post('/api/logout')
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function isAdmin() {
+            return $http.post('/api/isAdmin')
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function updateProfile(user) {
+            return $http.put('/api/profile/' + user._id, user)
                 .then(function (response) {
                     return response.data;
                 });

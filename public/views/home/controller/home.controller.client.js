@@ -3,10 +3,11 @@
         .module("BookYourTrip")
         .controller("HomeController", homeController);
 
-    function homeController(HomeService, $location) {
+    function homeController(HomeService, $location, currentUser) {
         var vm = this;
         vm.flight = {};
         vm.searchFlight = searchFlight;
+        vm.currentUser = currentUser;
 
         function init() {
             vm.load = false;

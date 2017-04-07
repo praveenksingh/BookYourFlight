@@ -20,11 +20,11 @@ module.exports = function (app, utils, model) {
     app.post('/api/loggedin', loggedin);
     app.post('/api/logout', logout);
     app.post('/api/user', register);
-    app.post('/api/lectures-wed/isAdmin', isAdmin);
-    app.get('/api/lectures-wed/user', findAllUsers);
+    app.post('/api/isAdmin', isAdmin);
+    app.get('/api/user', findAllUsers);
     app.delete('/api/user/:userId', deleteUser);
     app.put('/api/user/:userId', updateUser);
-    app.put('/api/lectures-wed/profile/:userId', updateProfile);
+    app.put('/api/profile/:userId', updateProfile);
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/google/oauth/callback',

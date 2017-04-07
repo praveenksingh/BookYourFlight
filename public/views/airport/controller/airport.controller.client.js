@@ -3,9 +3,10 @@
         .module("BookYourTrip")
         .controller("AirportController", airportController);
 
-    function airportController($routeParams, AirportService, $q, $http) {
+    function airportController($routeParams, AirportService, currentUser) {
         var vm = this;
         vm.load = true;
+        vm.currentUser = currentUser;
         vm.myInterval = 3000;
         var airportCode = $routeParams['airportCode'];
 
