@@ -1,6 +1,5 @@
-var express = require('express');
-global.request = require('request');
-var app = express();
+var app = require('./express');
+require("./congigurations");
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -18,17 +17,9 @@ app.use(session({
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(request);
-
-global.apiPath = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=API_KEY";
-// global.key1 = process.env.GOOGLE_KEY ||"AIzaSyDKbf5xMjHgx2AxbT8XYiemow5DPfBEj0I";
-global.key1 = process.env.GOOGLE_KEY_PLACES ||"AIzaSyBviYdw6Yqic5WxRZ21KjVgQqXOKMWG7GI";
-var key = process.env.GOOGLE_KEY_FLIGHT ||"AIzaSyB0Qaqmq90cU-511qA7AterDFbNrMvUwtU";
-apiPath = apiPath.replace("API_KEY", key);
-
 
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
+app.use(app.express.static(__dirname + '/public'));
 
 require ("./mongo/app.js")();
 var project = require("./project/app.js");
