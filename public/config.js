@@ -29,15 +29,39 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/user/:userid", {
+            .when("/profile/", {
                 templateUrl: "views/user/user/templates/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
             .when("/airport/:airportCode", {
                 templateUrl: "views/airport/templates/airport.view.client.html",
                 controller: "AirportController",
                 controllerAs: "model"
+            })
+            .otherwise({
+                templateUrl: 'views/home/templates/home.view.client.html',
+                controller: "HomeController",
+                controllerAs: "model"
             });
     }
+
+    function checkLogin($q, UserService, $location) {
+        var deferred = $q.defer();
+        UserService
+            .loggedIn()
+            .then(function (user) {
+                if(user != '0') {
+                    deferred.resolve(user);
+                } else {
+                    $location.url('/login');
+                    deferred.reject();
+                }
+            });
+        return deferred.promise;
+    }
+
 })();

@@ -3,17 +3,27 @@
         .module("BookYourTrip")
         .controller("ProfileController", profileController);
 
-    function profileController($routeParams, $location, UserService) {
+    function profileController($routeParams, $location, UserService, currentUser) {
         var vm = this;
         var userId = $routeParams['userid'];
         vm.unregisterUser = unregisterUser;
+        vm.logout = logout;
+        vm.currentUser = currentUser;
 
         function init() {
-            UserService
-                .findUserById(userId)
-                .success(renderUser);
+            // UserService
+            //     .findUserById(userId)
+            //     .success(renderUser);
         }
         init();
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url('/');
+                });
+        }
 
         function unregisterUser(user) {
             var answer = confirm("Are you sure?");

@@ -1,5 +1,5 @@
 var app = require('./express');
-require("./congigurations");
+require("./configurations");
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());

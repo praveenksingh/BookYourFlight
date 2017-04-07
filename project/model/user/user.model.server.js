@@ -9,7 +9,7 @@ module.exports = function () {
         findAllUsers: findAllUsers,
         findUserByGoogleId: findUserByGoogleId,
         createUser: createUser,
-        findUserByUserId: findUserById,
+        findUserById: findUserById,
         deleteUser: deleteUser,
         updateUser: updateUser,
         // findUser: findUser,

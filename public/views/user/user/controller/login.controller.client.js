@@ -12,19 +12,30 @@
         }
         init();
 
+        // function login(user) {
+        //     var promise = UserService.findUserByCredentials(user.username, user.password);
+        //     promise
+        //         .success(function (user) {
+        //             var loginUser = user;
+        //             if(loginUser != null) {
+        //                 $location.url('/user/' + loginUser._id);
+        //             } else {
+        //                 vm.error = 'user not found';
+        //             }
+        //         })
+        //         .error(function(err) {
+        //             vm.error = 'user not found';
+        //         });
+        // }
         function login(user) {
-            var promise = UserService.findUserByCredentials(user.username, user.password);
-            promise
-                .success(function (user) {
-                    var loginUser = user;
-                    if(loginUser != null) {
-                        $location.url('/user/' + loginUser._id);
-                    } else {
-                        vm.error = 'user not found';
+            UserService
+                .login(user)
+                .then(function (user) {
+                    if(user) {
+                        $location.url('/profile');
                     }
-                })
-                .error(function(err) {
-                    vm.error = 'user not found';
+                }, function (err) {
+                    model.error = err;
                 });
         }
     }

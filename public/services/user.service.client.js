@@ -5,6 +5,9 @@
 
     function userService($http) {
         var api = {
+            "login" : login,
+            "loggedIn" : loggedIn,
+            "logout": logout,
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
             "createUser": createUser,
@@ -13,6 +16,27 @@
             "deleteUser" : deleteUser
         };
         return api;
+
+        function login(user) {
+            return $http.post('/api/login', user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function loggedIn() {
+            return $http.post('/api/loggedin')
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function logout() {
+            return $http.post('/api/logout')
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function findUserByUserName(username) {
             return $http.get("/api/user?username="+username);

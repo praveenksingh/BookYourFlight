@@ -1,4 +1,11 @@
 module.exports = function (app) {
+    // var passport      = require('passport');
+    // var LocalStrategy = require('passport-local').Strategy;
+    // var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    // var passportUtil = {
+    //
+    // };
+
     var validateUtil = require('./libs/requestValidation.utils.server')();
     var responseCreator = require('./libs/createResponse.utils.server')();
     var utils = {
