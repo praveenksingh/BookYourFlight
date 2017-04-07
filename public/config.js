@@ -46,7 +46,10 @@
             .when("/airport/:airportCode", {
                 templateUrl: "views/airport/templates/airport.view.client.html",
                 controller: "AirportController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedInUser
+                }
             })
             .otherwise({
                 templateUrl: 'views/home/templates/home.view.client.html',
