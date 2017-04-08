@@ -3,6 +3,8 @@ module.exports = function () {
 
     var airportSchema = mongoose.Schema({
         airportCode: String,
+        likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoAssignmentUsers'}],
+        dislikes: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoAssignmentUsers'}],
         placeId: String,
         name : String,
         dateCreated : { type: Date, default: Date.now },

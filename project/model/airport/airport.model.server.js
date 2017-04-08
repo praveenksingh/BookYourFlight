@@ -6,27 +6,39 @@ module.exports = function () {
     var airportModel = mongoose.model('Airports', airportSchema);
 
     var api = {
-        findAllComments: findAllComments,
         findAirportByCode: findAirportByCode,
         findAirportByPlaceId: findAirportByPlaceId,
-        createAirport: createAirport
+        createAirport: createAirport,
+        findAirportById: findAirportById,
+        addCommentsToAirport :addCommentsToAirport
     };
     return api;
 
-    function findAllComments(airportId) {
-
-    }
-
     function findAirportByCode(code) {
-
+        return airportModel.findOne({airportCode: code});
     }
 
-    function findAirportByPlaceId() {
-
+    function findAirportByPlaceId(placeId) {
+        return airportModel.findOne({placeId: placeId});
     }
 
     function createAirport(airport){
+        return airportModel.create(airport);
+    }
 
+    function findAirportById(airportId) {
+        return airportModel.findById(airportId);
+    }
+
+    function addCommentsToAirport(airportId, commentId) {
+        var deferred = q.defer();
+        airportModel
+            .findById(airportId, function (err, user) {
+                user.comments.push(commentId);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
     }
 
 };

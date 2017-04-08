@@ -14,7 +14,8 @@ module.exports = function () {
         },
         dateCreated : { type: Date, default: Date.now },
         tickets : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectTickets'}],
-        comments : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectComments'}]
+        comments : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectComments'}],
+        airports : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectAirports'}]
     }, {collection: 'webdev.mongo.project.users'});
 
     return userSchema;
