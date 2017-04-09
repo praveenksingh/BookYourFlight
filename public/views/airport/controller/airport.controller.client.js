@@ -51,12 +51,12 @@
         function addComment(airport) {
             CommentsService.createComment(airport)
                 .then(function (com) {
-                    console.log(com);
                     vm.comments.push(com);
+                    vm.airportData.comment = "";
                 }, function (err) {
                     vm.error ="login to continue commenting";
+                    vm.airportData.comment = "";
                 });
-            vm.airportData.comment = "";
         }
     }
 })();

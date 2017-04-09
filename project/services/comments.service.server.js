@@ -9,6 +9,7 @@ module.exports = function (app, utils, model, passport) {
 
     var commentsModel = model.commentsModel;
     var airportModel = model.airportModel;
+    var userModel = model.userModel;
 
     function findCommentById() {
         if(req.user){
@@ -37,8 +38,12 @@ module.exports = function (app, utils, model, passport) {
                                     .then(function (commentCrea) {
                                         airportModel.addCommentsToAirport(airportCreated, commentCrea._id)
                                             .then(function () {
-                                                //TODO add to user
-                                                res.status(200).send(commentCrea);
+                                                userModel.addCommentsToUser(req.user._id, airportCreated._id)
+                                                    .then(function (user) {
+                                                        res.status(200).send(commentCrea);
+                                                    }, function (error) {
+                                                        res.status(500).send(error);
+                                                    });
                                             }, function (err) {
                                                 res.status(500).send(err);
                                             });
@@ -58,8 +63,12 @@ module.exports = function (app, utils, model, passport) {
                             .then(function (commentCreated) {
                                 airportModel.addCommentsToAirport(airport, commentCreated._id)
                                     .then(function () {
-                                        //TODO add to user
-                                        res.status(200).send(commentCreated);
+                                        userModel.addCommentsToUser(req.user._id, airport._id)
+                                            .then(function (user) {
+                                                res.status(200).send(commentCreated);
+                                            }, function (error) {
+                                                res.status(500).send(error);
+                                            });
                                     }, function (err) {
                                         res.status(500).send(err);
                                     });

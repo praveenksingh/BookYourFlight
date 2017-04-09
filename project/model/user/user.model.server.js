@@ -13,7 +13,8 @@ module.exports = function () {
         deleteUser: deleteUser,
         updateUser: updateUser,
         findUser: findUser,
-        findUserByCredentials: findUserByCredentials
+        findUserByCredentials: findUserByCredentials,
+        addCommentsToUser: addCommentsToUser
 
     };
     return api;
@@ -52,5 +53,16 @@ module.exports = function () {
 
     function findUser(username) {
         return userModel.findOne({username: username});
+    }
+
+    function addCommentsToUser(userId, commentId){
+        var deferred = q.defer();
+        userModel
+            .findById(userId, function (err, user) {
+                user.comments.push(commentId);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
     }
 };
