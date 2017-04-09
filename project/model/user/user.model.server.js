@@ -14,7 +14,8 @@ module.exports = function () {
         updateUser: updateUser,
         findUser: findUser,
         findUserByCredentials: findUserByCredentials,
-        addCommentsToUser: addCommentsToUser
+        addCommentsToUser: addCommentsToUser,
+        findUserByUserId: findUserByUserId
 
     };
     return api;
@@ -48,7 +49,11 @@ module.exports = function () {
     }
 
     function findUserById(userId) {
-        return userModel.find({_id: userId}, 'firstName lastName image');
+        return userModel.findOne({_id: userId});
+    }
+
+    function findUserByUserId(userId) {
+        return userModel.findOne({_id: userId}, 'firstName lastName image');
     }
 
     function findUser(username) {

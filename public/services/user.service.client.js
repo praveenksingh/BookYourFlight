@@ -15,7 +15,8 @@
             "findUserByUserName": findUserByUserName,
             "deleteUser" : deleteUser,
             "isAdmin" :isAdmin,
-            "updateProfile" :updateProfile
+            "updateProfile" :updateProfile,
+            "findUserByUserId": findUserByUserId
         };
         return api;
 
@@ -78,6 +79,13 @@
 
         function findUserById(userId) {
             return $http.get("/api/user/"+userId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findUserByUserId(userId) {
+            return $http.get("/api/user/id/"+userId)
                 .then(function (response) {
                     return response.data;
                 });

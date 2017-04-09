@@ -7,7 +7,7 @@
 
         function init() {
             UserService
-                .findUserById($scope.comments._user)
+                .findUserByUserId($scope.comments._user)
                 .then(function (user) {
                     $scope.user = user;
                 })

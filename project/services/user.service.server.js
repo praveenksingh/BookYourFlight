@@ -12,6 +12,7 @@ module.exports = function (app, utils, model, passport) {
     app.delete('/api/user/:userId', deleteUser);
     app.put('/api/user/:userId', updateUser);
     app.get('/api/user/:userId', findUserById);
+    app.get('/api/user/id/:userId', findUserByUserId);
     app.put('/api/profile/:userId', updateProfile);
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
@@ -24,7 +25,7 @@ module.exports = function (app, utils, model, passport) {
     function updateUser(req, res) {
         //TODO uncomment
         // if(req.user && req.user.role=='ADMIN') {
-        if(req.user) {
+        if(req.user  && req.user._id == req.body._id) {
             userModel
                 .updateUser(req.body._id, req.body)
                 .then(function (status) {
@@ -36,7 +37,7 @@ module.exports = function (app, utils, model, passport) {
     }
 
     function updateProfile(req, res) {
-        if(req.user && req.user._id == req.body._id) {
+        if(req.user) {
             userModel
                 .updateProfile(req.body)
                 .then(function (status) {
@@ -129,6 +130,17 @@ module.exports = function (app, utils, model, passport) {
         var userId = req.params['userId'];
         userModel
             .findUserById(userId)
+            .then(function (user) {
+                res.send(user);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+    }
+
+    function findUserByUserId(req, res) {
+        var userId = req.params['userId'];
+        userModel
+            .findUserByUserId(userId)
             .then(function (user) {
                 res.send(user);
             }, function (err) {
