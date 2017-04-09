@@ -17,7 +17,7 @@
         {{model.error}}
     </div>
 
-    <h2 class="flow-text center ">{{model.airportData.name}}</h2>
+    <h2 class="flow-text center" ng-bind="model.airportData.name"></h2>
 
     <div class="row">
         <div class="col s12 m4 l3 teal lighten-4">
@@ -26,17 +26,17 @@
                 <li class="collection-item avatar">
                     <img src={{model.airportData.icon}} alt="" class="circle">
                     <span class="title">Name</span>
-                    <p >{{model.airportData.name}}</p>
+                    <p ng-bind="model.airportData.name"></p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle">location_on</i>
                     <span class="title">Address</span>
-                    <p>{{model.airportData.formatted_address}}</p>
+                    <p ng-bind="model.airportData.formatted_address"></p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle green">business</i>
                     <span class="title">Vicinity</span>
-                    <p>{{model.airportData.vicinity}}</p>
+                    <p ng-bind="model.airportData.vicinity"></p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle green">my_location</i>
@@ -47,7 +47,7 @@
                 <li class="collection-item avatar">
                     <i class="material-icons circle green">contact_phone</i>
                     <span class="title">Contact Details</span>
-                    <p>{{model.airportData.international_phone_number}}</p>
+                    <p ng-bind="model.airportData.international_phone_number"></p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle red">http</i>
@@ -93,11 +93,11 @@
                                 <img src="{{user.image}}" class="circle responsive-img">
                             </div>
                             <div class="col s10">
-                                <div class="black-text">
-                                    {{user.firstName}} {{user.lastName}}
+                                <div class="black-text" ng-bind="(user.firstName) + ' ' +(user.lastName)">
+                                    <!--{{user.firstName}} {{user.lastName}}-->
                                 </div>
-                              <span >
-                                {{comments.comment}}
+                              <span ng-bind-html="comments.comment">
+                                <!--{{comments.comment}}-->
                               </span>
                             </div>
                         </div>
