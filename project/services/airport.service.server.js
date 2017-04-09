@@ -3,6 +3,7 @@ module.exports = function (app, utils, model, passport) {
     app.post("/api/airport/photos", airportPhotos);
     app.post("/api/airport/:code", createAirport);
     app.get("/api/airport/local/:placeId", findAirportByPlaceId);
+    app.get("/api/airport/searchById/:airportId", findAirportById);
 
     var q = require('q');
     var rp = require('request-promise');
@@ -166,6 +167,15 @@ module.exports = function (app, utils, model, passport) {
         airportModel.findAirportByPlaceId(req.params.placeId)
             .then(function (airport) {
                 res.json(airport);
+            }, function (err) {
+                res.json({});
+            })
+    }
+
+    function findAirportById(req, res) {
+        airportModel.findAirportById(req.params.airportId)
+            .then(function (airport) {
+                res.json(airport)
             }, function (err) {
                 res.json({});
             })

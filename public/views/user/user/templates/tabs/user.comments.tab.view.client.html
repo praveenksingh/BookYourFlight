@@ -1,0 +1,5 @@
+<br />
+<div ng-if="!model.user.comments.length"> You have not Reviewed any Airport Yet </div>
+<div ng-repeat="comment in model.user.comments.slice().reverse()" ng-controller="CommentsLoader">
+    {{commentDetails}}
+</div>

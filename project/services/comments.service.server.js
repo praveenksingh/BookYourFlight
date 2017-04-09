@@ -2,7 +2,7 @@ module.exports = function (app, utils, model, passport) {
 
     app.get("/api/comment/:commentId", findCommentById);
     app.post('/api/comment', createComment);
-    app.get('/api/comment/airport/:airportId', findAllCommentCommentByAirportId);
+    app.get('/api/comment/airport/:airportId', findAllCommentByAirportId);
     app.delete('/api/comment/:commentId', deleteComment);
     app.put('/api/comment/:commentId', updateComment);
 
@@ -11,9 +11,16 @@ module.exports = function (app, utils, model, passport) {
     var airportModel = model.airportModel;
     var userModel = model.userModel;
 
-    function findCommentById() {
+    function findCommentById(req, res) {
         if(req.user){
             commentsModel.findCommentById(req.params.commentId)
+                .then(function (comment) {
+                    res.status(200).json(comment);
+                }, function (err) {
+                    res.status(500).send();
+                })
+        }else{
+            res.status(401).send();
         }
     }
 
@@ -38,7 +45,7 @@ module.exports = function (app, utils, model, passport) {
                                     .then(function (commentCrea) {
                                         airportModel.addCommentsToAirport(airportCreated, commentCrea._id)
                                             .then(function () {
-                                                userModel.addCommentsToUser(req.user._id, airportCreated._id)
+                                                userModel.addCommentsToUser(req.user._id, commentCrea._id)
                                                     .then(function (user) {
                                                         res.status(200).send(commentCrea);
                                                     }, function (error) {
@@ -63,7 +70,7 @@ module.exports = function (app, utils, model, passport) {
                             .then(function (commentCreated) {
                                 airportModel.addCommentsToAirport(airport, commentCreated._id)
                                     .then(function () {
-                                        userModel.addCommentsToUser(req.user._id, airport._id)
+                                        userModel.addCommentsToUser(req.user._id, commentCreated._id)
                                             .then(function (user) {
                                                 res.status(200).send(commentCreated);
                                             }, function (error) {
@@ -85,7 +92,7 @@ module.exports = function (app, utils, model, passport) {
         }
     }
 
-    function findAllCommentCommentByAirportId(req, res) {
+    function findAllCommentByAirportId(req, res) {
         airportModel.findAirportByPlaceId(req.params.airportId)
             .then(function (airport) {
                 if(airport != undefined) {

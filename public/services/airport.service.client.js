@@ -9,9 +9,18 @@
             "findPhotosOfAirport": findPhotosOfAirport,
             // "addCommentToAirport": addCommentToAirport,
             "findAirportByPlaceId": findAirportByPlaceId,
-            "createAirport": createAirport
+            "createAirport": createAirport,
+            "findAirportById": findAirportById
         };
         return api;
+
+        function findAirportById(airportId) {
+            return $http.get("/api/airport/searchById/"+airportId)
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
 
         function findAirportDetailsByCode(airportCode) {
             return $http.get("/api/airport/"+airportCode);

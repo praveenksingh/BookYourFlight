@@ -1,47 +1,14 @@
+<!--{{model.user}}-->
 <hr>
 <div class="container">
     <div class="row">
-        <div class="col-sm-10"><h1 ng-bind-html="model.user.firstName"></h1></div>
-        <div class="col-sm-2"><img title="profile image" class="img-circle img-responsive" src="{{model.user.image}}"></div>
+        <div class="col-sm-10"><h1 ng-bind="(model.user.firstName)+' ' +(model.user.lastName)"></h1></div>
+        <div class="col-sm-2"><img title="profile image" class="img-circle img-responsive" ng-src="{{model.user.image}}" alt="Profile Image" ></div>
     </div>
     <div class="row">
         <div class="col-sm-3"><!--left col-->
-
-            <ul class="list-group">
-                <li class="list-group-item text-muted">Profile</li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong>Joined</strong></span>
-                    <span ng-bind="model.user.dateCreated | date:'shortDate'"></span>
-                </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong>First Name</strong></span>
-                    <span ng-bind="model.user.firstName"></span>
-                </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong>Last Name</strong></span>
-                    <span ng-bind="model.user.lastName"></span>
-                </li>
-            </ul>
-
-            <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong>Tickets</strong></span>
-                    <span ng-bind="model.user.tickets.length"></span>
-                </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong>Comments</strong></span>
-                    <span ng-bind="model.user.comments.length"></span>
-                </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong>Followers</strong></span>
-                    <span ng-bind="model.user.followed.length"></span>
-                </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong>Following</strong></span>
-                    <span ng-bind="model.user.following.length"></span>
-                </li>
-            </ul>
+            <ng-include src="'views/user/user/templates/user.detail.view.client.html'"></ng-include>
+            <ng-include src="'views/user/user/templates/user.activity.view.client.html'"></ng-include>
 
             <div class="panel panel-default">
                 <div class="panel-heading">Social Media</div>
@@ -60,67 +27,25 @@
                 {{model.message}}
             </div>
             <uib-tabset active="activeJustified" justified="true">
+
                 <uib-tab index="0" heading="Profile">
-                    <div class="container-fluid">
-                        <label for="first">First Name</label>
-                        <input ng-model="model.user.firstName"
-                               id="first"
-                               class="form-control"
-                               placeholder="First Name"/>
-
-                        <label for="last">Last Name</label>
-                        <input ng-model="model.user.lastName"
-                               id="last"
-                               class="form-control"
-                               placeholder="Last name"/>
-
-                        <label for="email">Email</label>
-                        <input ng-model="model.user.email"
-                               id="email"
-                               type="email"
-                               class="form-control"
-                               placeholder="email@example.com"/>
-
-                        <label for="username">Username</label>
-                        <input ng-model="model.user.username"
-                               id="username"
-                               class="form-control"
-                               placeholder="john123"/>
-
-                        <label for="password">Password</label>
-                        <input id="password"
-                               class="form-control"
-                               type="password"
-                               placeholder="password"/>
-
-                        <label for="password2">Validate Password</label>
-                        <input id="password2"
-                               class="form-control"
-                               type="password"
-                               placeholder="password"/>
-
-                        <div class="center">
-                        <a ng-click="model.update(model.user)" class="btn green darken-1">Update</a>
-                        <a ng-click="model.logout()" class="btn light-blue darken-1 ">Logout</a>
-                        <a ng-click="model.unregisterUser(model.user)" class="btn red darken-4">Delete</a>
-                        </div>
-                    </div>
+                    <ng-include src="'views/user/user/templates/tabs/user.profile.tab.view.client.html'"></ng-include>
                 </uib-tab>
 
                 <uib-tab index="1" heading="Tickets">
-                    Tickets Details Entered Here
+                    <ng-include src="'views/user/user/templates/tabs/user.tickets.tab.view.client.html'"></ng-include>
                 </uib-tab>
 
                 <uib-tab index="2" heading="Comments">
-                    All Comments details Entered here
+                    <ng-include src="'views/user/user/templates/tabs/user.comments.tab.view.client.html'"></ng-include>
                 </uib-tab>
 
                 <uib-tab index="3" heading="Following">
-                    All Following Shown Here
+                    <ng-include src="'views/user/user/templates/tabs/user.following.tab.view.client.html'"></ng-include>
                 </uib-tab>
 
                 <uib-tab index="4" heading="Followed">
-                    All Followed Shown Here
+                    <ng-include src="'views/user/user/templates/tabs/user.followed.tab.view.client.html'"></ng-include>
                 </uib-tab>
 
             </uib-tabset>
