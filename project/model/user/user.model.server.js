@@ -48,7 +48,7 @@ module.exports = function () {
     }
 
     function findUserById(userId) {
-        return userModel.findById(userId);
+        return userModel.find({_id: userId}, 'firstName lastName image');
     }
 
     function findUser(username) {

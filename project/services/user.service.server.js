@@ -11,6 +11,7 @@ module.exports = function (app, utils, model, passport) {
     app.get('/api/allUsers', findAllUsers);
     app.delete('/api/user/:userId', deleteUser);
     app.put('/api/user/:userId', updateUser);
+    app.get('/api/user/:userId', findUserById);
     app.put('/api/profile/:userId', updateProfile);
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
@@ -123,6 +124,17 @@ module.exports = function (app, utils, model, passport) {
                 });
 
         }
+
+    function findUserById(req, res) {
+        var userId = req.params['userId'];
+        userModel
+            .findUserById(userId)
+            .then(function (user) {
+                res.send(user);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+    }
 
     // var userModel = model.userModel;
     //

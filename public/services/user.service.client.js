@@ -77,7 +77,10 @@
         }
 
         function findUserById(userId) {
-            return $http.get("/api/user/"+userId);
+            return $http.get("/api/user/"+userId)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findUserByCredentials(username, password) {
