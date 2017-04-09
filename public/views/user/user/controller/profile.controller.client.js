@@ -3,7 +3,7 @@
         .module("BookYourTrip")
         .controller("ProfileController", profileController);
 
-    function profileController($location, UserService, currentUser) {
+    function profileController($location, UserService, currentUser, CommentsService) {
         var vm = this;
         vm.unregisterUser = unregisterUser;
         vm.logout = logout;
@@ -49,9 +49,16 @@
 
         function deleteComment(comment) {
             console.log("from profile con");
-            vm.user.comments = vm.user.comments.filter( function(item) {
-                return !(item == comment);
-            });
+            CommentsService
+                .deleteComment(comment)
+                .then(function (success) {
+                    vm.user.comments = vm.user.comments.filter( function(item) {
+                        return !(item == comment);
+                    });
+                }, function (err) {
+                    vm.error = "unable to Delete comment";
+                });
+
         }
     }
 })();

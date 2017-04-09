@@ -15,8 +15,8 @@ module.exports = function () {
         findUser: findUser,
         findUserByCredentials: findUserByCredentials,
         addCommentsToUser: addCommentsToUser,
-        findUserByUserId: findUserByUserId
-
+        findUserByUserId: findUserByUserId,
+        deleteCommentFromUser: deleteCommentFromUser
     };
     return api;
 
@@ -65,6 +65,18 @@ module.exports = function () {
         userModel
             .findById(userId, function (err, user) {
                 user.comments.push(commentId);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
+
+    function deleteCommentFromUser(userId, commentId){
+        var deferred = q.defer();
+        userModel
+            .findOne({_id: userId}, function (err, user) {
+                var index = user.comments.indexOf(commentId);
+                user.comments.splice(index, 1);
                 user.save();
                 deferred.resolve(user);
             });

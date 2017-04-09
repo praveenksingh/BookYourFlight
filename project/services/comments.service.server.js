@@ -110,14 +110,31 @@ module.exports = function (app, utils, model, passport) {
             });
     }
 
-    function deleteComment() {
+    function deleteComment(req, res) {
         if(req.user){
-            commentsModel.deleteComment(req.params.commentId)
-                .then(function (success) {
-                    res.status(200).send();
+            commentsModel.findCommentById(req.params.commentId)
+                .then(function (comment) {
+                    commentsModel.deleteComment(comment._id)
+                        .then(function (commentDeleted) {
+                            userModel.deleteCommentFromUser(comment._user, comment._id)
+                                .then(function () {
+                                    airportModel.deleteCommentFromAirport(comment._airport, comment._id)
+                                        .then(function () {
+                                            res.status(200).send();
+                                        }, function (err) {
+                                            res.status(500).send(err);
+                                        });
+                                }, function (err) {
+                                    res.status(500).send(err);
+                                });
+                        }, function (err) {
+                            res.status(500).send(err);
+                        });
                 }, function (err) {
-                    res.status(500).send();
-                })
+                    res.status(500).send(err);
+                });
+        }else{
+            res.status(401).send();
         }
     }
 

@@ -10,7 +10,8 @@ module.exports = function () {
         findAirportByPlaceId: findAirportByPlaceId,
         createAirport: createAirport,
         findAirportById: findAirportById,
-        addCommentsToAirport :addCommentsToAirport
+        addCommentsToAirport :addCommentsToAirport,
+        deleteCommentFromAirport: deleteCommentFromAirport
     };
     return api;
 
@@ -35,6 +36,18 @@ module.exports = function () {
         airportModel
             .findById(airportId, function (err, airport) {
                 airport.comments.push(commentId);
+                airport.save();
+                deferred.resolve(airport);
+            });
+        return deferred.promise;
+    }
+
+    function deleteCommentFromAirport(airportId, commentId) {
+        var deferred = q.defer();
+        airportModel
+            .findOne({_id: airportId}, function (err, airport) {
+                var index = airport.comments.indexOf(commentId);
+                airport.comments.splice(index, 1);
                 airport.save();
                 deferred.resolve(airport);
             });
