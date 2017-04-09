@@ -8,15 +8,15 @@
         vm.load = true;
         vm.currentUser = currentUser;
         vm.myInterval = 3000;
+        vm.addComment = addComment;
         var airportCode = $routeParams['airportCode'];
 
         function init() {
-            vm.airportData = [];
+            // vm.airportData = [];
             vm.airportPhotos = [];
             var promise = AirportService.findAirportDetailsByCode(airportCode);
                 promise.success(function (data) {
-                    vm.airportData.push(data);
-                    // findPhotosOfAirportClient(data.photos)
+                    vm.airportData = data;
                     AirportService.findPhotosOfAirport(data.photos)
                         .success(function (ob) {
                             vm.airportPhotos = ob;
@@ -28,6 +28,17 @@
 
         }
         init();
+
+        function addComment(airport) {
+
+            AirportService
+                .addCommentToAirport(airport)
+                .then(function (data) {
+                    console.log(data);
+                }, function (err) {
+                    vm.error = err.statusText;
+                });
+        }
 
         // function findPhotosOfAirportClient(airportData) {
         //     var promises = [];

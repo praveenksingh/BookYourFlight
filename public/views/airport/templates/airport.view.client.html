@@ -17,42 +17,42 @@
         {{model.error}}
     </div>
 
-    <h2 class="flow-text center ">{{model.airportData[0].name}}</h2>
+    <h2 class="flow-text center ">{{model.airportData.name}}</h2>
 
     <div class="row">
         <div class="col s12 m4 l3 teal lighten-4">
             <p class="flow-text">Airport Details</p>
             <ul class="collection my-shadow">
                 <li class="collection-item avatar">
-                    <img src={{model.airportData[0].icon}} alt="" class="circle">
+                    <img src={{model.airportData.icon}} alt="" class="circle">
                     <span class="title">Name</span>
-                    <p >{{model.airportData[0].name}}</p>
+                    <p >{{model.airportData.name}}</p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle">location_on</i>
                     <span class="title">Address</span>
-                    <p>{{model.airportData[0].formatted_address}}</p>
+                    <p>{{model.airportData.formatted_address}}</p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle green">business</i>
                     <span class="title">Vicinity</span>
-                    <p>{{model.airportData[0].vicinity}}</p>
+                    <p>{{model.airportData.vicinity}}</p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle green">my_location</i>
                     <span class="title">Geometry</span>
-                    <p>Latitude : {{model.airportData[0].geometry.location.lat}}</p>
-                    <p>Longitude : {{model.airportData[0].geometry.location.lng}}</p>
+                    <p>Latitude : {{model.airportData.geometry.location.lat}}</p>
+                    <p>Longitude : {{model.airportData.geometry.location.lng}}</p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle green">contact_phone</i>
                     <span class="title">Contact Details</span>
-                    <p>{{model.airportData[0].international_phone_number}}</p>
+                    <p>{{model.airportData.international_phone_number}}</p>
                 </li>
                 <li class="collection-item avatar">
                     <i class="material-icons circle red">http</i>
                     <span class="title">Website</span>
-                    <a class="wordwrap" ng-href="{{model.airportData[0].website}}" target="_blank">{{model.airportData[0].website}}</a>
+                    <a class="wordwrap" ng-href="{{model.airportData.website}}" target="_blank">{{model.airportData.website}}</a>
                 </li>
             </ul>
 
@@ -69,14 +69,14 @@
                     <div class="row">
                         <div class="input-field">
                             <i class="material-icons prefix">mode_edit</i>
-                            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                            <textarea id="icon_prefix2" ng-model= "model.airportData.comment" class="materialize-textarea"></textarea>
                             <label for="icon_prefix2">Add a Review</label>
                         </div>
                         <div class="col s2 offset-s10  hide-on-large-only">
-                            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <a class="btn-floating btn-large waves-effect waves-light red" ng-click="model.addComment(model.airportData)"><i class="material-icons">add</i></a>
                         </div>
                         <div class="l2 offset-l10 hide-on-med-and-down">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <button class="btn waves-effect waves-light" ng-click="model.addComment(model.airportData)">Submit
                                 <i class="material-icons right">send</i>
                             </button>
                         </div>

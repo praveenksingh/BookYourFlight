@@ -1,9 +1,11 @@
-module.exports = function (app, utils, model) {
+module.exports = function (app, utils, model, passport) {
     app.get("/api/airport/:code", airportDetails);
     app.post("/api/airport/photos", airportPhotos);
+    app.post("/api/airport/", addInformationToAirport);
 
     var q = require('q');
     var rp = require('request-promise');
+    var airportModel = model.airportModel;
 
     var val = utils.validateUtil;
     // var placesAPI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT_LONG&radius=500&keyword=CODE&type=airport&key=API_KEY";
@@ -140,4 +142,25 @@ module.exports = function (app, utils, model) {
         pathImage = pathImage.replace("PHOTO_REF", photoRef);
         return pathImage;
     }
+
+    function addInformationToAirport(req, res) {
+        if(req.user) {
+            airportModel.findAirportByPlaceId(req.body.place_id)
+                .then(function (airport) {
+                    //airportModel.
+                }, function (err) {
+
+                });
+            // airportModel
+            //     .createAirport(req.body)
+            //     .then(function (user) {
+            //         if(user) {
+            //             req.login(user, function (err) {
+            //                 res.json(user);
+            //             });
+            //         }
+            //     });
+        }
+    }
+
 };

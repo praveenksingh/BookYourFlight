@@ -15,7 +15,9 @@ module.exports = function (app) {
         airportModel : airportModel
     };
 
-    require("./services/home.service.server")(app, utils, model);
-    require("./services/airport.service.server")(app, utils, model);
-    require("./services/user.service.server")(app, utils, model);
+    var passport = require('./authentication/passport.authentication.server')(userModel);
+
+    require("./services/home.service.server")(app, utils, model, passport);
+    require("./services/airport.service.server")(app, utils, model, passport);
+    require("./services/user.service.server")(app, utils, model, passport);
 };

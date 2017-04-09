@@ -102,7 +102,12 @@
         UserService
             .loggedIn()
             .then(function (user) {
-                deferred.resolve(user);
+                if(user != '0') {
+                    deferred.resolve(user);
+                }
+                else{
+                    deferred.resolve();
+                }
             });
         return deferred.promise;
     }

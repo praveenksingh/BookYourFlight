@@ -6,7 +6,8 @@
     function airportService($http) {
         var api = {
             "findAirportDetailsByCode": findAirportDetailsByCode,
-            "findPhotosOfAirport": findPhotosOfAirport
+            "findPhotosOfAirport": findPhotosOfAirport,
+            "addCommentToAirport": addCommentToAirport
         };
         return api;
 
@@ -16,6 +17,13 @@
 
         function findPhotosOfAirport(photos) {
             return $http.post("/api/airport/photos/",photos);
+        }
+
+        function addCommentToAirport(airportData) {
+            return $http.post("/api/airport/",airportData)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
     }
