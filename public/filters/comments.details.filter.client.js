@@ -4,6 +4,7 @@
         .controller("CommentsLoader", userLoader);
 
     function userLoader($scope, CommentsService, AirportService) {
+        // var vm = this;
 
         function init() {
             // console.log($scope.comment);

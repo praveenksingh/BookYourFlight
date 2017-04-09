@@ -9,6 +9,7 @@
         vm.logout = logout;
         vm.update = update;
         vm.user = currentUser;
+        vm.deleteComment = deleteComment;
 
         function init() {
 
@@ -44,6 +45,13 @@
                 }, function (err) {
                     vm.error = "unable to update user";
                 });
+        }
+
+        function deleteComment(comment) {
+            console.log("from profile con");
+            vm.user.comments = vm.user.comments.filter( function(item) {
+                return !(item == comment);
+            });
         }
     }
 })();

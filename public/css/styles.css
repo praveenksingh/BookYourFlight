@@ -77,3 +77,11 @@ html {
     -webkit-transform: scale(1.08);
     transform: scale(1.08);
 }
+
+.marginRow{
+    margin:1px !important;
+}
+
+.collap{
+    line-height: inherit;
+}
