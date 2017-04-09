@@ -33,10 +33,10 @@ module.exports = function () {
     function addCommentsToAirport(airportId, commentId) {
         var deferred = q.defer();
         airportModel
-            .findById(airportId, function (err, user) {
-                user.comments.push(commentId);
-                user.save();
-                deferred.resolve(user);
+            .findById(airportId, function (err, airport) {
+                airport.comments.push(commentId);
+                airport.save();
+                deferred.resolve(airport);
             });
         return deferred.promise;
     }

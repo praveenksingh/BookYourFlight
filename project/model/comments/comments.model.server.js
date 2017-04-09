@@ -9,11 +9,16 @@ module.exports = function () {
         findCommentById : findCommentById,
         findCommentsByUser: findCommentsByUser,
         findCommentsByAirport: findCommentsByAirport,
+        findAllCommentsByIdList: findAllCommentsByIdList,
         createComment: createComment,
         deleteComment: deleteComment,
         updateComment :updateComment
     };
     return api;
+
+    function findAllCommentsByIdList(idList) {
+        return commentsModel.find({'_id':{$in : idList}});
+    }
 
     function findCommentById(id) {
         return commentsModel.findOne({_id: id});

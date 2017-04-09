@@ -86,15 +86,15 @@
 
             <!--Comments Section-->
             <div class="col s12 m8 offset-m2 l7 offset-l2">
-                <div ng-repeat="trips in model.airportPhotos">
+                <div ng-repeat="comments in model.comments.slice().reverse()">
                     <div class="card-panel grey lighten-5 z-depth-1 hoverable">
                         <div class="row valign-wrapper">
                             <div class="col s2">
-                                <img src="{{trips}}" class="circle responsive-img">
+                                <img src="" class="circle responsive-img">
                             </div>
                             <div class="col s10">
                               <span class="black-text">
-                                This is a square image. Add the "circle" class to it to make it appear circular.
+                                {{comments.comment}}
                               </span>
                             </div>
                         </div>
@@ -103,30 +103,7 @@
             </div>
 
         </div>
-
     </div>
-
-
-
-
-
-    <!--<div class="col s12 m7">-->
-        <!--<div class="card" ng-repeat="trips in model.airportPhotos">-->
-            <!--<div class="card-image">-->
-                <!--<img src={{trips}}>-->
-                <!--<span class="card-title">Card Title</span>-->
-            <!--</div>-->
-            <!--<div class="card-content">-->
-                <!--<p>I am a very simple card. I am good at containing small bits of information.-->
-                    <!--I am convenient because I require little markup to use effectively.</p>-->
-            <!--</div>-->
-            <!--<div class="card-action">-->
-                <!--<a href="#">This is a link</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
 
 </div>
 

@@ -28,7 +28,7 @@
         }
 
         function findAllCommentCommentByAirportId(airportId) {
-            return $http.get("/api/comment/airport/:airportId",airportId)
+            return $http.get("/api/comment/airport/"+airportId)
                 .then(function (response) {
                     return response.data;
                 });

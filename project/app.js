@@ -20,4 +20,5 @@ module.exports = function (app) {
     require("./services/home.service.server")(app, utils, model, passport);
     require("./services/airport.service.server")(app, utils, model, passport);
     require("./services/user.service.server")(app, utils, model, passport);
+    require("./services/comments.service.server")(app, utils, model, passport);
 };

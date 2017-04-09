@@ -8,7 +8,7 @@ module.exports = function (app, utils, model, passport) {
 
 
     var commentsModel = model.commentsModel;
-    var airportModel = model.commentsModel;
+    var airportModel = model.airportModel;
 
     function findCommentById() {
         if(req.user){
@@ -20,36 +20,78 @@ module.exports = function (app, utils, model, passport) {
         if(req.user){
             airportModel.findAirportByPlaceId(req.body.place_id)
                 .then(function (airport) {
-                    commentsModel.createComment(req.body.comment)
-                        .then(function (comment) {
-                            res.status(200).send();
-                        }, function (err) {
-                            res.status(500).send(err);
-                        });
+                    if(airport == undefined){
+                        var airport = {
+                            placeId : req.body.place_id,
+                            airportCode : req.params.code,
+                            name : req.body.name
+                        };
+                        airportModel.createAirport(airport)
+                            .then(function (airportCreated) {
+                                var comment = {
+                                    _user : req.user._id,
+                                    _airport : airportCreated._id,
+                                    comment : req.body.comment
+                                };
+                                commentsModel.createComment(comment)
+                                    .then(function (commentCrea) {
+                                        airportModel.addCommentsToAirport(airportCreated, commentCrea._id)
+                                            .then(function () {
+                                                //TODO add to user
+                                                res.status(200).send(commentCrea);
+                                            }, function (err) {
+                                                res.status(500).send(err);
+                                            });
+                                    }, function (err) {
+                                        res.status(500).send(err);
+                                    });
+                            }, function (err) {
+                                res.status(500).send(err);
+                            });
+                    }else {
+                        var comment = {
+                            _user : req.user._id,
+                            _airport : airport._id,
+                            comment : req.body.comment
+                        };
+                        commentsModel.createComment(comment)
+                            .then(function (commentCreated) {
+                                airportModel.addCommentsToAirport(airport, commentCreated._id)
+                                    .then(function () {
+                                        //TODO add to user
+                                        res.status(200).send(commentCreated);
+                                    }, function (err) {
+                                        res.status(500).send(err);
+                                    });
+                            }, function (err) {
+                                res.status(500).send(err);
+                            });
+                    }
 
                 }, function (err) {
-                    airportModel.createAirport(req.body)
-                        .then(function (airport) {
-                            commentsModel.createComment(req.body.comment)
-                                .then(function (comment) {
-                                    res.status(200).send();
-                                }, function (err) {
-                                    res.status(500).send(err);
-                                });
-                        });
+                    res.status(500).send(err);
                 });
+        }else{
+            res.status(401).send();
         }
     }
 
     function findAllCommentCommentByAirportId(req, res) {
-        if(req.user){
-            commentsModel.findCommentsByAirport(req.params.airportId)
-                .then(function (comments) {
-                    res.status(200).send(comments);
-                }, function (err) {
-                    res.status(500).send(err);
-                })
-        }
+        airportModel.findAirportByPlaceId(req.params.airportId)
+            .then(function (airport) {
+                if(airport != undefined) {
+                    commentsModel.findAllCommentsByIdList(airport._doc.comments)
+                        .then(function (comments) {
+                            res.status(200).send(comments);
+                        }, function (err) {
+                            res.status(500).send(err);
+                        });
+                }else{
+                    res.json([]);
+                }
+            },function (err) {
+                res.status(500).send(err);
+            });
     }
 
     function deleteComment() {
@@ -66,8 +108,8 @@ module.exports = function (app, utils, model, passport) {
     function updateComment(req, res) {
         if(req.user){
             commentsModel.updateComment(req.params.commentId, req.body.comment)
-                .then(function (success) {
-                    res.status(200).send();
+                .then(function (comment) {
+                    res.status(200).send(comment);
                 }, function (err) {
                     res.status(500).send();
                 });

@@ -1,7 +1,7 @@
 module.exports = function (app, utils, model, passport) {
     app.get("/api/airport/:code", airportDetails);
     app.post("/api/airport/photos", airportPhotos);
-    app.post("/api/airport/", addInformationToAirport);
+    app.post("/api/airport/:code", createAirport);
     app.get("/api/airport/local/:placeId", findAirportByPlaceId);
 
     var q = require('q');
@@ -144,23 +144,21 @@ module.exports = function (app, utils, model, passport) {
         return pathImage;
     }
 
-    function addInformationToAirport(req, res) {
+    function createAirport(req, res) {
         if(req.user) {
-            airportModel.findAirportByPlaceId(req.body.place_id)
+            var airport = {
+                placeId : req.body.place_id,
+                airportCode : req.params.code,
+                name : req.body.name,
+            };
+            airportModel.createAirport(airport)
                 .then(function (airport) {
-                    //airportModel.
+                    res.json(airport);
                 }, function (err) {
-
+                    res.status(500).send();
                 });
-            // airportModel
-            //     .createAirport(req.body)
-            //     .then(function (user) {
-            //         if(user) {
-            //             req.login(user, function (err) {
-            //                 res.json(user);
-            //             });
-            //         }
-            //     });
+        }else{
+            res.status(400).send();
         }
     }
 
