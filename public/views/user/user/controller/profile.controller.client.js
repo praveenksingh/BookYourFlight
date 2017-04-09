@@ -40,7 +40,7 @@
             UserService
                 .updateUser(vm.user._id, newUser)
                 .then(function () {
-                    vm.message = "user successfully updated"
+                    vm.message = "user successfully updated";
                 }, function (err) {
                     vm.error = "unable to update user";
                 });

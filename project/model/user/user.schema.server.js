@@ -13,6 +13,8 @@ module.exports = function () {
             id: String,
             token: String
         },
+        following: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectUsers'}],
+        followed: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectUsers'}],
         dateCreated : { type: Date, default: Date.now },
         tickets : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectTickets'}],
         comments : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectComments'}],

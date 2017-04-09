@@ -1,13 +1,20 @@
 (function () {
     angular
         .module("BookYourTrip")
-        .filter('getUserDetails', function (UserService) {
-            return function (arr, user) {
-                for (var i = 0; i < arr.length; i++) {
-                    if (arr[i].from.username == user)
-                        return arr[i].text;
-                }
-                return '';
-            }
-        })
+        .controller("UserLoader", userLoader);
+
+    function userLoader($scope, UserService) {
+
+        function init() {
+            UserService
+                .findUserByUserId($scope.comments._user)
+                .then(function (user) {
+                    $scope.user = user;
+                })
+        }
+        init();
+
+
+
+    }
 })();
