@@ -2,6 +2,7 @@ module.exports = function (app, utils, model, passport) {
     app.get("/api/airport/:code", airportDetails);
     app.post("/api/airport/photos", airportPhotos);
     app.post("/api/airport/", addInformationToAirport);
+    app.get("/api/airport/local/:placeId", findAirportByPlaceId);
 
     var q = require('q');
     var rp = require('request-promise');
@@ -161,6 +162,15 @@ module.exports = function (app, utils, model, passport) {
             //         }
             //     });
         }
+    }
+
+    function findAirportByPlaceId(req, res) {
+        airportModel.findAirportByPlaceId(req.params.placeId)
+            .then(function (airport) {
+                res.json(airport);
+            }, function (err) {
+                res.json({});
+            })
     }
 
 };

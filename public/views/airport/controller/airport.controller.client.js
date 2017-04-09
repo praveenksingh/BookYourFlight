@@ -12,25 +12,31 @@
         var airportCode = $routeParams['airportCode'];
 
         function init() {
-            // vm.airportData = [];
             vm.airportPhotos = [];
             var promise = AirportService.findAirportDetailsByCode(airportCode);
                 promise.success(function (data) {
                     vm.airportData = data;
-                    AirportService.findPhotosOfAirport(data.photos)
+                    AirportService
+                        .findPhotosOfAirport(data.photos)
                         .success(function (ob) {
                             vm.airportPhotos = ob;
                             vm.load = false;
-                        })
+                        });
+                    AirportService
+                        .findAirportByPlaceId(data.place_id)
+                        .then(function (airport) {
+                            vm.airport = airport;
+                        }, function (err) {
+                            vm.airport = '0';
+                        });
+
                 }).error(function (err) {
                     vm.error = "Error loading airport Data"
                 });
-
         }
         init();
 
         function addComment(airport) {
-
             AirportService
                 .addCommentToAirport(airport)
                 .then(function (data) {
