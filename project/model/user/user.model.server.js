@@ -16,10 +16,22 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         addCommentsToUser: addCommentsToUser,
         findUserByUserId: findUserByUserId,
-        deleteCommentFromUser: deleteCommentFromUser
+        deleteCommentFromUser: deleteCommentFromUser,
+        addTicketToUser: addTicketToUser
     };
     return api;
 
+
+    function addTicketToUser(userId, ticketId) {
+        var deferred = q.defer();
+        userModel
+            .findById(userId, function (err, user) {
+                user.tickets.push(ticketId);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
 
     function findUserByGoogleId(googleId) {
         return userModel.findOne({'google.id': googleId});

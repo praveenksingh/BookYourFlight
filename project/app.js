@@ -9,10 +9,12 @@ module.exports = function (app) {
     var userModel = require('./model/user/user.model.server')();
     var commentsModel = require('./model/comments/comments.model.server')();
     var airportModel = require('./model/airport/airport.model.server')();
+    var ticketModel = require('./model/ticket/ticket.model.server')();
     var model = {
         userModel : userModel,
         commentsModel : commentsModel,
-        airportModel : airportModel
+        airportModel : airportModel,
+        ticketModel: ticketModel
     };
 
     var passport = require('./authentication/passport.authentication.server')(userModel);
