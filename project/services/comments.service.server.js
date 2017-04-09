@@ -2,7 +2,7 @@ module.exports = function (app, utils, model, passport) {
 
     app.get("/api/comment/:commentId", findCommentById);
     app.post('/api/comment', createComment);
-    app.get('/api/comment', findAllCommentCommentByAirportId);
+    app.get('/api/comment/airport/:airportId', findAllCommentCommentByAirportId);
     app.delete('/api/comment/:commentId', deleteComment);
     app.put('/api/comment/:commentId', updateComment);
 
@@ -43,7 +43,7 @@ module.exports = function (app, utils, model, passport) {
 
     function findAllCommentCommentByAirportId(req, res) {
         if(req.user){
-            commentsModel.findCommentsByAirport(req.body.airportId)
+            commentsModel.findCommentsByAirport(req.params.airportId)
                 .then(function (comments) {
                     res.status(200).send(comments);
                 }, function (err) {
@@ -65,7 +65,7 @@ module.exports = function (app, utils, model, passport) {
 
     function updateComment(req, res) {
         if(req.user){
-            commentsModel.updateComment(req.params.commentId,req.body.comment)
+            commentsModel.updateComment(req.params.commentId, req.body.comment)
                 .then(function (success) {
                     res.status(200).send();
                 }, function (err) {
