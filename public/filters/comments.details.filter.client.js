@@ -1,7 +1,7 @@
 (function () {
     angular
         .module("BookYourTrip")
-        .controller("CommentsLoader", userLoader);
+        .controller("CommentsDetails", userLoader);
 
     function userLoader($scope, CommentsService, AirportService) {
         // var vm = this;

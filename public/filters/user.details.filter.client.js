@@ -1,7 +1,7 @@
 (function () {
     angular
         .module("BookYourTrip")
-        .controller("UserLoader", userLoader);
+        .controller("UserDetails", userLoader);
 
     function userLoader($scope, UserService) {
 

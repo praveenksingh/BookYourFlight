@@ -1,2 +1,37 @@
 <br />
 <div ng-if="!model.user.tickets.length"> No Tickets </div>
+
+
+<!--<div class="row">-->
+    <!--<div class="col s12">-->
+        <!--<ul tabs reload="allTabContentLoaded">-->
+            <!--<li class="tab col s3"><a class="active" href="#test1">Test 1</a></li>-->
+            <!--<li class="tab col s3"><a href="#test2">Test 2</a></li>-->
+            <!--<li class="tab col s3"><a href="#test3">Test 3</a></li>-->
+            <!--<li class="tab col s3"><a href="#test4">Test 4</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div id="test1" class="col s12">Test 1</div>-->
+    <!--<div id="test2" class="col s12">Test 2</div>-->
+    <!--<div id="test3" class="col s12">Test 3</div>-->
+    <!--<div id="test4" class="col s12">Test 4</div>-->
+<!--</div>-->
+<div class="alert alert-danger" ng-show="error">
+    {{error}}
+</div>
+
+<div class="alert alert-success" ng-show="message">
+    {{message}}
+</div>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="ticket in model.user.tickets" ng-controller="TicketDetails">
+        <div class="row">
+            <div class="col-xs-4" ng-bind="ticketDetail.travelDate |  date:'medium'"></div>
+            <div class="col-xs-2" ng-bind="ticketDetail.price"></div>
+            <div class="col-xs-3 hidden-xs" ng-bind="ticketDetail.status"></div>
+            <div class="col-xs-3">
+                <a ng-click="cancelTicket(ticket)" class="btn red darken-4">Cancel</a>
+            </div>
+        </div>
+    </li>
+</ul>

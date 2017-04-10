@@ -62,12 +62,17 @@ module.exports = function (app, model) {
 
     function cancelTicket(req, res) {
         if(req.user){
-            ticketModel
-                .cancelTicket(req.params.ticketId)
+            ticketModel.findTicketById(req.params.ticketId)
                 .then(function (ticket) {
-                    res.json(ticket)
+                    ticketModel
+                        .cancelTicket(ticket._id)
+                        .then(function (ticket) {
+                            res.json(ticket)
+                        }, function (err) {
+                            res.status(500).send(err);
+                        });
                 }, function (err) {
-                    res.status(500).send(err);
+                    res.status(404).send("Ticket Not Found");
                 });
         }else
             res.status(401).send();
