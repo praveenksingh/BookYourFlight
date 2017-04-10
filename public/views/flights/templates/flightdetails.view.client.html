@@ -1,44 +1,3 @@
-<!--{{model.flight}}-->
-
-<!--<div class="container-fluid">-->
-    <!--<uib-accordion close-others="oneAtATime" class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">-->
-        <!--<div ng-repeat="trips in model.details">-->
-            <!--<div uib-accordion-group class="panel panel-primary my-panels">-->
-
-                <!--<uib-accordion-heading>-->
-                    <!--<div class="row">-->
-                        <!--<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">-->
-                            <!--Departure: {{trips.departureTime}}-->
-                        <!--</div>-->
-                        <!--<div class="col-xs-4 col-sm-3 col-md-3">-->
-                            <!--Arrival: {{trips.arrivalTime}}-->
-                        <!--</div>-->
-                        <!--<div class="col-sm-3 col-md-3 hidden-xs">-->
-                            <!--Stops: {{trips.stops}}-->
-                        <!--</div>-->
-                        <!--<div class="col-xs-4 col-sm-2 col-md-2">-->
-                            <!--${{trips.price}}-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</uib-accordion-heading>-->
-
-                <!--<div class="panel-body">-->
-                    <!--<div>{{trips}}</div>-->
-                    <!--<div class="panel panel-primary">-->
-                        <!--<div class="panel-heading clearfix">-->
-                            <!--<i class="icon-calendar"></i>-->
-                            <!--<h3 class="panel-title">Panel Primary</h3>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
-                        <!--&lt;!&ndash;Panel content&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-
-            <!--</div>-->
-        <!--</div>-->
-    <!--</uib-accordion>-->
-<!--</div>-->
 <nav>
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">Logo</a>
@@ -51,6 +10,15 @@
 </nav>
 
 <div class="container">
+
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
+    </div>
+
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+
     <div class="section"></div>
     <div class="offset-s6">
         <ul class="collapsible popout" data-collapsible="accordion" watch>
@@ -83,6 +51,7 @@
                                 <label class="active" for="arrival-time">Arrival</label>
                                 <input value="{{trips.legs[0].arrivalTime | date:'medium'}}" id="arrival-time" type="text" class="validate">
                             </div>
+                            <a ng-click="model.book(trips)" class="btn green darken-1">Book</a>
                         </div>
                     </div>
                 </div>

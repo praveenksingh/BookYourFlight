@@ -1,9 +1,9 @@
-module.exports = function (app, utils, model, passport) {
+module.exports = function (app, model) {
 
     app.get("/api/ticket/:ticketId", findTicketById);
     app.post('/api/ticket', createTicket);
     app.get('/api/ticket', findAllTicketsByUserId);
-    app.put('/api/comment/:ticketId', cancelTicket);
+    app.put('/api/ticket/:ticketId', cancelTicket);
 
     var ticketModel = model.ticketModel;
     var userModel = model.userModel;
@@ -23,8 +23,15 @@ module.exports = function (app, utils, model, passport) {
 
     function createTicket(req, res) {
         if(req.user){
+            var ticketDetals = req.body;
+            var ticketNew ={
+                _user : req.user._id,
+                travelDate: ticketDetals.departureTime,
+                price: ticketDetals.price,
+                tripDetails: ticketDetals
+            };
             ticketModel
-                .createTicket(req.body)
+                .createTicket(ticketNew)
                 .then(function (ticket) {
                     userModel
                         .addTicketToUser(req.user._id, ticket._id)

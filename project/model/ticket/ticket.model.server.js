@@ -3,7 +3,7 @@ module.exports = function () {
     var mongoose = require('mongoose');
     var ticketSchema = require('./ticket.schema.server')();
 
-    var ticketsModel = mongoose.model('Airports', ticketSchema);
+    var ticketsModel = mongoose.model('Tickets', ticketSchema);
 
     var api = {
         findTicketById: findTicketById,
