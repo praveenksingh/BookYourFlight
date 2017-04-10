@@ -13,6 +13,9 @@ module.exports = function (app, utils, model, passport) {
     app.put('/api/user/:userId', updateUser);
     app.get('/api/user/:userId', findUserById);
     app.get('/api/user/id/:userId', findUserByUserId);
+    app.get('/api/user/follow/:userId', followUserByUserId);
+    app.get('/api/user/unFollow/:userId', unFollowUserById);
+    app.get('/api/user/removeFollower/:userId', removeFollowerById);
     app.put('/api/profile/:userId', updateProfile);
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
@@ -21,6 +24,79 @@ module.exports = function (app, utils, model, passport) {
             successRedirect: '/user/#!/profile',
             failureRedirect: '/#!/login'
         }));
+
+    function unFollowUserById(req, res) {
+        if(req.user){
+            var reqUser = req.user._id;
+            var unFollowUserId = req.params.userId;
+            if(reqUser != unFollowUserId){
+                userModel
+                    .removeUserFromFollowing(reqUser, unFollowUserId)
+                    .then(function (user) {
+                        userModel
+                            .removeUserFromFollower(unFollowUserId, reqUser)
+                            .then(function (success) {
+                                res.status(200).send(success)
+                            }, function (err) {
+                                res.status(500).send(err);
+                            })
+                    }, function (err) {
+                        res.status(500).send("Error Occurred");
+                    });
+            }else
+                res.status(500).send("Error Occurred");
+        }else
+            res.status(401).send();
+    }
+
+    function removeFollowerById(req, res) {
+        if(req.user){
+            var reqUser = req.user._id;
+            var removeFollowerById = req.params.userId;
+            if(reqUser != removeFollowerById){
+                userModel
+                    .removeUserFromFollower(reqUser, removeFollowerById)
+                    .then(function (user) {
+                        userModel
+                            .removeUserFromFollowing(removeFollowerById, reqUser)
+                            .then(function (success) {
+                                res.status(200).send(success)
+                            }, function (err) {
+                                res.status(500).send(err);
+                            })
+                    }, function (err) {
+                        res.status(500).send("Error Occurred");
+                    });
+            }else
+                res.status(500).send("Error Occurred");
+        }else
+            res.status(401).send();
+    }
+
+    function followUserByUserId(req, res) {
+        if(req.user){
+            var reqUser = req.user._id;
+            var userToFollowId = req.params.userId;
+            if(reqUser != userToFollowId){
+                userModel
+                    .findUserById(userToFollowId)
+                    .then(function (user) {
+                        userModel
+                            .addUserTOFollowing(reqUser, user._id)
+                            .then(function (userFollowed) {
+                                userModel
+                                    .addUserToFollower(user._id, reqUser)
+                            },function (err) {
+                                res.status(500).send("Error Following User");
+                            })
+                    }, function () {
+                        res.status(404).send("Cannot Find User");
+                    });
+            }else
+                res.status(500).send("Cannot Follow Self");
+        }else
+            res.status(401).send();
+    }
 
     function updateUser(req, res) {
         //TODO uncomment

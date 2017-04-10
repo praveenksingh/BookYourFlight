@@ -17,10 +17,35 @@ module.exports = function () {
         addCommentsToUser: addCommentsToUser,
         findUserByUserId: findUserByUserId,
         deleteCommentFromUser: deleteCommentFromUser,
-        addTicketToUser: addTicketToUser
+        addTicketToUser: addTicketToUser,
+        addUserTOFollowing: addUserTOFollowing,
+        addUserToFollower: addUserToFollower,
+        removeUserFromFollower: removeUserFromFollower,
+        removeUserFromFollowing: removeUserFromFollowing
     };
     return api;
 
+    function addUserToFollower(userId, followerId) {
+        var deferred = q.defer();
+        userModel
+            .findById(userId, function (err, user) {
+                user.followed.push(followerId);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
+
+    function addUserTOFollowing(userId, followingId) {
+        var deferred = q.defer();
+        userModel
+            .findById(userId, function (err, user) {
+                user.following.push(followingId);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
 
     function addTicketToUser(userId, ticketId) {
         var deferred = q.defer();
@@ -89,6 +114,30 @@ module.exports = function () {
             .findOne({_id: userId}, function (err, user) {
                 var index = user.comments.indexOf(commentId);
                 user.comments.splice(index, 1);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
+
+    function removeUserFromFollowing(userId, followingId){
+        var deferred = q.defer();
+        userModel
+            .findOne({_id: userId}, function (err, user) {
+                var index = user.following.indexOf(followingId);
+                user.following.splice(index, 1);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
+
+    function removeUserFromFollower(userId, followerId){
+        var deferred = q.defer();
+        userModel
+            .findOne({_id: userId}, function (err, user) {
+                var index = user.followed.indexOf(followerId);
+                user.followed.splice(index, 1);
                 user.save();
                 deferred.resolve(user);
             });

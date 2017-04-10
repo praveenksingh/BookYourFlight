@@ -16,7 +16,8 @@
             "deleteUser" : deleteUser,
             "isAdmin" :isAdmin,
             "updateProfile" :updateProfile,
-            "findUserByUserId": findUserByUserId
+            "findUserByUserId": findUserByUserId,
+            "addUserFollowingList": addUserFollowingList
         };
         return api;
 
@@ -93,6 +94,13 @@
 
         function findUserByCredentials(username, password) {
             return $http.get("/api/user?username="+username+"&password="+password);
+        }
+
+        function addUserFollowingList(userId){
+            return $http.get("/api/user/follow/"+userId)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         // function deleteUser(userId) {
