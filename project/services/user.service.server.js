@@ -86,6 +86,11 @@ module.exports = function (app, utils, model, passport) {
                             .then(function (userFollowed) {
                                 userModel
                                     .addUserToFollower(user._id, reqUser)
+                                    .then(function (follow) {
+                                        res.status(200).send(follow);
+                                    }, function (err) {
+                                        res.status(500).send("Error Following User");
+                                    })
                             },function (err) {
                                 res.status(500).send("Error Following User");
                             })

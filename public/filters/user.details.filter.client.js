@@ -12,9 +12,6 @@
                 if($scope.following)
                     userId = $scope.following;
 
-            $scope.removeFollowing = removeFollowing;
-            $scope.removeFollower = removeFollower;
-
             UserService
                 .findUserByUserId(userId)
                 .then(function (user) {
@@ -22,14 +19,6 @@
                 })
         }
         init();
-
-        function removeFollowing(userId) {
-
-        }
-
-        function removeFollower(userId) {
-
-        }
 
     }
 })();

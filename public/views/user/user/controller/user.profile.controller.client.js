@@ -9,6 +9,7 @@
         vm.userId = $routeParams['userId'];
         vm.followUser = followUser;
 
+
         function init() {
             UserService
                 .findUserById(vm.userId)
@@ -16,9 +17,14 @@
                     vm.user = user;
                 }, function (error) {
                     $location.url("/login");
-                })
+                });
+            showFollow();
         }
         init();
+
+        function showFollow(){
+            vm.follow = vm.currentUser.following.indexOf(vm.userId) == -1;
+        }
 
         function followUser() {
             console.log("solo");
@@ -26,10 +32,12 @@
                 .addUserFollowingList(vm.userId)
                 .then(function (user) {
                     vm.message = "Now Following "+user.firstName;
+                    vm.follow = false;
                 }, function (error) {
                     vm.error = "Error occurred while trying to follow"
                 })
         }
+
 
     }
 })();

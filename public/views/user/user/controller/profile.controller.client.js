@@ -3,13 +3,17 @@
         .module("BookYourTrip")
         .controller("ProfileController", profileController);
 
-    function profileController($location, UserService, currentUser, CommentsService) {
+    function profileController($location, UserService, currentUser, CommentsService, TicketService) {
         var vm = this;
         vm.unregisterUser = unregisterUser;
         vm.logout = logout;
         vm.update = update;
         vm.user = currentUser;
+        vm.userProfile = angular.copy(vm.user);
         vm.deleteComment = deleteComment;
+        vm.cancelTicket = cancelTicket;
+        vm.removeFollowing = removeFollowing;
+        vm.removeFollower = removeFollower;
 
         function init() {
 
@@ -40,7 +44,8 @@
         function update (newUser) {
             UserService
                 .updateUser(vm.user._id, newUser)
-                .then(function () {
+                .then(function (user) {
+                    angular.copy(vm.userProfile, vm.user);
                     vm.message = "user successfully updated";
                 }, function (err) {
                     vm.error = "unable to update user";
@@ -59,6 +64,40 @@
                     vm.error = "unable to Delete comment";
                 });
 
+        }
+
+        function removeFollowing(userId) {
+            UserService
+                .unFollowUserById(userId)
+                .then(function (user) {
+                    vm.user.following = vm.user.following.filter( function(item) {
+                        return !(item == userId);
+                    });
+                }, function (err) {
+                    vm.error = "unable to Remove Following";
+                });
+        }
+
+        function removeFollower(userId) {
+            UserService
+                .removeFollowerById(userId)
+                .then(function (user) {
+                    vm.user.followed = vm.user.followed.filter( function(item) {
+                        return !(item == userId);
+                    });
+                }, function (err) {
+                    vm.error = "unable to Remove Follower";
+                });
+        }
+
+        function cancelTicket(ticket) {
+            TicketService
+                .cancelTicket(ticket)
+                .then(function () {
+                    vm.message = "ticket Cancelled";
+                }, function (error) {
+                    vm.error = "Unable to cancel Ticket";
+                })
         }
     }
 })();

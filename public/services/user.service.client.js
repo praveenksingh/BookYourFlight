@@ -17,7 +17,9 @@
             "isAdmin" :isAdmin,
             "updateProfile" :updateProfile,
             "findUserByUserId": findUserByUserId,
-            "addUserFollowingList": addUserFollowingList
+            "addUserFollowingList": addUserFollowingList,
+            "removeFollowerById": removeFollowerById,
+            "unFollowUserById": unFollowUserById
         };
         return api;
 
@@ -98,6 +100,20 @@
 
         function addUserFollowingList(userId){
             return $http.get("/api/user/follow/"+userId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function removeFollowerById(userId){
+            return $http.get("/api/user/removeFollower/"+userId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function unFollowUserById(userId) {
+            return $http.get("/api/user/unFollow/"+userId)
                 .then(function (response) {
                     return response.data;
                 });

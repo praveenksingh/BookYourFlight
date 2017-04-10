@@ -29,9 +29,12 @@ module.exports = function () {
         var deferred = q.defer();
         userModel
             .findById(userId, function (err, user) {
-                user.followed.push(followerId);
-                user.save();
-                deferred.resolve(user);
+                if(user.followed.indexOf(followerId) == -1) {
+                    user.followed.push(followerId);
+                    user.save();
+                    deferred.resolve(user);
+                }else
+                    deferred.resolve(user);
             });
         return deferred.promise;
     }
@@ -40,9 +43,12 @@ module.exports = function () {
         var deferred = q.defer();
         userModel
             .findById(userId, function (err, user) {
-                user.following.push(followingId);
-                user.save();
-                deferred.resolve(user);
+                if(user.following.indexOf(followingId) == -1) {
+                    user.following.push(followingId);
+                    user.save();
+                    deferred.resolve(user);
+                }else
+                    deferred.resolve(user);
             });
         return deferred.promise;
     }
@@ -63,7 +69,7 @@ module.exports = function () {
     }
 
     function updateUser(userId, user) {
-        return userModel.update(
+        return userModel.findOneAndUpdate(
             {_id: userId},
             {$set: user}
         );
