@@ -12,6 +12,11 @@
                 .then(function (ticket) {
                     $scope.ticketDetail = ticket;
                 });
+
+            if($scope.$index % 2 === 0)
+                $scope.imageSrc = "../../../../../images/flight.jpg";
+            else
+                $scope.imageSrc = "../../../../../images/flight2.jpg";
         }
         init();
 
