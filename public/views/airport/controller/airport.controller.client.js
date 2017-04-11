@@ -3,7 +3,7 @@
         .module("BookYourTrip")
         .controller("AirportController", airportController);
 
-    function airportController($routeParams, AirportService, CommentsService, currentUser, UserService) {
+    function airportController($routeParams, $location, AirportService, CommentsService, currentUser, UserService) {
         var vm = this;
         vm.load = true;
         vm.currentUser = currentUser;
@@ -18,7 +18,7 @@
                 .findAirportDetailsByCode(airportCode)
                 .success(renderData)
                 .error(function (err) {
-                    vm.error = "Error loading airport Data"
+                    $location.url("/404");
                 });
         }
         init();

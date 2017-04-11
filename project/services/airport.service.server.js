@@ -23,38 +23,38 @@ module.exports = function (app, utils, model, passport) {
         var code = req.params['code'];
 
         //TODO Remove this block after testing
-        var res = require('../../test/testAirport.json');
-        response.status(200).send(res);
+        // var res = require('../../test/testAirport.json');
+        // response.status(200).send(res);
         //TODO uncommend down block
 
-        // if(!val.validateAirportCode(code))
-        //     response.status(400).send("Not A Valid Airport Code");
-        // else {
-        //     var options = {
-        //         uri: getPathForAirport(code),
-        //         json: true
-        //     };
-        //
-        //     rp(options)
-        //         .then(function (repos) {
-        //             // console.log(repos);
-        //             var optionsPlaceDetails = {
-        //                 uri: getPathForAirportDetails(repos.results[0].place_id),
-        //                 json: true
-        //             };
-        //             rp(optionsPlaceDetails)
-        //                 .then(function (responseDetails) {
-        //                     // console.log(responseDetails);
-        //                     response.status(200).send(responseDetails.result);
-        //                 })
-        //                 .catch(function (err) {
-        //                     response.status(400).send('Error:', err);
-        //                 });
-        //         })
-        //         .catch(function (err) {
-        //             response.status(400).send('Error:', err);
-        //         });
-        // }
+        if(!val.validateAirportCode(code))
+            response.status(400).send("Not A Valid Airport Code");
+        else {
+            var options = {
+                uri: getPathForAirport(code),
+                json: true
+            };
+
+            rp(options)
+                .then(function (repos) {
+                    // console.log(repos);
+                    var optionsPlaceDetails = {
+                        uri: getPathForAirportDetails(repos.results[0].place_id),
+                        json: true
+                    };
+                    rp(optionsPlaceDetails)
+                        .then(function (responseDetails) {
+                            // console.log(responseDetails);
+                            response.status(200).send(responseDetails.result);
+                        })
+                        .catch(function (err) {
+                            response.status(400).send('Error:', err);
+                        });
+                })
+                .catch(function (err) {
+                    response.status(400).send('Error:', err);
+                });
+        }
     }
 
     function getLatLong(code) {
