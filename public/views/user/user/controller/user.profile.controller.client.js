@@ -16,7 +16,7 @@
                 .then(function (user) {
                     vm.user = user;
                 }, function (error) {
-                    $location.url("/login");
+                    $location.url("/404");
                 });
             showFollow();
         }

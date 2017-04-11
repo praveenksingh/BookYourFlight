@@ -64,7 +64,7 @@
             <div ng-if="model.airportPhotos.length" class="slider my-shadow" data-images="model.airportPhotos"></div>
 
             <!-- add comments Section -->
-            <div class="row" style="padding-top: 10px">
+            <div ng-if="model.currentUser" class="row" style="padding-top: 10px">
                 <form class="col s10 m8 offset-m2 l7 offset-l2">
                     <div class="row">
                         <div class="input-field">

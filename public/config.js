@@ -70,12 +70,20 @@
                 controller: "UserProfileController",
                 controllerAs: "model",
                 resolve: {
-                    currentUser: checkLoggedInUser
+                    currentUser: checkLogin
                 }
             })
             .when("/airport/:airportCode", {
                 templateUrl: "views/airport/templates/airport.view.client.html",
                 controller: "AirportController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedInUser
+                }
+            })
+            .when("/404", {
+                templateUrl: "views/notfound/templates/page-not-found.view.client.html",
+                controller: "NotFoundController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLoggedInUser

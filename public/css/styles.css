@@ -10,6 +10,24 @@ main {
 
 body {
     background: #fff;
+
+}
+
+.my-back{
+    background-image : url("../images/home-background.png");
+    background-repeat: no-repeat;
+}
+
+.not-found{
+    background-color: #6CBFB2;
+    height: inherit;
+    width: inherit;
+
+}
+
+.my-img{
+    height: inherit;
+    width: inherit;
 }
 
 .input-field input[type=date]:focus + label,
@@ -178,10 +196,7 @@ html {
     }
 }
 
-#footer {
-    height: 80px;
-    background-color: #f5f5f5;
-}
+
 #footer > .container {
     padding-top:5px;
     padding-left: 15px;
