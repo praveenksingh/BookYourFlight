@@ -10,7 +10,7 @@
 
         function init() {
             vm.ticketDetails = TicketService.getSelectedTicketDetails();
-            if(vm.ticketDetails.length == undefined){
+            if(vm.user==undefined || vm.ticketDetails.departureTime == undefined){
                 $location.url("/")
             }
         }
@@ -21,9 +21,9 @@
                 .createTicket(trip)
                 .then(function (ticket) {
                     vm.message = "Booking confirmed";
-                    $location.url("#/profile")
+                    $location.url("/profile")
                 }, function (err) {
-                    vm.error = err;
+                    vm.error = "Error Booking your Flight";
                 });
         }
     }

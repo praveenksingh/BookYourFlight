@@ -3,18 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6d62ea8b-fbc3-441b-983c-641a4bf30cdf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/model/ticket/ticket.schema.server.js" afterPath="$PROJECT_DIR$/project/model/ticket/ticket.schema.server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/services/ticket.service.server.js" afterPath="$PROJECT_DIR$/project/services/ticket.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/config.js" afterPath="$PROJECT_DIR$/public/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/services/ticket.service.client.js" afterPath="$PROJECT_DIR$/public/services/ticket.service.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/flights/controller/flightDetails.controller.client.js" afterPath="$PROJECT_DIR$/public/views/flights/controller/flightDetails.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/notfound/controller/page-not-found.controller.client.js" afterPath="$PROJECT_DIR$/public/views/notfound/controller/page-not-found.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/notfound/templates/page-not-found.view.client.html" afterPath="$PROJECT_DIR$/public/views/notfound/templates/page-not-found.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/ticket/controller/ticket.confirmed.controller.client.js" afterPath="$PROJECT_DIR$/public/views/ticket/controller/ticket.confirmed.controller.client.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/ticket/controller/ticket.details.controller.client.js" afterPath="$PROJECT_DIR$/public/views/ticket/controller/ticket.details.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/ticket/templates/ticket-confirmed.view.client.html" afterPath="$PROJECT_DIR$/public/views/ticket/templates/ticket-confirmed.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/ticket/templates/ticket.details.view.client.html" afterPath="$PROJECT_DIR$/public/views/ticket/templates/ticket.details.view.client.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,71 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-45">
-              <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ticket.details.view.client.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/ticket/templates/ticket.details.view.client.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flightDetails.controller.client.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/flights/controller/flightDetails.controller.client.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ticket.details.controller.client.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/ticket/controller/ticket.details.controller.client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ticket.service.server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/services/ticket.service.server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="40" column="60" lean-forward="false" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ticket.schema.server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/model/ticket/ticket.schema.server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flightdetails.view.client.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/flights/templates/flightdetails.view.client.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="55" />
+            <state relative-caret-position="345">
+              <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -193,8 +123,8 @@
         <option value="$PROJECT_DIR$/public/config.js" />
         <option value="$PROJECT_DIR$/project/model/ticket/ticket.schema.server.js" />
         <option value="$PROJECT_DIR$/public/views/ticket/templates/ticket.details.view.client.html" />
-        <option value="$PROJECT_DIR$/project/services/ticket.service.server.js" />
         <option value="$PROJECT_DIR$/public/views/flights/controller/flightDetails.controller.client.js" />
+        <option value="$PROJECT_DIR$/project/services/ticket.service.server.js" />
         <option value="$PROJECT_DIR$/public/views/ticket/controller/ticket.details.controller.client.js" />
       </list>
     </option>
@@ -969,12 +899,12 @@
       <workItem from="1491849697833" duration="5284000" />
       <workItem from="1491860440400" duration="45000" />
       <workItem from="1491863209429" duration="243000" />
-      <workItem from="1491910585684" duration="3274000" />
+      <workItem from="1491910585684" duration="3976000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197697000" />
+    <option name="totallyTimeSpent" value="198399000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -987,7 +917,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22954726" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -995,7 +925,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3041096" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3041096" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3041096" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1048,13 +978,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/project/services/ticket.service.server.js</url>
-          <line>40</line>
+          <line>43</line>
           <properties />
           <option name="timeStamp" value="163" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/project/services/ticket.service.server.js</url>
-          <line>43</line>
+          <line>46</line>
           <properties />
           <option name="timeStamp" value="165" />
         </line-breakpoint>
@@ -1361,30 +1291,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/flights/templates/flightdetails.view.client.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/model/ticket/ticket.schema.server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/home/templates/home.view.client.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1417,10 +1323,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/ticket/templates/ticket.details.view.client.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project/services/ticket.service.server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="40" column="60" lean-forward="false" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
+        <state relative-caret-position="-150">
+          <caret line="28" column="54" lean-forward="false" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -1433,18 +1347,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/ticket/templates/ticket.details.view.client.html">
+    <entry file="file://$PROJECT_DIR$/public/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        <state relative-caret-position="-180">
+          <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/model/ticket/ticket.schema.server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/flights/templates/flightdetails.view.client.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/ticket/controller/ticket.details.controller.client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="345">
+          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
           <folding />
         </state>
       </provider>

@@ -28,7 +28,10 @@ module.exports = function (app, model) {
                 _user : req.user._id,
                 travelDate: ticketDetals.departureTime,
                 price: ticketDetals.price,
-                tripDetails: ticketDetals
+                tripDetails: ticketDetals,
+                passengerName: ticketDetals.passengerName,
+                passengerContact: ticketDetals.passengerContact,
+                passengerEmail: ticketDetals.passengerEmail,
             };
             ticketModel
                 .createTicket(ticketNew)
