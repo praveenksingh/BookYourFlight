@@ -4,13 +4,24 @@
         .factory("TicketService", commentsService);
 
     function commentsService($http) {
+        var selectedTicket = {};
         var api = {
             "findTicketById": findTicketById,
             "createTicket": createTicket,
             "findAllTicketsByUserId": findAllTicketsByUserId,
-            "cancelTicket": cancelTicket
+            "cancelTicket": cancelTicket,
+            "getSelectedTicketDetails": getSelectedTicketDetails,
+            "setSelectedTicketDetails": setSelectedTicketDetails
         };
         return api;
+
+        function getSelectedTicketDetails() {
+            return selectedTicket;
+        }
+
+        function setSelectedTicketDetails(value) {
+            selectedTicket = value;
+        }
 
         function findTicketById(ticketId) {
             return $http.get("/api/ticket/"+ticketId)

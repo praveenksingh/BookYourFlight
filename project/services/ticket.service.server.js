@@ -38,10 +38,10 @@ module.exports = function (app, model) {
                         .then(function (userA) {
                             res.json(ticket);
                         }, function (err) {
-                            res.status(500).send(err);
+                            res.status(500).send(err.message);
                         });
                 }, function (err) {
-                    res.status(500).send(err);
+                    res.status(500).send(err.message);
                 });
         }else
             res.status(401).send();

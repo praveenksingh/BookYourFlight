@@ -1,25 +1,27 @@
 <div class="container">
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
+    </div>
+
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+
     <div class="row">
         <form class="form-horizontal">
             <fieldset>
 
-                <!-- Form Name -->
-                <legend>Form Name</legend>
+                <legend>Passenger Details</legend>
 
-                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="name">Name</label>
+                    <label class="col-md-4 control-label" for="name">Passenger Name</label>
                     <div class="col-md-4">
-                        <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="surname">Surname</label>
-                    <div class="col-md-4">
-                        <input id="surname" name="surname" type="text" placeholder="" class="form-control input-md" required="">
+                        <input id="name"
+                               name="name"
+                               type="text"
+                               placeholder=""
+                               ng-model="model.ticketDetails.passengerName"
+                               class="form-control input-md" required="true">
 
                     </div>
                 </div>
@@ -28,7 +30,13 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="contact">Phone Number</label>
                     <div class="col-md-4">
-                        <input id="contact" name="contact" type="text" placeholder="" class="form-control input-md" required="">
+                        <input id="contact"
+                               name="contact"
+                               ng-model="model.ticketDetails.passengerContact"
+                               type="number"
+                               placeholder=""
+                               class="form-control input-md"
+                               required="">
 
                     </div>
                 </div>
@@ -37,98 +45,26 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="email">Email Address</label>
                     <div class="col-md-4">
-                        <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+                        <input id="email"
+                               ng-model="model.ticketDetails.passengerEmail"
+                               name="email"
+                               type="email"
+                               placeholder=""
+                               class="form-control input-md"
+                               required="">
 
                     </div>
                 </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="location">City/Suburb</label>
-                    <div class="col-md-4">
-                        <input id="location" name="location" type="text" placeholder="" class="form-control input-md" required="">
-
-                    </div>
+                <div class="form-group col-md-4 pull-right">
+                    <a ng-click="model.confirm(model.ticketDetails)" class="btn btn-primary btn-primary">Submit</a>
                 </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="make">Make</label>
-                    <div class="col-md-4">
-                        <input id="make" name="make" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="model">Model</label>
-                    <div class="col-md-4">
-                        <input id="model" name="model" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="year">Year</label>
-                    <div class="col-md-4">
-                        <input id="year" name="year" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="bookingdate">Booking Date</label>
-                    <div class="col-md-4">
-                        <input id="bookingdate" name="bookingdate" type="text" placeholder="" class="form-control input-md" required="">
-
-                    </div>
-                </div>
-
-                <!-- Button Drop Down -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="damage">Which of your windows is damaged?</label>
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <input id="damage" name="damage" class="form-control" placeholder="Select" type="text" required="">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    Please Select
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="#">Windscreen</a></li>
-                                    <li><a href="#">Side Window</a></li>
-                                    <li><a href="#">Rear Window</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="regno">Registration Number</label>
-                    <div class="col-md-4">
-                        <input id="regno" name="regno" type="text" placeholder="" class="form-control input-md" required="">
-
-                    </div>
-                </div>
-
-                <!-- Textarea -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="comments">Comments</label>
-                    <div class="col-md-4">
-                        <textarea class="form-control" id="comments" name="comments"></textarea>
-                    </div>
-                </div>
-
             </fieldset>
+
+
         </form>
 
-        <a href="#" class="btn btn-primary btn-primary">Submit</a>
+
 
     </div>
 </div>

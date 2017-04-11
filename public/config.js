@@ -25,6 +25,14 @@
                     currentUser: checkLoggedInUser
                 }
             })
+            .when("/flightDetails/passengerInfo", {
+                templateUrl: "views/ticket/templates/ticket.details.view.client.html",
+                controller: "TicketDetailsController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedInUser
+                }
+            })
             .when("/login", {
                 templateUrl: "views/user/user/templates/login.view.client.html",
                 controller: "LoginController",
