@@ -34,7 +34,7 @@
                     <span class="md-body-2">Origin : {{leg.origin}}</span>
                 </div>
                 <div class=" col s12 m12 l12">
-                    <span class="md-body-2">Origin Airport : <a >{{leg.originAirport}}</a></span>
+                    <span class="md-body-2">Origin Airport : <a ng-href="#/airport/{{leg.originCode}}">{{leg.originAirport}}</a></span>
                 </div>
                 <div class=" col s12 m12 l12">
                     <span class="md-body-2">Origin Terminal : {{leg.originTerminal}}</span>
@@ -58,7 +58,7 @@
                     <span class="md-body-2">Destination. : {{leg.destination}}</span>
                 </div>
                 <div class=" col s12 m12 l12">
-                    <span class="md-body-2">Destination Airport : <a href="">{{leg.destinationAirport}}</a></span>
+                    <span class="md-body-2">Destination Airport : <a ng-href="#/airport/{{leg.destinationCode}}">{{leg.destinationAirport}}</a></span>
                 </div>
                 <div class=" col s12 m12 l12">
                     <span class="md-body-2">Destination Terminal : {{leg.destinationTerminal}}</span>

@@ -21,7 +21,7 @@
                 vm.error = "Please fill All Details";
             else {
                 vm.load = true;
-                flight.depart = vm.flight.depart;
+                flight.depart = new Date(vm.flight.depart).toISOString();
                 var promise = HomeService.findFlightsByDetails(flight);
                 promise.success(function (data) {
                     HomeService.setFlightDetails(data);

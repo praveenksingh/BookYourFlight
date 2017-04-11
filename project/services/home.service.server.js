@@ -21,7 +21,7 @@ module.exports = function (app, utils, model, passport) {
                 if(new Date(details.depart).getDate() < new Date().getDate())
                     response.status(400).send("Date cannot be past date");
                 else {
-                    var requestData = val.createRequest(details.source, details.dest, details.count, '2017-04-15');// details.depart);
+                    var requestData = val.createRequest(details.source, details.dest, details.count, details.depart.slice(0,10));// details.depart);
                     request.post(apiPath,
                         {
                             json: true,

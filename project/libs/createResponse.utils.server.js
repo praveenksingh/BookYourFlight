@@ -33,7 +33,9 @@ module.exports = function (app) {
                     .map(function(element){
                         return {
                             origin: getCityName(element.leg[0].origin),
+                            originCode: element.leg[0].origin,
                             destination: getCityName(element.leg[0].destination),
+                            destinationCode: element.leg[0].destination,
                             duration: element.duration,
                             carrier: getCarrier(element.flight.carrier),
                             flightCode: element.flight.carrier + " " + element.flight.number,
