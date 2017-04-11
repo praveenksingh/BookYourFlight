@@ -23,15 +23,41 @@
 <div class="alert alert-success" ng-show="message">
     {{message}}
 </div>
-<ul class="list-group">
-    <li class="list-group-item" ng-repeat="ticket in model.user.tickets" ng-controller="TicketDetails">
-        <div class="row">
-            <div class="col-xs-4" ng-bind="ticketDetail.travelDate |  date:'medium'"></div>
-            <div class="col-xs-2" ng-bind="ticketDetail.price"></div>
-            <div class="col-xs-3 hidden-xs" ng-bind="ticketDetail.status"></div>
-            <div class="col-xs-3" ng-if="ticketDetail.status == 'CONFIRMED'">
-                <a ng-click="model.cancelTicket(ticket)" class="btn red darken-4">Cancel</a>
+<!--<ul class="list-group">-->
+    <!--<li class="list-group-item" ng-repeat="ticket in model.user.tickets" ng-controller="TicketDetails">-->
+        <!--<div class="row">-->
+            <!--<div class="col-xs-4" ng-bind="ticketDetail.travelDate |  date:'medium'"></div>-->
+            <!--<div class="col-xs-2" ng-bind="ticketDetail.price"></div>-->
+            <!--<div class="col-xs-3 hidden-xs" ng-bind="ticketDetail.status"></div>-->
+            <!--<div class="col-xs-3" ng-if="ticketDetail.status == 'CONFIRMED'">-->
+                <!--<a ng-click="model.cancelTicket(ticket)" class="btn red darken-4">Cancel</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</li>-->
+<!--</ul>-->
+
+<div class="timeline">
+    <div class="timeline-event" ng-repeat="ticket in model.user.tickets" ng-controller="TicketDetails">
+        <div class="card timeline-content">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" ng-src="../../../../../images/flight.jpg">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4" ng-bind="ticketDetail.travelDate |  date:'M/d/yyyy'">
+                    <i class="material-icons right">more_vert</i>
+                </span>
+                <p class="flow-text">{{ticketDetail.tripDetails.legs[ticketDetail.tripDetails.legs.length-1].destination}}</p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Flight Details<i class="material-icons right">close</i></span>
+                <div ng-bind="ticketDetail.travelDate |  date:'medium'"></div>
+                <div ng-bind="ticketDetail.price"></div>
+                <div ng-bind="ticketDetail.status"></div>
+                <div ng-if="ticketDetail.status == 'CONFIRMED'">
+                    <a ng-click="model.cancelTicket(ticket)" class="btn red darken-4">Cancel</a>
+                </div>
             </div>
         </div>
-    </li>
-</ul>
+        <div class="timeline-badge blue white-text"><i class="material-icons"></i></div>
+    </div>
+</div>
