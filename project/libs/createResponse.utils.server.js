@@ -13,11 +13,11 @@ module.exports = function (app) {
 
     function createResponse(data) {
         //TODO add body in the data.body
-        airport = data.trips.data.airport;
-        aircraft = data.trips.data.aircraft;
-        carrier = data.trips.data.carrier;
-        city = data.trips.data.city;
-        return createResponseDetails(data.trips.tripOption);
+        airport = data.body.trips.data.airport;
+        aircraft = data.body.trips.data.aircraft;
+        carrier = data.body.trips.data.carrier;
+        city = data.body.trips.data.city;
+        return createResponseDetails(data.body.trips.tripOption);
     }
 
     function createResponseDetails(inp){

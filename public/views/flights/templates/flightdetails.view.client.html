@@ -39,20 +39,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="collapsible-body my-shadow teal accent-1">
+                <div class="collapsible-body my-shadow">
                     <div class="form-group gap offset-s6">
-                        <div>{{trips}}</div>
-                        <div class="row">
-                            <div class="input-field col s4 m4 l4">
-                                <label class="active" for="departure-time">Arrival</label>
-                                <input value="{{trips.legs[0].departureTime | date:'medium'}}" id="departure-time" type="text" class="validate">
-                            </div>
-                            <div class="input-field col s4 m4 l4">
-                                <label class="active" for="arrival-time">Arrival</label>
-                                <input value="{{trips.legs[0].arrivalTime | date:'medium'}}" id="arrival-time" type="text" class="validate">
-                            </div>
-                            <a ng-click="model.book(trips)" class="btn green darken-1">Book</a>
-                        </div>
+                        <ng-include src="'views/flights/templates/trip-details.view.client.html'"></ng-include>
                     </div>
                 </div>
             </li>

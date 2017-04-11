@@ -10,8 +10,17 @@
         vm.book = book;
 
         function init() {
-            vm.details = HomeService.getFlightDetails();
             // console.log(vm.details);
+            //TODO remove the code
+            // var promise = HomeService.findFlightsByDetails();
+            // promise.success(function (data) {
+            //     vm.details = data;
+            //     })
+            //     .error(function (err) {
+            //         vm.error = err;
+            //     });
+            //TODO Uncomment the below code
+            vm.details = HomeService.getFlightDetails();
             if(vm.details.length === undefined){
                 $location.url("/")
             }
@@ -21,13 +30,6 @@
         function book(trip) {
             TicketService.setSelectedTicketDetails(trip);
             $location.url("/flightDetails/passengerInfo")
-            // TicketService
-            //     .createTicket(trip)
-            //     .then(function (ticket) {
-            //         vm.message = "Booking confirmed"
-            //     }, function (err) {
-            //         vm.error = "Error Occured while Booking Flight";
-            //     });
         }
     }
 })();
