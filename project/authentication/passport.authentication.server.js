@@ -8,9 +8,9 @@ passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
 var googleConfig = {
-    clientID     :  "534459517532-rdcgmlc3abh4923abssbst98khhnq31e.apps.googleusercontent.com",
+    clientID     : "534459517532-rdcgmlc3abh4923abssbst98khhnq31e.apps.googleusercontent.com",
     clientSecret : "6YiHgFQz4iSYViWeVEeBEvv-",
-    callbackURL  :  "http://127.0.0.1:3000/user/profile"
+    callbackURL  : "http://127.0.0.1:3000/google/oauth/callback"
 };
 
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
