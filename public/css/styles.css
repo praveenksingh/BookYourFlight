@@ -98,11 +98,12 @@ html {
 
 .marginRow{
     margin:1px !important;
+    line-height: 2rem;
 }
 
-.collap{
-    line-height: inherit;
-}
+/*.collap{*/
+    /*!*line-height: 2rem;*!*/
+/*}*/
 
 .timeline {
     position: relative;
@@ -196,9 +197,15 @@ html {
     }
 }
 
+.byf-zoom:hover {
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
 
-#footer > .container {
-    padding-top:5px;
-    padding-left: 15px;
-    padding-right: 15px;
+.byf-zoom {
+    -webkit-transition: 0.4s ease;
+    transition: 0.4s ease;
+}
+.byf-collap-body{
+    padding: 1em;
 }

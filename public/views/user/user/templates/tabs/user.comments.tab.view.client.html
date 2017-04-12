@@ -26,17 +26,23 @@
         </div>
     </li>
     <li ng-repeat="comment in model.user.comments.slice().reverse()" ng-controller="CommentsDetails">
-        <div class="collapsible-header collap">
-            <div class="row marginRow">
-                <div class="col s3 hidden-xs" ng-bind="commentDetails.commentDate |  date:'medium'"></div>
-                <div class="col s5" ng-bind="commentDetails.airportName"></div>
-                <div class="col s4 hidden-xs" ng-bind="commentDetails.commentText"></div>
+        <div class="collapsible-header byf-zoom">
+            <div class="row">
+                <div class="col s3 hidden-xs md-body-2" ng-bind="commentDetails.commentDate |  date:'medium'"></div>
+                <div class="col s5 md-body-2" ng-bind="commentDetails.airportName"></div>
+                <div class="col s4 hidden-xs md-body-2" ng-bind="commentDetails.commentText.substring(0, 20)+ ' ...'"></div>
             </div>
         </div>
 
-        <div class="collapsible-body">
-            <p>{{commentDetails}}</p>
-            <a ng-click="model.deleteComment(comment)" class="btn red darken-4">Delete</a>
+        <div class="collapsible-body byf-collap-body">
+            <div class="row">
+            <div class="col s12 md-headline"><a ng-bind="commentDetails.airportName" ng-href="#/airport/{{commentDetails.airportCode}}"></a></div>
+                <blockquote class="col s12">
+                    <div class="md-body-3" ng-bind="commentDetails.commentText"></div>
+                    <div class="md-caption" ng-bind="commentDetails.commentDate |  date:'medium'"></div>
+                </blockquote>
+            <div class="col s12"><a ng-click="model.deleteComment(comment)" class="btn red darken-4 pull-right">Delete</a></div>
+            </div>
         </div>
     </li>
 </ul>

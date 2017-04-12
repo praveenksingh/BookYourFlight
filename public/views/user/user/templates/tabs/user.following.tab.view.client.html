@@ -4,16 +4,17 @@
 <ul class="list-group">
     <li class="list-group-item" ng-repeat="following in model.user.following" ng-controller="UserDetails">
         <div class="row">
-            <div class="col-xs-4" ng-bind="user.firstName |  date:'medium'"></div>
-            <div class="col-xs-2" ng-bind="user.lastName"></div>
-            <div class="col-xs-3 hidden-xs">
-                <div class="col s2">
-                    <img src="{{user.image}}" class="circle responsive-img">
+            <div class="col s5 l4 m4">
+                <div>
+                    <img src="{{user.image}}" alt="{{user.firstName}}'s Profile Image" class="circle responsive-img">
                 </div>
             </div>
-            <div class="col-xs-3">
+            <div class="col l5 m5 hide-on-small-only md-title" ng-bind="(user.firstName)+' '+(user.lastName)"></div>
+
+            <div class="col s5 l3 m3">
                 <a ng-click="model.removeFollowing(following)" class="btn red darken-4">Remove</a>
             </div>
         </div>
     </li>
 </ul>
+

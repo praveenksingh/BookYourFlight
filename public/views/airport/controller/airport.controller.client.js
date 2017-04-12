@@ -10,12 +10,12 @@
         vm.myInterval = 3000;
         vm.addComment = addComment;
         vm.getUserDetails = getUserDetails;
-        var airportCode = $routeParams['airportCode'];
+        vm.airportCode = $routeParams['airportCode'];
 
         function init() {
             vm.airportPhotos = [];
             AirportService
-                .findAirportDetailsByCode(airportCode)
+                .findAirportDetailsByCode(vm.airportCode)
                 .success(renderData)
                 .error(function (err) {
                     $location.url("/404");
@@ -50,6 +50,7 @@
         }
 
         function addComment(airport) {
+            airport.airportCode = vm.airportCode;
             CommentsService.createComment(airport)
                 .then(function (com) {
                     vm.comments.push(com);

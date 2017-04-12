@@ -31,7 +31,7 @@ module.exports = function (app, utils, model, passport) {
                     if(airport == undefined){
                         var airport = {
                             placeId : req.body.place_id,
-                            airportCode : req.params.code,
+                            airportCode : req.body.airportCode,
                             name : req.body.name
                         };
                         airportModel.createAirport(airport)
@@ -39,7 +39,8 @@ module.exports = function (app, utils, model, passport) {
                                 var comment = {
                                     _user : req.user._id,
                                     _airport : airportCreated._id,
-                                    comment : req.body.comment
+                                    comment : req.body.comment,
+                                    airportCode: airportCreated.airportCode
                                 };
                                 commentsModel.createComment(comment)
                                     .then(function (commentCrea) {
@@ -64,7 +65,8 @@ module.exports = function (app, utils, model, passport) {
                         var comment = {
                             _user : req.user._id,
                             _airport : airport._id,
-                            comment : req.body.comment
+                            comment : req.body.comment,
+                            airportCode: airport.airportCode
                         };
                         commentsModel.createComment(comment)
                             .then(function (commentCreated) {

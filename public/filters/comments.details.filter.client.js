@@ -16,7 +16,8 @@
                             $scope.commentDetails = {
                                 commentText : comment.comment,
                                 commentDate : comment.dateCreated,
-                                airportName : airport.name
+                                airportName : airport.name,
+                                airportCode: comment.airportCode
                             }
                         });
                 });

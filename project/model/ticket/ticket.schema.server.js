@@ -2,7 +2,7 @@ module.exports = function () {
     var mongoose = require('mongoose');
 
     var ticketSchema = mongoose.Schema({
-        _user : {type: String, required: true},
+        _user :  {type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectUsers'},
         travelDate: {type: Date},
         price: String,
         passengerName: {type: String, required: true},
