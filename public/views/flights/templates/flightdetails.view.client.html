@@ -9,6 +9,10 @@
     </div>
 </nav>
 
+<div ng-if="modal.loading==true" class="progress">
+    <div class="indeterminate"></div>
+</div>
+
 <div class="container">
 
     <div class="alert alert-danger" ng-show="model.error">

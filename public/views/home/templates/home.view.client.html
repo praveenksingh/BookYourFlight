@@ -9,11 +9,12 @@
     </div>
 </nav>
 
+<div ng-if="modal.loading==true" class="progress">
+    <div class="indeterminate"></div>
+</div>
+
 <div class="container my-back">
-
-    <div ng-show="modal.load" class="progress"><div class="indeterminate"></div></div>
     <div ng-show="model.error" class="alert alert-danger" role="alert"></div>
-
     <div class="row centered-form">
         <div class="col s12 m8 l8 offset-l2 offset-m2">
             <div class="panel panel-default">
@@ -22,7 +23,6 @@
                 </div>
                 <div class="panel-body">
                     <form role="form">
-
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
@@ -75,6 +75,17 @@
 
                         <input type="submit" value="Search" class="btn btn-info btn-block" ng-click="model.searchFlight(flight)">
 
+                        <div ng-show="model.loading" class="preloader-wrapper big active center">
+                            <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

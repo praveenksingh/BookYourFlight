@@ -8,6 +8,7 @@
         vm.oneAtATime = true;
         vm.currentUser = currentUser;
         vm.book = book;
+        vm.loading = true;
 
         function init() {
             // console.log(vm.details);
@@ -21,9 +22,10 @@
             //     });
             //TODO Uncomment the below code
             vm.details = HomeService.getFlightDetails();
-            if(vm.details.length === undefined){
+            if(vm.details.length === undefined)
                 $location.url("/")
-            }
+            else
+                vm.loading = false;
         }
         init();
 

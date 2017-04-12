@@ -11,7 +11,7 @@
         function init() {
             vm.ticketDetails = TicketService.getSelectedTicketDetails();
             if(vm.user==undefined || vm.ticketDetails.departureTime == undefined){
-                $location.url("/")
+                $location.url("/login")
             }
         }
         init();
