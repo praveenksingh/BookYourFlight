@@ -1,4 +1,4 @@
-<div class="page-flexbox-wrapper">
+<div class="page-flexbox-wrapper my-back">
     <header>
         <nav class="nav-wrapper" role="navigation">
             <div class="navbar-header">
@@ -13,15 +13,16 @@
             <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed" style="background: inherit">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Link 1</a></li>
-                        <li><a href="#">Link 2</a></li>
+                        <li ng-if="!model.currentUser"><a href="#/login">Login</a></li>
+                        <li ng-if="model.currentUser"><a href="#/profile">Profile</a></li>
+                        <li ng-if="!model.currentUser"><a href="#/register">Register</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="container my-back">
+    <main class="container">
         <div ng-if="modal.loading==true" class="progress">
             <div class="indeterminate"></div>
         </div>
@@ -102,7 +103,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <footer class="page-footer">

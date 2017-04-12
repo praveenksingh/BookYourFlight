@@ -3,9 +3,7 @@
         .module("BookYourTrip")
         .config(configuration);
 
-    function configuration($routeProvider, $locationProvider, $httpProvider) {
-        // $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-        // $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    function configuration($routeProvider, $httpProvider) {
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
         $routeProvider
@@ -49,6 +47,14 @@
                     currentUser: alreadyLoggedIn
                 }
             })
+            .when('/admin', {
+                templateUrl: 'views/user/admin/templates/admin.profile.view.client.html',
+                controller: 'AdminController',
+                controllerAs: 'model',
+                resolve: {
+                    adminUser: checkAdmin
+                }
+            })
             .when("/register", {
                 templateUrl: "views/user/user/templates/register.view.client.html",
                 controller: "RegisterController",
@@ -90,13 +96,10 @@
                 }
             })
             .otherwise({
-                templateUrl: 'views/home/templates/home.view.client.html',
-                controller: "HomeController",
-                controllerAs: "model",
-                resolve: {
-                    currentUser: checkLoggedInUser
-                }
+                redirectTo: '/'
+
             });
+
     }
 
     function checkLogin($q, UserService, $location) {
@@ -144,16 +147,16 @@
         return deferred.promise;
     }
 
-    function checkAdmin($q, userService, $location) {
+    function checkAdmin($q, UserService, $location) {
         var defer = $q.defer();
-        userService
+        UserService
             .isAdmin()
             .then(function (user) {
                 if(user != '0') {
                     defer.resolve(user);
                 } else {
                     defer.reject();
-                    $location.url('/profile');
+                    $location.url('/');
                 }
             });
         return defer.promise;

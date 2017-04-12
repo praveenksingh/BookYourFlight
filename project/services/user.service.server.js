@@ -21,8 +21,8 @@ module.exports = function (app, utils, model, passport) {
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/google/oauth/callback',
         passport.authenticate('google', {
-            successRedirect: '#/profile',
-            failureRedirect: '#/login'
+            successRedirect: '/#/profile',
+            failureRedirect: '/#/login'
         }));
 
     function unFollowUserById(req, res) {

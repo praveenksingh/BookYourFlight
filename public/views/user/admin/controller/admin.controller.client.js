@@ -1,14 +1,14 @@
 (function(){
     angular
         .module("BookYourTrip")
-        .controller("ProfileController", profileController);
+        .controller("AdminController", adminController);
 
-    function profileController($location, UserService, currentUser, CommentsService, TicketService) {
+    function adminController($location, UserService, adminUser, CommentsService, TicketService) {
         var vm = this;
         vm.unregisterUser = unregisterUser;
         vm.logout = logout;
         vm.update = update;
-        vm.user = currentUser;
+        vm.user = adminUser;
         vm.userProfile = angular.copy(vm.user);
         vm.deleteComment = deleteComment;
         vm.cancelTicket = cancelTicket;
@@ -16,8 +16,6 @@
         vm.removeFollower = removeFollower;
 
         function init() {
-            if(vm.user.role == 'ADMIN')
-                $location.url('/admin');
             if(vm.user.image == undefined)
                 vm.user.image= "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
         }
