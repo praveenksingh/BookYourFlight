@@ -1,13 +1,22 @@
 <div class="page-flexbox-wrapper">
     <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Book Your Flight</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">JavaScript</a></li>
-                </ul>
+        <nav class="nav-wrapper" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar white"></span>
+                    <span class="icon-bar white"></span>
+                    <span class="icon-bar white"></span>
+                </button>
+                <a class="brand-logo" ng-href="#/">Book Your Flight</a>
+            </div>
+            <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed" style="background: inherit">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>

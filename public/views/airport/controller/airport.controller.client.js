@@ -10,6 +10,7 @@
         vm.myInterval = 3000;
         vm.addComment = addComment;
         vm.getUserDetails = getUserDetails;
+        vm.isNavCollapsed = true;
         vm.airportCode = $routeParams['airportCode'];
 
         function init() {

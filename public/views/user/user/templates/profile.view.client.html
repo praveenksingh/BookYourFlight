@@ -1,57 +1,89 @@
 <!--{{model.user}}-->
-<hr>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-10"><h1 ng-bind="(model.user.firstName)+' ' +(model.user.lastName)"></h1></div>
-        <div class="col-sm-2"><img title="profile image" class="img-circle img-responsive" ng-src="{{model.user.image}}" alt="Profile Image" ></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3"><!--left col-->
-            <ng-include src="'views/user/user/templates/user.detail.view.client.html'"></ng-include>
-            <ng-include src="'views/user/user/templates/user.activity.view.client.html'"></ng-include>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Social Media</div>
-                <div class="panel-body">
-                    <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+<div class="page-flexbox-wrapper">
+    <header>
+        <nav class="nav-wrapper" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar white"></span>
+                    <span class="icon-bar white"></span>
+                    <span class="icon-bar white"></span>
+                </button>
+                <a class="brand-logo" ng-href="#/">Book Your Flight</a>
+            </div>
+            <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed" style="background: inherit">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                    </ul>
                 </div>
             </div>
-
-        </div><!--/col-3-->
-        <div class="col-sm-9">
-            <div class="alert alert-danger" ng-show="model.error">
-                {{model.error}}
-            </div>
-
-            <div class="alert alert-success" ng-show="model.message">
-                {{model.message}}
-            </div>
-            <uib-tabset active="activeJustified" justified="true">
-
-                <uib-tab index="0" heading="Profile">
-                    <ng-include src="'views/user/user/templates/tabs/user.profile.tab.view.client.html'"></ng-include>
-                </uib-tab>
-
-                <uib-tab index="1" heading="Tickets">
-                    <ng-include src="'views/user/user/templates/tabs/user.tickets.tab.view.client.html'"></ng-include>
-                </uib-tab>
-
-                <uib-tab index="2" heading="Comments">
-                    <ng-include src="'views/user/user/templates/tabs/user.comments.tab.view.client.html'"></ng-include>
-                </uib-tab>
-
-                <uib-tab index="3" heading="Following">
-                    <ng-include src="'views/user/user/templates/tabs/user.following.tab.view.client.html'"></ng-include>
-                </uib-tab>
-
-                <uib-tab index="4" heading="Followed">
-                    <ng-include src="'views/user/user/templates/tabs/user.followed.tab.view.client.html'"></ng-include>
-                </uib-tab>
-
-            </uib-tabset>
-
+        </nav>
+    </header>
+    <hr>
+    <main class="container">
+        <div class="row">
+            <div class="col-sm-10"><h1 ng-bind="(model.user.firstName)+' ' +(model.user.lastName)"></h1></div>
+            <div class="col-sm-2"><img title="profile image" class="img-circle img-responsive" ng-src="{{model.user.image}}" alt="Profile Image" ></div>
         </div>
+        <div class="row">
+            <div class="col-sm-3"><!--left col-->
+                <ng-include src="'views/user/user/templates/user.detail.view.client.html'"></ng-include>
+                <ng-include src="'views/user/user/templates/user.activity.view.client.html'"></ng-include>
 
-    </div><!--/col-9-->
-</div><!--/row-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">Social Media</div>
+                    <div class="panel-body">
+                        <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+                    </div>
+                </div>
 
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+                <div class="alert alert-danger" ng-show="model.error">
+                    {{model.error}}
+                </div>
+
+                <div class="alert alert-success" ng-show="model.message">
+                    {{model.message}}
+                </div>
+                <uib-tabset active="activeJustified" justified="true">
+
+                    <uib-tab index="0" heading="Profile">
+                        <ng-include src="'views/user/user/templates/tabs/user.profile.tab.view.client.html'"></ng-include>
+                    </uib-tab>
+
+                    <uib-tab index="1" heading="Tickets">
+                        <ng-include src="'views/user/user/templates/tabs/user.tickets.tab.view.client.html'"></ng-include>
+                    </uib-tab>
+
+                    <uib-tab index="2" heading="Comments">
+                        <ng-include src="'views/user/user/templates/tabs/user.comments.tab.view.client.html'"></ng-include>
+                    </uib-tab>
+
+                    <uib-tab index="3" heading="Following">
+                        <ng-include src="'views/user/user/templates/tabs/user.following.tab.view.client.html'"></ng-include>
+                    </uib-tab>
+
+                    <uib-tab index="4" heading="Followed">
+                        <ng-include src="'views/user/user/templates/tabs/user.followed.tab.view.client.html'"></ng-include>
+                    </uib-tab>
+
+                </uib-tabset>
+
+            </div>
+
+        </div><!--/col-9-->
+    </main><!--/row-->
+
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+
+</div>

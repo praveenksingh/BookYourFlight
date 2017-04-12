@@ -1,6 +1,39 @@
-<div class="container not-found">
-    <!--<span>-->
-        <img class="my-img" ng-src="../../../images/404.png">
-        <!--<a class="btn pull-right">hi</a>-->
-    <!--</span>-->
+<div class="page-flexbox-wrapper">
+    <header>
+        <nav class="nav-wrapper" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar white"></span>
+                    <span class="icon-bar white"></span>
+                    <span class="icon-bar white"></span>
+                </button>
+                <a class="brand-logo" ng-href="#/">Book Your Flight</a>
+            </div>
+            <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed" style="background: inherit">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container not-found">
+        <!--<span>-->
+            <img class="my-img" ng-src="../../../images/404.png">
+            <!--<a class="btn pull-right">hi</a>-->
+        <!--</span>-->
+    </main>
+
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017 Copyright BookYourFlight
+                <a class="grey-text text-lighten-4 right" ng-href="#/profile">Profile</a>
+            </div>
+        </div>
+    </footer>
 </div>
