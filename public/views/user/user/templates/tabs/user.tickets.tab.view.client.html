@@ -32,18 +32,33 @@
                     {{ticketDetail.travelDate |  date:'M/d/yyyy'}}
                     <i class="material-icons right">more_vert</i>
                 </span>
-                <p class="flow-text">{{ticketDetail.tripDetails.legs[ticketDetail.tripDetails.legs.length-1].destination}}</p>
+                <span class="flow-text">
+                {{ticketDetail.tripDetails.legs[0].origin}} -
+                {{ticketDetail.tripDetails.legs[ticketDetail.tripDetails.legs.length-1].destination}}
+                </span>
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">Flight Details<i class="material-icons right">close</i></span>
                 <div ng-bind="ticketDetail.travelDate |  date:'medium'"></div>
-                <div ng-bind="ticketDetail.price"></div>
-                <div ng-bind="ticketDetail.status"></div>
-                <div ng-if="ticketDetail.status == 'CONFIRMED'">
-                    <a ng-click="model.cancelTicket(ticket)" class="btn red darken-4">Cancel</a>
+                <div>
+                    <span>Price : </span>
+                    <span ng-bind="ticketDetail.price"></span>
                 </div>
+                <div>
+                    <span class="md-content2">Status</span>
+                    <span class="md-content2" ng-bind="ticketDetail.status"></span>
+                </div>
+                <br/>
+                <div>
+                    <a ng-click="" class="btn btn-lg round green">Details</a>
+                </div>
+                <div ng-if="ticketDetail.status == 'CONFIRMED'">
+                    <a ng-click="model.cancelTicket(ticket)" class="btn btn-lg round red darken-4">Cancel</a>
+                </div>
+
             </div>
         </div>
         <div class="timeline-badge blue white-text"><i class="material-icons">language</i></div>
     </div>
 </div>
+
