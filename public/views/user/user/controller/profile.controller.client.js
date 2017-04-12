@@ -16,7 +16,8 @@
         vm.removeFollower = removeFollower;
 
         function init() {
-
+            if(vm.user.image == undefined)
+                vm.user.image= "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
         }
         init();
 

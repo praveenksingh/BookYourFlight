@@ -14,6 +14,8 @@
             UserService
                 .findUserById(vm.userId)
                 .then(function (user) {
+                    if(user.image == undefined)
+                        user.image= "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
                     vm.user = user;
                 }, function (error) {
                     $location.url("/404");
