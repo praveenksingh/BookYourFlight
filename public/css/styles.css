@@ -1,4 +1,5 @@
 body {
+    background: #fff;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -8,14 +9,8 @@ main {
     flex: 1 0 auto;
 }
 
-body {
-    background: #fff;
-
-}
-
 .my-back{
-    background-image : url("../images/home-background.png");
-    background-repeat: no-repeat;
+    background: url("../images/home-background.png") no-repeat;
 }
 
 .not-found{
@@ -209,4 +204,3 @@ html {
 .byf-collap-body{
     padding: 1em;
 }
-
