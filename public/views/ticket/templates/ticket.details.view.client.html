@@ -1,5 +1,17 @@
-<hr/>
-<div class="container">
+<div class="page-flexbox-wrapper">
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Book Your Flight</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     <div class="alert alert-danger" ng-show="model.error">
         {{model.error}}
     </div>
@@ -8,64 +20,72 @@
         {{model.message}}
     </div>
 
-    <div class="row">
-        <form class="form-horizontal">
-            <fieldset>
+    <main class="container">
 
-                <legend>Passenger Details</legend>
 
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="name">Passenger Name</label>
-                    <div class="col-md-4">
-                        <input id="name"
-                               name="name"
-                               type="text"
-                               placeholder=""
-                               ng-model="model.ticketDetails.passengerName"
-                               class="form-control input-md" required="true">
+        <div class="row">
+            <form class="form-horizontal">
+                <fieldset>
 
+                    <legend>Passenger Details</legend>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="name">Passenger Name</label>
+                        <div class="col-md-4">
+                            <input id="name"
+                                   name="name"
+                                   type="text"
+                                   placeholder=""
+                                   ng-model="model.ticketDetails.passengerName"
+                                   class="form-control input-md" required="true">
+
+                        </div>
                     </div>
-                </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="contact">Phone Number</label>
-                    <div class="col-md-4">
-                        <input id="contact"
-                               name="contact"
-                               ng-model="model.ticketDetails.passengerContact"
-                               type="number"
-                               placeholder=""
-                               class="form-control input-md"
-                               required="">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="contact">Phone Number</label>
+                        <div class="col-md-4">
+                            <input id="contact"
+                                   name="contact"
+                                   ng-model="model.ticketDetails.passengerContact"
+                                   type="number"
+                                   placeholder=""
+                                   class="form-control input-md"
+                                   required="">
 
+                        </div>
                     </div>
-                </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="email">Email Address</label>
-                    <div class="col-md-4">
-                        <input id="email"
-                               ng-model="model.ticketDetails.passengerEmail"
-                               name="email"
-                               type="email"
-                               placeholder=""
-                               class="form-control input-md"
-                               required="">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="email">Email Address</label>
+                        <div class="col-md-4">
+                            <input id="email"
+                                   ng-model="model.ticketDetails.passengerEmail"
+                                   name="email"
+                                   type="email"
+                                   placeholder=""
+                                   class="form-control input-md"
+                                   required="">
 
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group col-md-4 pull-right">
-                    <a ng-click="model.confirm(model.ticketDetails)" class="btn green">Confirm</a>
-                </div>
-            </fieldset>
+                    <div class="form-group col-md-4 pull-right">
+                        <a ng-click="model.confirm(model.ticketDetails)" class="btn green">Confirm</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </main>
 
-
-        </form>
-
-
-
-    </div>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017 Copyright BookYourFlight
+                <a class="grey-text text-lighten-4 right" ng-href="#/profile">Profile</a>
+            </div>
+        </div>
+    </footer>
 </div>

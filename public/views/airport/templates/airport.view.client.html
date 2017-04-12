@@ -1,121 +1,124 @@
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>Sass</li>
-            <li>Components</li>
-            <li>JavaScript</li>
-        </ul>
-    </div>
-</nav>
 
-<div class="container-fluid my-container grey lighten-5">
-    <div ng-if="model.load" class="progress">
-        <div class="indeterminate"></div>
-    </div>
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Book Your Flight</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-    <h2 class="flow-text center" ng-bind="model.airportData.name"></h2>
-
-    <div class="row">
-        <div class="col s12 m4 l3 teal lighten-4">
-            <p class="flow-text">Airport Details</p>
-            <ul class="collection my-shadow">
-                <li class="collection-item avatar">
-                    <img src={{model.airportData.icon}} alt="" class="circle">
-                    <span class="title">Name</span>
-                    <p ng-bind="model.airportData.name"></p>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle">location_on</i>
-                    <span class="title">Address</span>
-                    <p ng-bind="model.airportData.formatted_address"></p>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle green">business</i>
-                    <span class="title">Vicinity</span>
-                    <p ng-bind="model.airportData.vicinity"></p>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle green">my_location</i>
-                    <span class="title">Geometry</span>
-                    <p>Latitude : {{model.airportData.geometry.location.lat}}</p>
-                    <p>Longitude : {{model.airportData.geometry.location.lng}}</p>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle green">contact_phone</i>
-                    <span class="title">Contact Details</span>
-                    <p ng-bind="model.airportData.international_phone_number"></p>
-                </li>
-                <li class="collection-item avatar">
-                    <i class="material-icons circle red">http</i>
-                    <span class="title">Website</span>
-                    <a class="wordwrap" ng-href="{{model.airportData.website}}" target="_blank">{{model.airportData.website}}</a>
-                </li>
-            </ul>
-
+    <main class="container-fluid my-container grey lighten-5">
+        <div ng-if="model.load" class="progress">
+            <div class="indeterminate"></div>
+        </div>
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
         </div>
 
-        <!-- right Pane -->
-        <div class="col s12 m8 l9">
-            <!-- Pictures Pane -->
-            <div ng-if="model.airportPhotos.length" class="slider my-shadow" data-images="model.airportPhotos"></div>
+        <h2 class="flow-text center" ng-bind="model.airportData.name"></h2>
 
-            <!-- add comments Section -->
-            <div ng-if="model.currentUser" class="row" style="padding-top: 10px">
-                <form class="col s10 m8 offset-m2 l7 offset-l2">
-                    <div class="row">
-                        <div class="input-field">
-                            <i class="material-icons prefix">mode_edit</i>
-                            <textarea id="icon_prefix2" ng-model= "model.airportData.comment" class="materialize-textarea"></textarea>
-                            <label for="icon_prefix2">Add a Review</label>
-                        </div>
-                        <div class="col s2 offset-s10  hide-on-large-only">
-                            <a class="btn-floating btn-large waves-effect waves-light red" ng-click="model.addComment(model.airportData)"><i class="material-icons">add</i></a>
-                        </div>
-                        <div class="l2 offset-l10 hide-on-med-and-down">
-                            <button class="btn waves-effect waves-light" ng-click="model.addComment(model.airportData)">Submit
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+        <div class="row">
+            <div class="col s12 m4 l3 teal lighten-4">
+                <p class="flow-text">Airport Details</p>
+                <ul class="collection my-shadow">
+                    <li class="collection-item avatar">
+                        <img src={{model.airportData.icon}} alt="" class="circle">
+                        <span class="title">Name</span>
+                        <p ng-bind="model.airportData.name"></p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">location_on</i>
+                        <span class="title">Address</span>
+                        <p ng-bind="model.airportData.formatted_address"></p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">business</i>
+                        <span class="title">Vicinity</span>
+                        <p ng-bind="model.airportData.vicinity"></p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">my_location</i>
+                        <span class="title">Geometry</span>
+                        <p>Latitude : {{model.airportData.geometry.location.lat}}</p>
+                        <p>Longitude : {{model.airportData.geometry.location.lng}}</p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green">contact_phone</i>
+                        <span class="title">Contact Details</span>
+                        <p ng-bind="model.airportData.international_phone_number"></p>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle red">http</i>
+                        <span class="title">Website</span>
+                        <a class="wordwrap" ng-href="{{model.airportData.website}}" target="_blank">{{model.airportData.website}}</a>
+                    </li>
+                </ul>
+
             </div>
 
-            <!--Comments Section-->
-            <div class="col s12 m8 offset-m2 l7 offset-l2">
-                <div ng-repeat="comments in model.comments.slice().reverse()" ng-controller="UserDetails">
-                    <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                        <div class="row valign-wrapper" ng-model="comments._user">
-                            <div class="col s2">
-                                <img src="{{user.image}}" class="circle responsive-img">
+            <!-- right Pane -->
+            <div class="col s12 m8 l9">
+                <!-- Pictures Pane -->
+                <div ng-if="model.airportPhotos.length" class="slider my-shadow" data-images="model.airportPhotos"></div>
+
+                <!-- add comments Section -->
+                <div ng-if="model.currentUser" class="row" style="padding-top: 10px">
+                    <form class="col s10 m8 offset-m2 l7 offset-l2">
+                        <div class="row">
+                            <div class="input-field">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="icon_prefix2" ng-model= "model.airportData.comment" class="materialize-textarea"></textarea>
+                                <label for="icon_prefix2">Add a Review</label>
                             </div>
-                            <div class="col s10">
-                                <div class="black-text">
-                                    <a ng-href="#/profile/{{user._id}}" ng-bind="(user.firstName) + ' ' +(user.lastName)"></a>
-                                    <!--{{user.firstName}} {{user.lastName}}-->
+                            <div class="col s2 offset-s10  hide-on-large-only">
+                                <a class="btn-floating btn-large waves-effect waves-light red" ng-click="model.addComment(model.airportData)"><i class="material-icons">add</i></a>
+                            </div>
+                            <div class="l2 offset-l10 hide-on-med-and-down">
+                                <button class="btn waves-effect waves-light" ng-click="model.addComment(model.airportData)">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Comments Section-->
+                <div class="col s12 m8 offset-m2 l7 offset-l2">
+                    <div ng-repeat="comments in model.comments.slice().reverse()" ng-controller="UserDetails">
+                        <div class="card-panel grey lighten-5 z-depth-1 hoverable">
+                            <div class="row valign-wrapper" ng-model="comments._user">
+                                <div class="col s2">
+                                    <img src="{{user.image}}" class="circle responsive-img">
                                 </div>
-                              <span ng-bind-html="comments.comment">
-                                <!--{{comments.comment}}-->
-                              </span>
+                                <div class="col s10">
+                                    <div class="black-text">
+                                        <a ng-href="#/profile/{{user._id}}" ng-bind="(user.firstName) + ' ' +(user.lastName)"></a>
+                                        <!--{{user.firstName}} {{user.lastName}}-->
+                                    </div>
+                                  <span ng-bind-html="comments.comment">
+                                    <!--{{comments.comment}}-->
+                                  </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
         </div>
-    </div>
 
-</div>
+    </main>
 
-<footer class="page-footer">
-    <div class="footer-copyright">
-        <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
