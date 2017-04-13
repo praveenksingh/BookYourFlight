@@ -82,10 +82,10 @@
 
         function deleteComment(comment) {
             CommentsService
-                .deleteComment(comment)
+                .deleteComment(comment._id)
                 .then(function (success) {
-                    vm.user.comments = vm.user.comments.filter( function(item) {
-                        return !(item == comment);
+                    vm.allComments = vm.allComments.filter( function(item) {
+                        return !(item._id == comment._id);
                     });
                 }, function (err) {
                     vm.error = "unable to Delete comment";

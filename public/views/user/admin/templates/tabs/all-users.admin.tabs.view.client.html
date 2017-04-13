@@ -1,1 +1,25 @@
-{{model.allComments}}
+<!--{{model.allComments}}-->
+
+<table class="striped responsive-table">
+    <thead>
+    <tr>
+        <th>User Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Role</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="normalUser in model.allUsers">
+        <td>{{normalUser.username}}</td>
+        <td>{{normalUser.firstName}}</td>
+        <td>{{normalUser.lastName}}</td>
+        <td>{{normalUser.role}}</td>
+        <td><a class="btn btn-lg round blue lighten-2" ng-click="">Update</a></td>
+        <td><a class="btn btn-lg round red darken-4" ng-click="">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
