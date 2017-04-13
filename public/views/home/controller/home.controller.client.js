@@ -12,7 +12,7 @@
 
         function init() {
             vm.flight.depart = new Date();
-            HomeService.setFlightDetails();
+            // HomeService.setFlightDetails();
         }
         init();
 

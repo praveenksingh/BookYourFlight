@@ -3,8 +3,9 @@
         .module("BookYourTrip")
         .controller("TicketDetails", userLoader);
 
-    function userLoader($scope, TicketService) {
+    function userLoader($scope,TicketService) {
         // $scope.cancelTicket = cancelTicket;
+        var vm =this;
 
         function init() {
             TicketService
