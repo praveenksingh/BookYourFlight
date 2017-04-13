@@ -81,7 +81,6 @@
         }
 
         function deleteComment(comment) {
-            console.log("from profile con");
             CommentsService
                 .deleteComment(comment)
                 .then(function (success) {

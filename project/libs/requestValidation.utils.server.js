@@ -1,15 +1,6 @@
 module.exports = function () {
     var index = require('./FindAirports');
 
-    // var airports = require('airport-codes');
-    // var airport_codes = require('../../airports.json');
-    // var Backbone = require('backbone');
-    // var airportsData = new Backbone.Collection(airport_codes.response);
-    // airportsData.comparator = 'name';
-    // console.log(airportsData.findWhere({name : "Chicago"}));
-    // console.log(index.lookupByIataCode('LAX'));
-    //console.log(index.searchByCityName('Los Angeles'));
-
     var api = {
         validateCity: validateCity,
         getCityIata: getCityIata,

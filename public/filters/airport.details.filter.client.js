@@ -3,7 +3,7 @@
         .module("BookYourTrip")
         .controller("AirportDetails", airportLoaded);
 
-    function airportLoaded($scope, AirportService) {
+    function airportLoaded(AirportService) {
 
         function init() {
             // AirportService

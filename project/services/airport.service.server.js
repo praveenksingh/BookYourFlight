@@ -86,7 +86,6 @@ module.exports = function (app, utils, model, passport) {
         // };
         // getPhotosForAirport(optionsPhoto)
         //     .then(function (photos) {
-        //         // console.log(photos);
         //         res.status(200).send(photos);
         //
         //     }, function (err) {

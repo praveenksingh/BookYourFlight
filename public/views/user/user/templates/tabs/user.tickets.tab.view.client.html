@@ -8,18 +8,6 @@
 <div class="alert alert-success" ng-show="message">
     {{message}}
 </div>
-<!--<ul class="list-group">-->
-    <!--<li class="list-group-item" ng-repeat="ticket in model.user.tickets" ng-controller="TicketDetails">-->
-        <!--<div class="row">-->
-            <!--<div class="col-xs-4" ng-bind="ticketDetail.travelDate |  date:'medium'"></div>-->
-            <!--<div class="col-xs-2" ng-bind="ticketDetail.price"></div>-->
-            <!--<div class="col-xs-3 hidden-xs" ng-bind="ticketDetail.status"></div>-->
-            <!--<div class="col-xs-3" ng-if="ticketDetail.status == 'CONFIRMED'">-->
-                <!--<a ng-click="model.cancelTicket(ticket)" class="btn red darken-4">Cancel</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</li>-->
-<!--</ul>-->
 
 <div class="timeline">
     <div class="timeline-event" ng-repeat="ticket in model.user.tickets" ng-controller="TicketDetails as ticketModel"

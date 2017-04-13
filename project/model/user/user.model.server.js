@@ -88,7 +88,6 @@ module.exports = function () {
     }
 
     function findUserByCredentials(username, password) {
-        console.log(password);
         return userModel.findOne({username: username, password: password});
     }
 

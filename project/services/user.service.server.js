@@ -165,7 +165,7 @@ module.exports = function (app, utils, model, passport) {
                 if(user) {
                     req.login(user, function (err) {
                         if (err) {
-                            console.log(err);
+                            res.status(500).send();
                         }else {
                             res.json(user);
                         }

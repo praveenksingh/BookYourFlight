@@ -29,7 +29,6 @@
         }
 
         function followUser() {
-            console.log("solo");
             UserService
                 .addUserFollowingList(vm.userId)
                 .then(function (user) {

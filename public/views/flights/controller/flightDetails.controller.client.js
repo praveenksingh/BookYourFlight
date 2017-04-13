@@ -11,7 +11,6 @@
         vm.loading = true;
 
         function init() {
-            // console.log(vm.details);
             //TODO remove the code
             // var promise = HomeService.findFlightsByDetails();
             // promise.success(function (data) {

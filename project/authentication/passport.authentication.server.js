@@ -18,16 +18,15 @@ module.exports = function (userModel) {
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
     function googleStrategy(token, refreshToken, profile, done) {
-        console.log(profile.id);
         userModel
             .findUserByGoogleId(profile.id)
             .then(function (user) {
-                console.log(user);
+                // console.log(user);
                 if(user) {
-                    console.log(111);
+                    // console.log(111);
                     done(null, user);
                 } else {
-                    console.log(222);
+                    // console.log(222);
                     var user = {
                         username: profile.emails[0].value,
                         image: profile.photos[0].value,
@@ -41,13 +40,13 @@ module.exports = function (userModel) {
                     return userModel.createUser(user);
                 }
             }, function (err) {
-                console.log(err);
+                // console.log(err);
                 done(err, null);
             })
             .then(function (user) {
                 done(null, user);
             }, function (err) {
-                console.log(err);
+                // console.log(err);
                 done(err, null);
             });
     }
@@ -80,7 +79,7 @@ module.exports = function (userModel) {
                     done(null, user);
                 },
                 function(err){
-                    console.log(err);
+                    // console.log(err);
                     done(err, null);
                 }
             );

@@ -98,15 +98,17 @@
 
                 <!--Comments Section-->
                 <div class="col s12 m8 offset-m2 l7 offset-l2">
-                    <div ng-repeat="comments in model.comments.slice().reverse()" ng-controller="UserDetails">
+                    <div ng-repeat="comments in model.comments.slice().reverse()"
+                         ng-controller="UserDetails as userModel" ng-init="userModel.userId=comments._user; userModel.render()">
                         <div class="card-panel grey lighten-5 z-depth-1 hoverable">
                             <div class="row valign-wrapper" ng-model="comments._user">
                                 <div class="col s2">
-                                    <img src="{{user.image}}" class="circle responsive-img">
+                                    <img src="{{userModel.user.image}}" class="circle responsive-img">
                                 </div>
                                 <div class="col s10">
                                     <div class="black-text">
-                                        <a ng-href="#/profile/{{user._id}}" ng-bind="(user.firstName) + ' ' +(user.lastName)"></a>
+                                        <a ng-href="#/profile/{{userModel.user._id}}"
+                                           ng-bind="(userModel.user.firstName) + ' ' +(userModel.user.lastName)"></a>
                                         <!--{{user.firstName}} {{user.lastName}}-->
                                     </div>
                                   <span ng-bind-html="comments.comment">
