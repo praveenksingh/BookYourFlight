@@ -23,7 +23,7 @@
             //TODO Uncomment the below code
             vm.details = HomeService.getFlightDetails();
             if(vm.details.length === undefined)
-                $location.url("/")
+                $location.url("/");
             else
                 vm.loading = false;
         }

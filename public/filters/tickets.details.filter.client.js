@@ -6,6 +6,7 @@
     function userLoader($scope,TicketService) {
         // $scope.cancelTicket = cancelTicket;
         var vm =this;
+        vm.render = render;
 
         function init() {
             TicketService
@@ -20,6 +21,21 @@
                 $scope.imageSrc = "../../../../../images/flight2.jpg";
         }
         init();
+
+
+
+        function render() {
+            TicketService
+                .findTicketById(vm.ticket)
+                .then(function (ticket) {
+                    vm.ticketDetail = ticket;
+                });
+
+            if(vm.index % 2 === 0)
+                vm.imageSrc = "../../../../../images/flight.jpg";
+            else
+                vm.imageSrc = "../../../../../images/flight2.jpg";
+        }
 
     }
 })();

@@ -25,7 +25,8 @@
             <div class="col s4">Comment</div>
         </div>
     </li>
-    <li ng-repeat="comment in model.user.comments.slice().reverse()" ng-controller="CommentsDetails">
+    <li ng-repeat="comment in model.user.comments.slice().reverse()" ng-controller="CommentsDetails as commentCon"
+        ng-init="commentCon.comment=comment; commentCon.render()">
         <div class="collapsible-header byf-zoom">
             <div class="row">
                 <div class="col s3 hidden-xs md-body-2" ng-bind="commentDetails.commentDate |  date:'medium'"></div>

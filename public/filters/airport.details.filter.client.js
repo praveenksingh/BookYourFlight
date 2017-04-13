@@ -1,12 +1,14 @@
 (function () {
     angular
         .module("BookYourTrip")
-        .controller("AirportDetails", userLoader);
+        .controller("AirportDetails", airportLoaded);
 
-    function userLoader($scope, AirportService) {
+    function airportLoaded($scope, AirportService) {
+        var vm = this;
+        vm.render = render;
 
         function init() {
-            console.log($scope.comment);
+            // console.log($scope.comment);
             AirportService
                 .findAirportById($scope.comment)
                 .then(function (airport) {
@@ -14,6 +16,14 @@
                 })
         }
         init();
+
+        function render(){
+            AirportService
+                .findAirportById(vm.comment)
+                .then(function (airport) {
+                    vm.airport = airport;
+                })
+        }
 
     }
 })();
