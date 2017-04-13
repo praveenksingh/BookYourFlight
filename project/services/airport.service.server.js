@@ -37,19 +37,21 @@ module.exports = function (app, utils, model, passport) {
 
             rp(options)
                 .then(function (repos) {
-                    // console.log(repos);
-                    var optionsPlaceDetails = {
-                        uri: getPathForAirportDetails(repos.results[0].place_id),
-                        json: true
-                    };
-                    rp(optionsPlaceDetails)
-                        .then(function (responseDetails) {
-                            // console.log(responseDetails);
-                            response.status(200).send(responseDetails.result);
-                        })
-                        .catch(function (err) {
-                            response.status(400).send('Error:', err);
-                        });
+                    if(repos.results.length == 0){
+                        response.status(404).send('Could not find Airport');
+                    }else {
+                        var optionsPlaceDetails = {
+                            uri: getPathForAirportDetails(repos.results[0].place_id),
+                            json: true
+                        };
+                        rp(optionsPlaceDetails)
+                            .then(function (responseDetails) {
+                                response.status(200).send(responseDetails.result);
+                            })
+                            .catch(function (err) {
+                                response.status(400).send('Error:', err);
+                            });
+                    }
                 })
                 .catch(function (err) {
                     response.status(400).send('Error:', err);

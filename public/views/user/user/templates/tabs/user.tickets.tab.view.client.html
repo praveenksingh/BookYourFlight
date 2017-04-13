@@ -50,12 +50,11 @@
                 </div>
                 <br/>
                 <div>
-                    <a ng-click="" class="btn btn-lg round green">Details</a>
+                    <a ng-click="model.open(ticketDetail.tripDetails)" class="btn btn-lg round green">Details</a>
                 </div>
                 <div ng-if="ticketDetail.status == 'CONFIRMED'">
                     <a ng-click="model.cancelTicket(ticket)" class="btn btn-lg round red darken-4">Cancel</a>
                 </div>
-
             </div>
         </div>
         <div class="timeline-badge blue white-text"><i class="material-icons">language</i></div>

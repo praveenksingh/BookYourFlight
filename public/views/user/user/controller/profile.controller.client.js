@@ -3,7 +3,7 @@
         .module("BookYourTrip")
         .controller("ProfileController", profileController);
 
-    function profileController($location, UserService, currentUser, CommentsService, TicketService) {
+    function profileController($location, $scope, $uibModal, UserService, currentUser, CommentsService, TicketService) {
         var vm = this;
         vm.unregisterUser = unregisterUser;
         vm.logout = logout;
@@ -22,6 +22,7 @@
                 vm.user.image= "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
         }
         init();
+
 
         function logout() {
             UserService
@@ -102,5 +103,17 @@
                     vm.error = "Unable to cancel Ticket";
                 })
         }
+
+        vm.open = function(details) {
+            $scope.trips = details;
+            var modalinstance = $uibModal.open({
+                templateUrl: "views/user/user/templates/tabs/ticket-detail.modal.tab.view.client.html",
+                scope : $scope,
+                resolve: {
+                    trips: details
+                }
+            })
+        };
     }
+
 })();
