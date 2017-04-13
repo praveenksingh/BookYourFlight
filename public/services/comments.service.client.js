@@ -9,9 +9,17 @@
             "createComment": createComment,
             "findAllCommentCommentByAirportId": findAllCommentCommentByAirportId,
             "deleteComment": deleteComment,
-            "updateComment": updateComment
+            "updateComment": updateComment,
+            "findAllComments": findAllComments
         };
         return api;
+
+        function findAllComments() {
+            return $http.get("/api/allComments/")
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function findCommentById(commentId) {
             return $http.get("/api/comment/"+commentId)

@@ -1,6 +1,7 @@
 module.exports = function (app, utils, model, passport) {
 
     app.get("/api/comment/:commentId", findCommentById);
+    app.get("/api/allComments/", findAllComments);
     app.post('/api/comment', createComment);
     app.get('/api/comment/airport/:airportId', findAllCommentByAirportId);
     app.delete('/api/comment/:commentId', deleteComment);
@@ -10,6 +11,20 @@ module.exports = function (app, utils, model, passport) {
     var commentsModel = model.commentsModel;
     var airportModel = model.airportModel;
     var userModel = model.userModel;
+
+    function findAllComments(req, res){
+        if(req.user && req.user.role=='ADMIN') {
+            commentsModel
+                .findAllComments()
+                .then(function (allComments) {
+                    res.json(allComments);
+                }, function (err) {
+                    res.status(500).send();
+                })
+        }else{
+            res.status(401).send("Unauthorized");
+        }
+    }
 
     function findCommentById(req, res) {
         if(req.user){
@@ -113,7 +128,7 @@ module.exports = function (app, utils, model, passport) {
     }
 
     function deleteComment(req, res) {
-        if(req.user){
+        if(req.user && (req.user.comments.indexOf(req.params.commentId)!= -1 || req.user.role == 'ADMIN')){
             commentsModel.findCommentById(req.params.commentId)
                 .then(function (comment) {
                     commentsModel.deleteComment(comment._id)
@@ -141,7 +156,7 @@ module.exports = function (app, utils, model, passport) {
     }
 
     function updateComment(req, res) {
-        if(req.user){
+        if(req.user && (req.user.comments.indexOf(req.params.commentId)!= -1 || req.user.role == 'ADMIN')){
             commentsModel.updateComment(req.params.commentId, req.body.comment)
                 .then(function (comment) {
                     res.status(200).send(comment);

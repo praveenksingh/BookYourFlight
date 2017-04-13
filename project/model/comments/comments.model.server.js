@@ -12,9 +12,14 @@ module.exports = function () {
         findAllCommentsByIdList: findAllCommentsByIdList,
         createComment: createComment,
         deleteComment: deleteComment,
-        updateComment :updateComment
+        updateComment :updateComment,
+        findAllComments: findAllComments
     };
     return api;
+
+    function findAllComments() {
+        return commentsModel.find();
+    }
 
     function findAllCommentsByIdList(idList) {
         return commentsModel.find({'_id':{$in : idList}});

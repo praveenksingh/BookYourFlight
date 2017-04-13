@@ -19,9 +19,17 @@
             "findUserByUserId": findUserByUserId,
             "addUserFollowingList": addUserFollowingList,
             "removeFollowerById": removeFollowerById,
-            "unFollowUserById": unFollowUserById
+            "unFollowUserById": unFollowUserById,
+            "findAllUsers": findAllUsers
         };
         return api;
+
+        function findAllUsers(){
+            return $http.get("/api/allUsers")
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function login(user) {
             return $http.post('/api/login', user)

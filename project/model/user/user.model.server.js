@@ -80,7 +80,7 @@ module.exports = function () {
     }
 
     function findAllUsers() {
-        return userModel.find();
+        return userModel.find('_id firstName lastName image role');
     }
 
     function createUser(user) {
