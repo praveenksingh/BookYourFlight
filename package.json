@@ -21,6 +21,7 @@
     "pg": "^6.1.4",
     "q": "^1.4.1",
     "request": "^2.81.0",
+    "bcrypt-nodejs": "0.0.3",
     "lodash": "^3.9.3",
     "triecomplete": "0.0.1",
     "request-promise":"^4.2.0"

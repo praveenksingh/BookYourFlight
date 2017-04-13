@@ -1,6 +1,7 @@
 module.exports = function (app, utils, model, passport) {
 
     var userModel = model.userModel;
+    var bcrypt = require("bcrypt-nodejs");
 
     app.post('/api/login', passport.authenticate('local'), login);
     app.get("/api/user", findUserByUsername);
@@ -156,12 +157,18 @@ module.exports = function (app, utils, model, passport) {
     }
 
     function register(req, res) {
+        var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         userModel
-            .createUser(req.body)
+            .createUser(user)
             .then(function (user) {
                 if(user) {
                     req.login(user, function (err) {
-                        res.json(user);
+                        if (err) {
+                            console.log(err);
+                        }else {
+                            res.json(user);
+                        }
                     });
                 }
             });

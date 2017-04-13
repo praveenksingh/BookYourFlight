@@ -3,6 +3,8 @@ module.exports = function (userModel) {
     var LocalStrategy = require('passport-local').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+    var bcrypt = require("bcrypt-nodejs");
+
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -52,16 +54,13 @@ module.exports = function (userModel) {
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
-            .then(
-                function(user) {
-                    // console.log('[0]');
-                    if (!user) {
-                        // console.log('[1]');
+            .findUser(username)
+            .then(function(user) {
+                    if(user && bcrypt.compareSync(password, user.password)){
+                        return done(null, user);
+                    }else{
                         return done(null, false);
                     }
-                    // console.log('[2]');
-                    return done(null, user);
                 },
                 function(err) {
                     if (err) { return done(err); }

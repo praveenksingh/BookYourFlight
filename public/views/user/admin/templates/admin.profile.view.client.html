@@ -23,6 +23,37 @@
     </header>
     <hr>
 
+    <main class="container">
+        <div class="row">
+            <div class="col-sm-3"><!--left col-->
+                <ng-include src="'views/user/user/templates/user.detail.view.client.html'"></ng-include>
+                <ng-include src="'views/user/user/templates/user.activity.view.client.html'"></ng-include>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Social Media</div>
+                    <div class="panel-body">
+                        <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+                    </div>
+                </div>
+
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+                <uib-tabset active="activeJustified" justified="true">
+                    <uib-tab index="0" heading="Comments">
+
+                    </uib-tab>
+
+                    <uib-tab index="3" heading="Following">
+
+
+                    </uib-tab>
+
+                </uib-tabset>
+
+            </div>
+
+        </div><!--/col-9-->
+    </main><!--/row-->
 
     <footer class="page-footer">
         <div class="footer-copyright">
