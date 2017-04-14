@@ -11,9 +11,9 @@ module.exports = function (app, utils, model, passport) {
 
     var val = utils.validateUtil;
     // var placesAPI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT_LONG&radius=500&keyword=CODE&type=airport&key=API_KEY";
-    var placesAPI = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT_LONG&radius=500&type=airport&key=API_KEY";
-    var placesDeatilsAPI = "https://maps.googleapis.com/maps/api/place/details/json?placeid=PLACE_ID&key=API_KEY";
-    var placePhoto = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=PIC_WID&photoreference=PHOTO_REF&key=API_KEY";
+    var placesAPI = process.env.PLACES_API; // || "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT_LONG&radius=500&type=airport&key=API_KEY";
+    var placesDeatilsAPI = process.env.PLACES_DETAILS_API; // || "https://maps.googleapis.com/maps/api/place/details/json?placeid=PLACE_ID&key=API_KEY";
+    var placePhoto = process.env.PLACES_PHOTO_API; // || "https://maps.googleapis.com/maps/api/place/photo?maxwidth=PIC_WID&photoreference=PHOTO_REF&key=API_KEY";
 
     placesAPI = placesAPI.replace("API_KEY", key1);
     placesDeatilsAPI = placesDeatilsAPI.replace("API_KEY", key1);

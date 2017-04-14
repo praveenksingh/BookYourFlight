@@ -10,9 +10,9 @@ module.exports = function (userModel) {
     passport.deserializeUser(deserializeUser);
 
     var googleConfig = {
-        clientID     : "534459517532-rdcgmlc3abh4923abssbst98khhnq31e.apps.googleusercontent.com",
-        clientSecret : "QmKE8merTp9yskEk3pv5eMvb",
-        callbackURL  : "http://localhost:3000/google/oauth/callback"
+        clientID     : process.env.GOOGLE_CLIENT_ID,//"534459517532-rdcgmlc3abh4923abssbst98khhnq31e.apps.googleusercontent.com",
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET, //"QmKE8merTp9yskEk3pv5eMvb",
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL //"http://localhost:3000/google/oauth/callback"
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
