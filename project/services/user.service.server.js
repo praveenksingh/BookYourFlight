@@ -28,24 +28,24 @@ module.exports = function (app, utils, model, passport) {
         var myFile      = req.file;
         var userId      = req.body.userId;
         if(myFile === undefined){
-            return;
+            res.redirect("/#/profile/");
+        }else {
+            var url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
+            userModel
+                .findUserById(userId)
+                .then(function (user) {
+                    user.image = url;
+                    userModel.addImageToUser(user._id, url)
+                        .then(function (user) {
+                            res.redirect("/#/profile/");
+                        }, function (err) {
+                            res.redirect("/#/profile/");
+                        });
+
+                }, function (err) {
+                    res.redirect("/#/profile/");
+                });
         }
-
-        var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
-        userModel
-            .findUserById(userId)
-            .then(function (user) {
-                user.image = url;
-                userModel.addImageToUser(user._id, url)
-                    .then(function (user) {
-                        res.redirect("/#/profile/");
-                    }, function (err) {
-                        res.redirect("/#/profile/");
-                    });
-
-            }, function (err) {
-                res.redirect("/#/profile/");
-            });
     }
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
