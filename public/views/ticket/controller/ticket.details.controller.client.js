@@ -3,10 +3,11 @@
         .module("BookYourTrip")
         .controller("TicketDetailsController", flightDetailsController);
 
-    function flightDetailsController($location, currentUser, TicketService) {
+    function flightDetailsController($location, currentUser, TicketService, UserService) {
         var vm = this;
         vm.user = currentUser;
         vm.confirm = confirm;
+        vm.logout = logout;
 
         function init() {
             vm.ticketDetails = TicketService.getSelectedTicketDetails();
@@ -15,6 +16,14 @@
             }
         }
         init();
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url('/');
+                });
+        }
 
         function confirm(trip) {
             TicketService

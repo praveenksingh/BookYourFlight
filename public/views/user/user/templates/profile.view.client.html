@@ -1,22 +1,26 @@
 <!--{{model.user}}-->
 <div class="page-flexbox-wrapper">
     <header>
-        <nav class="nav-wrapper" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar white"></span>
-                    <span class="icon-bar white"></span>
-                    <span class="icon-bar white"></span>
-                </button>
-                <a class="brand-logo" ng-href="#/">Book Your Flight</a>
-            </div>
-            <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed" style="background: inherit">
-                <div class="container-fluid">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">Link 1</a></li>
-                        <li><a href="#">Link 2</a></li>
-                    </ul>
+        <nav class="nav-wrapper teal lighten-2" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar white"></span>
+                        <span class="icon-bar white"></span>
+                        <span class="icon-bar white"></span>
+                    </button>
+                    <a class="brand-logo" ng-href="#/">Book Your Flight</a>
+                </div>
+                <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed">
+                    <div class="container-fluid teal lighten-2">
+                        <ul class="nav navbar-nav">
+                            <li ng-show="!model.user"><a href="#/login">Login</a></li>
+                            <li ng-show="!model.user"><a href="#/register">Register</a></li>
+                            <!--<li ng-show="model.currentUser"><a href="#/profile">Profile</a></li>-->
+                            <li ng-show="model.user"><a ng-click="model.logout()">LogOut</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -79,7 +83,7 @@
 
     <footer class="page-footer teal lighten-2">
         <div class="footer-copyright">
-            <div class="container">
+            <div class="container-fluid">
                 Made with <i class="glyphicon glyphicon-heart"></i> at Northeastern University
                 <a class="grey-text text-lighten-4 right" ng-href="https://singh-praveen-webdev.herokuapp.com" target="_blank">Praveen Singh</a>
             </div>

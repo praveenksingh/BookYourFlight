@@ -12,6 +12,7 @@
         vm.getUserDetails = getUserDetails;
         vm.isNavCollapsed = true;
         vm.airportCode = $routeParams['airportCode'];
+        vm.logout = logout;
 
         function init() {
             vm.airportPhotos = [];
@@ -23,6 +24,14 @@
                 });
         }
         init();
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url('/');
+                });
+        }
 
         function renderData(data) {
             vm.airportData = data;
