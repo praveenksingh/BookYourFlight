@@ -79,6 +79,14 @@
                     currentUser: checkLogin
                 }
             })
+            .when("/user/:userId", {
+                templateUrl: "views/user/admin/templates/modify.user.profile.view.client.html",
+                controller: "ModifyProfileController",
+                controllerAs: "model",
+                resolve: {
+                    adminUser: checkAdmin
+                }
+            })
             .when("/airport/:airportCode", {
                 templateUrl: "views/airport/templates/airport.view.client.html",
                 controller: "AirportController",

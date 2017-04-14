@@ -3,7 +3,7 @@
         .module("BookYourTrip")
         .controller("AdminController", adminController);
 
-    function adminController($location, UserService, adminUser, CommentsService, TicketService) {
+    function adminController($location, UserService, adminUser, CommentsService) {
         var vm = this;
         vm.logout = logout;
         vm.user = adminUser;

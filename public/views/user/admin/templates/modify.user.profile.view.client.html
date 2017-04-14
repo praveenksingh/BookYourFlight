@@ -36,8 +36,6 @@
         <div class="row">
             <div class="col-sm-10"><h1 ng-bind="(model.user.firstName)+' ' +(model.user.lastName)"></h1></div>
             <div class="col-sm-2"><img title="profile image" class="img-circle img-responsive" ng-src="{{model.user.image}}" alt="Profile Image" ></div>
-            <br/>
-            <a ng-if="model.follow" ng-click="model.followUser()" class="btn green darken-4 pull-right">follow</a>
         </div>
         <div class="row">
             <div class="col-sm-3"><!--left col-->
@@ -53,14 +51,12 @@
             </div><!--/col-3-->
             <div class="col-sm-9">
                 <uib-tabset active="activeJustified" justified="true">
-                    <uib-tab index="0" heading="Comments">
+                    <uib-tab index="0" heading="Profile">
+                        <ng-include src="'views/user/admin/templates/tabs/modify.user.profile.tabs.view.client.html'"></ng-include>
+                    </uib-tab>
+                    <uib-tab index="1" heading="Comments">
                         <ng-include src="'views/user/user/templates/tabs/user.comments.tab.view.client.html'"></ng-include>
                     </uib-tab>
-
-                    <uib-tab index="1" heading="Following">
-                        <ng-include src="'views/user/user/templates/tabs/user.following.tab.view.client.html'"></ng-include>
-                    </uib-tab>
-
                 </uib-tabset>
 
             </div>

@@ -26,7 +26,7 @@
                     <div class="md-body-3" ng-bind="commentCon.commentDetails.commentText"></div>
                     <div class="md-caption" ng-bind="commentCon.commentDetails.commentDate |  date:'medium'"></div>
                 </blockquote>
-            <div class="col s12" ng-if="model.currentUser._id == model.userId">
+            <div class="col s12" ng-if="model.currentUser._id == model.userId || model.currentUser.role == 'ADMIN'">
                 <a ng-click="model.deleteComment(comment)" class="btn red darken-4 pull-right">Delete</a>
             </div>
             </div>
