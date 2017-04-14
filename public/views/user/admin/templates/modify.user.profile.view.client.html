@@ -14,8 +14,9 @@
                 <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed">
                     <div class="container-fluid teal lighten-2">
                         <ul class="nav navbar-nav">
-                            <li ng-show="!model.user"><a href="#/login">Login</a></li>
-                            <li ng-show="!model.user"><a href="#/register">Register</a></li>
+                            <!--<li ng-if="!model.user"><a href="#/login">Login</a></li>-->
+                            <!--<li ng-if="!model.user"><a href="#/register">Register</a></li>-->
+                            <li ng-show="model.user"><a href="#/profile">Profile</a></li>
                             <li ng-show="model.user"><a ng-click="model.logout()">LogOut</a></li>
                         </ul>
                     </div>
@@ -25,9 +26,7 @@
     </header>
 
     <hr>
-    <div class="alert alert-success" ng-show="model.message">
-        {{model.message}}
-    </div>
+
     <main class="container">
         <div class="row">
             <div class="col-sm-10"><h1 ng-bind="(model.user.firstName)+' ' +(model.user.lastName)"></h1></div>
@@ -46,6 +45,14 @@
 
             </div><!--/col-3-->
             <div class="col-sm-9">
+                <div class="alert alert-danger" ng-show="model.error">
+                    {{model.error}}
+                </div>
+
+                <div class="alert alert-success" ng-show="model.message">
+                    {{model.message}}
+                </div>
+
                 <uib-tabset active="activeJustified" justified="true">
                     <uib-tab index="0" heading="Profile">
                         <ng-include src="'views/user/admin/templates/tabs/modify.user.profile.tabs.view.client.html'"></ng-include>
