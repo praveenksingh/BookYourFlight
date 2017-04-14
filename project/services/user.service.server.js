@@ -1,5 +1,8 @@
 module.exports = function (app, utils, model, passport) {
 
+    var multer  =   require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
     var userModel = model.userModel;
     var bcrypt = require("bcrypt-nodejs");
 
@@ -18,6 +21,32 @@ module.exports = function (app, utils, model, passport) {
     app.get('/api/user/unFollow/:userId', unFollowUserById);
     app.get('/api/user/removeFollower/:userId', removeFollowerById);
     app.put('/api/profile/:userId', updateProfile);
+    app.post ("/api/user/upload", upload.single('myFile'), uploadImage);
+
+
+    function uploadImage(req, res) {
+        var myFile      = req.file;
+        var userId      = req.body.userId;
+        if(myFile === undefined){
+            return;
+        }
+
+        var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+        userModel
+            .findUserById(userId)
+            .then(function (user) {
+                user.image = url;
+                userModel.addImageToUser(user._id, url)
+                    .then(function (user) {
+                        res.redirect("/#/profile/");
+                    }, function (err) {
+                        res.redirect("/#/profile/");
+                    });
+
+            }, function (err) {
+                res.redirect("/#/profile/");
+            });
+    }
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/google/oauth/callback',

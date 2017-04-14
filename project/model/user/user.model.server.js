@@ -21,9 +21,17 @@ module.exports = function () {
         addUserTOFollowing: addUserTOFollowing,
         addUserToFollower: addUserToFollower,
         removeUserFromFollower: removeUserFromFollower,
-        removeUserFromFollowing: removeUserFromFollowing
+        removeUserFromFollowing: removeUserFromFollowing,
+        addImageToUser: addImageToUser
     };
     return api;
+
+    function addImageToUser(userId, imageUrl) {
+        return userModel.findOneAndUpdate(
+            {_id: userId},
+            {$set: { "image": imageUrl}}
+        );
+    }
 
     function addUserToFollower(userId, followerId) {
         var deferred = q.defer();
