@@ -25,7 +25,7 @@
         init();
 
         function showFollow(){
-            vm.follow = vm.currentUser.following.indexOf(vm.userId) == -1;
+            vm.follow = vm.currentUser.following.indexOf(vm.userId) == -1 && vm.currentUser._id != vm.userId;
         }
 
         function followUser() {

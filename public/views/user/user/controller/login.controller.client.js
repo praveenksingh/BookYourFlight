@@ -12,11 +12,12 @@
                 .login(user)
                 .then(function (user) {
                     if(user) {
-                        console.log(user);
                         if(user.role == 'ADMIN')
                             $location.url('/admin');
                         else
                             $location.url('/profile');
+                    }else{
+                        vm.error = "Enter valid username and password combination";
                     }
                 }, function (err) {
                     vm.error = err.statusText;

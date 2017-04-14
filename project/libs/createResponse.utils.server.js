@@ -32,10 +32,10 @@ module.exports = function (app) {
                 legs : tripOption.slice[0].segment
                     .map(function(element){
                         return {
-                            origin: getCityName(element.leg[0].origin),
+                            origin: getCityFromAirportCode(element.leg[0].origin),
                             originCode: element.leg[0].origin,
-                            destination: getCityName(element.leg[0].destination),
-                            destinationCode: element.leg[0].destination,
+                            destination: getCityFromAirportCode(element.leg[0].destination),
+                            destinationCode: element.leg[0].destination ,
                             duration: element.duration,
                             carrier: getCarrier(element.flight.carrier),
                             flightCode: element.flight.carrier + " " + element.flight.number,
@@ -53,6 +53,17 @@ module.exports = function (app) {
             details.push(trip);
         }
         return details;
+    }
+
+    function getCityFromAirportCode(code) {
+        for(var v in airport){
+            if(airport[v].code === code)
+                var cityCode = airport[v].city;
+                for(var v2 in city) {
+                    if (city[v2].code === cityCode)
+                        return city[v2].name;
+                }
+        }
     }
 
     function getCityName(code) {

@@ -22,9 +22,17 @@ module.exports = function () {
         addUserToFollower: addUserToFollower,
         removeUserFromFollower: removeUserFromFollower,
         removeUserFromFollowing: removeUserFromFollowing,
-        addImageToUser: addImageToUser
+        addImageToUser: addImageToUser,
+        updateProfile: updateProfile
     };
     return api;
+    
+    function updateProfile(userId) {
+        return userModel.findOneAndUpdate(
+            {_id: userId},
+            {$set: { "role": 'ADMIN'}}
+        );
+    }
 
     function addImageToUser(userId, imageUrl) {
         return userModel.findOneAndUpdate(

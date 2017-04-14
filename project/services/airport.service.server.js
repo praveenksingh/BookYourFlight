@@ -93,16 +93,16 @@ module.exports = function (app, utils, model, passport) {
         //     });
 
         //TODO Remove this block after testing
-        var resu = require('../../test/pics.json');
-        res.status(200).send(resu);
+        // var resu = require('../../test/pics.json');
+        // res.status(200).send(resu);
         //TODO uncommend down block
 
-        // photosWrapper(photosList)
-        //     .then(function (photos) {
-        //         res.status(200).send(photos);
-        //     }, function (err) {
-        //         res.status(500).send(err);
-        //     })
+        photosWrapper(photosList)
+            .then(function (photos) {
+                res.status(200).send(photos);
+            }, function (err) {
+                res.status(500).send(err);
+            })
     }
 
     function photosWrapper(list){

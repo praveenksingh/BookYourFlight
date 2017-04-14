@@ -134,28 +134,29 @@ module.exports = function (app, utils, model, passport) {
     }
 
     function updateUser(req, res) {
-        //TODO uncomment
-        // if(req.user && req.user.role=='ADMIN') {
-        if(req.user  && req.user._id == req.body._id) {
+        if(req.user  && (req.user._id == req.body._id) || req.user.role=='ADMIN') {
+            var updatedUser = req.body;
+            if(updatedUser.password)
+                updatedUser.password = bcrypt.hashSync(updatedUser.password);
             userModel
-                .updateUser(req.body._id, req.body)
-                .then(function (status) {
-                    res.send(200);
+                .updateUser(req.body._id, updatedUser)
+                .then(function (user) {
+                    res.json(user);
                 });
         } else {
-            res.json({});
+            res.status(401).send();
         }
     }
 
     function updateProfile(req, res) {
-        if(req.user) {
+        if(req.user && req.user.role=='ADMIN') {
             userModel
-                .updateProfile(req.body)
-                .then(function (status) {
-                    res.send(200);
+                .updateProfile(req.params.userId)
+                .then(function (user) {
+                    res.json(user);
                 });
         } else {
-            res.json({});
+            res.status(401).send();
         }
     }
 

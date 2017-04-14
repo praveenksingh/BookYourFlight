@@ -27,12 +27,14 @@
 
     <label for="password">Password</label>
     <input id="password"
+           ng-model="model.userPassword"
            class="form-control"
            type="password"
            placeholder="password"/>
 
     <label for="password2">Validate Password</label>
     <input id="password2"
+           ng-model="model.userPasswordConfirm"
            class="form-control"
            type="password"
            placeholder="password"/>
@@ -41,7 +43,7 @@
         <input  name="myFile"    type="file" class="form-control"/>
         <input  name="userId"    value="{{model.userProfile._id}}"  style="display: none"/>
         <input  name="url"        value="{{model.userProfile.image}}"   style="display: none"/>
-        <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+        <button type="submit"    class="btn btn-block blue">Upload Image</button>
     </form>
     <br/>
 

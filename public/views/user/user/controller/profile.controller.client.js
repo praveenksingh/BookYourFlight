@@ -9,6 +9,7 @@
         vm.logout = logout;
         vm.update = update;
         vm.user = currentUser;
+        vm.userPassword = undefined;
         vm.userProfile = angular.copy(vm.user);
         vm.deleteComment = deleteComment;
         vm.cancelTicket = cancelTicket;
@@ -46,6 +47,10 @@
         }
 
         function update (newUser) {
+            if(vm.userPassword != undefined){
+                if(vm.userPassword == vm.userPasswordConfirm)
+                    newUser.password = vm.userPassword;
+            }
             UserService
                 .updateUser(vm.user._id, newUser)
                 .then(function (user) {
