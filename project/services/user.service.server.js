@@ -159,6 +159,8 @@ module.exports = function (app, utils, model, passport) {
     function register(req, res) {
         var user = req.body;
         user.password = bcrypt.hashSync(user.password);
+        if(user.image == undefined)
+            user.image = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
         userModel
             .createUser(user)
             .then(function (user) {
