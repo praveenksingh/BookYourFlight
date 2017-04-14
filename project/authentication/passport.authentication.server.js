@@ -10,6 +10,7 @@ module.exports = function (userModel) {
     passport.deserializeUser(deserializeUser);
 
     var googleConfig = {
+        clientID     : process.env.GOOGLE_CLIENT_ID,
         clientSecret : process.env.GOOGLE_CLIENT_SECRET,
         callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
@@ -20,9 +21,12 @@ module.exports = function (userModel) {
         userModel
             .findUserByGoogleId(profile.id)
             .then(function (user) {
+                // console.log(user);
                 if(user) {
+                    // console.log(111);
                     done(null, user);
                 } else {
+                    // console.log(222);
                     var user = {
                         username: profile.emails[0].value,
                         image: profile.photos[0].value,
@@ -36,6 +40,7 @@ module.exports = function (userModel) {
                     return userModel.createUser(user);
                 }
             }, function (err) {
+                // console.log(err);
                 done(err, null);
             })
             .then(function (user) {
@@ -74,6 +79,7 @@ module.exports = function (userModel) {
                     done(null, user);
                 },
                 function(err){
+                    // console.log(err);
                     done(err, null);
                 }
             );
