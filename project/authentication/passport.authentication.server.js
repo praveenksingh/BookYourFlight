@@ -10,9 +10,8 @@ module.exports = function (userModel) {
     passport.deserializeUser(deserializeUser);
 
     var googleConfig = {
-        clientID     : process.env.GOOGLE_CLIENT_ID,//"534459517532-rdcgmlc3abh4923abssbst98khhnq31e.apps.googleusercontent.com",
-        clientSecret : process.env.GOOGLE_CLIENT_SECRET, //"QmKE8merTp9yskEk3pv5eMvb",
-        callbackURL  : process.env.GOOGLE_CALLBACK_URL //"http://localhost:3000/google/oauth/callback"
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
@@ -21,12 +20,9 @@ module.exports = function (userModel) {
         userModel
             .findUserByGoogleId(profile.id)
             .then(function (user) {
-                // console.log(user);
                 if(user) {
-                    // console.log(111);
                     done(null, user);
                 } else {
-                    // console.log(222);
                     var user = {
                         username: profile.emails[0].value,
                         image: profile.photos[0].value,
@@ -40,7 +36,6 @@ module.exports = function (userModel) {
                     return userModel.createUser(user);
                 }
             }, function (err) {
-                // console.log(err);
                 done(err, null);
             })
             .then(function (user) {
@@ -79,7 +74,6 @@ module.exports = function (userModel) {
                     done(null, user);
                 },
                 function(err){
-                    // console.log(err);
                     done(err, null);
                 }
             );
