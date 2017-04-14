@@ -11,6 +11,8 @@
         vm.deleteComment = deleteComment;
         vm.loadAllUsers = loadAllUsers;
         vm.loadAllComments = loadAllComments;
+        vm.updateProfile = updateProfile;
+        vm.deleteUser = deleteUser;
 
         function init() {
             if(vm.user.image == undefined)
@@ -62,6 +64,28 @@
                     vm.error = "unable to Delete comment";
                 });
 
+        }
+
+        function updateProfile(userId) {
+            UserService
+                .updateProfile(userId)
+                .then(function (user) {
+                    vm.message = "user upgraded to Admin";
+                    loadAllUsers();
+                }, function (err) {
+                    vm.error = "Error upgrading user to Admin role"
+                })
+        }
+
+        function deleteUser(userId) {
+            UserService
+                .deleteUser(userId)
+                .then(function (user) {
+                    vm.message = "User Deleted";
+                    loadAllUsers();
+                }, function (err) {
+                    vm.error = "Error Deleting"
+                })
         }
 
     }

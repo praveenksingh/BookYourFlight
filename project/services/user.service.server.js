@@ -20,7 +20,7 @@ module.exports = function (app, utils, model, passport) {
     app.get('/api/user/follow/:userId', followUserByUserId);
     app.get('/api/user/unFollow/:userId', unFollowUserById);
     app.get('/api/user/removeFollower/:userId', removeFollowerById);
-    app.put('/api/profile/:userId', updateProfile);
+    app.put('/api/updateProfile/:userId', updateProfile);
     app.post ("/api/user/upload", upload.single('myFile'), uploadImage);
 
 
@@ -150,14 +150,18 @@ module.exports = function (app, utils, model, passport) {
 
     function updateProfile(req, res) {
         if(req.user && req.user.role=='ADMIN') {
-            userModel
-                .updateProfile(req.params.userId)
-                .then(function (user) {
-                    res.json(user);
-                });
-        } else {
+            if (req.params.userId){
+                userModel
+                    .updateProfile(req.params.userId)
+                    .then(function (user) {
+                        res.json(user);
+                    }, function (err) {
+                        res.status(500).send();
+                    });
+        }else
+            res.status(404).send();
+        }else
             res.status(401).send();
-        }
     }
 
     function login(req, res) {
@@ -219,14 +223,16 @@ module.exports = function (app, utils, model, passport) {
     }
 
     function deleteUser(req, res) {
-        //TODO uncomment
-        // if(req.user && req.user.role=='ADMIN') {
-        if(req.user && req.user._doc._id == req.params.userId) {
+        if(req.user && (req.user._doc._id == req.params.userId || req.user.role=='ADMIN')) {
             userModel
                 .deleteUser(req.params.userId)
-                .then(function (status) {
-                    res.send(200);
+                .then(function (user) {
+                    res.json(user);
+                }, function (err) {
+                    res.status(500).send();
                 });
+        }else{
+            res.status(401).send();
         }
     }
 

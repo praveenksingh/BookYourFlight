@@ -60,7 +60,7 @@
         }
 
         function updateProfile(user) {
-            return $http.put('/api/profile/' + user._id, user)
+            return $http.put('/api/updateProfile/' + user)
                 .then(function (response) {
                     return response.data;
                 });
