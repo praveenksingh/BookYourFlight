@@ -1,22 +1,24 @@
 <div class="page-flexbox-wrapper my-back">
     <header>
-        <nav class="nav-wrapper" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar white"></span>
-                    <span class="icon-bar white"></span>
-                    <span class="icon-bar white"></span>
-                </button>
-                <a class="brand-logo" ng-href="#/">Book Your Flight</a>
-            </div>
-            <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed" style="background: inherit">
-                <div class="container-fluid">
-                    <ul class="nav navbar-nav">
-                        <li ng-if="!model.currentUser"><a href="#/login">Login</a></li>
-                        <li ng-if="model.currentUser"><a href="#/profile">Profile</a></li>
-                        <li ng-if="!model.currentUser"><a href="#/register">Register</a></li>
-                    </ul>
+        <nav class="nav-wrapper teal lighten-2" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar white"></span>
+                        <span class="icon-bar white"></span>
+                        <span class="icon-bar white"></span>
+                    </button>
+                    <a class="brand-logo" ng-href="#/">Book Your Flight</a>
+                </div>
+                <div class="collapse navbar-collapse pull-right" uib-collapse="!isNavCollapsed">
+                    <div class="container-fluid teal lighten-2">
+                        <ul class="nav navbar-nav">
+                            <li ng-if="!model.currentUser"><a href="#/login">Login</a></li>
+                            <li ng-if="model.currentUser"><a href="#/profile">Profile</a></li>
+                            <li ng-if="!model.currentUser"><a href="#/register">Register</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -105,11 +107,11 @@
         </div>
     </main>
 
-    <footer class="page-footer">
+    <footer class="page-footer teal lighten-2">
         <div class="footer-copyright">
             <div class="container">
-                © 2017 Copyright BookYourFlight
-                <a class="grey-text text-lighten-4 right" ng-href="#/profile">Profile</a>
+                Made with <i class="glyphicon glyphicon-heart"></i> at Northeastern University
+                <a class="grey-text text-lighten-4 right" ng-href="https://singh-praveen-webdev.herokuapp.com" target="_blank">Praveen Singh</a>
             </div>
         </div>
     </footer>

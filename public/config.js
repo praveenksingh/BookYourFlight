@@ -63,7 +63,7 @@
                     currentUser: alreadyLoggedIn
                 }
             })
-            .when("/profile/", {
+            .when("/profile", {
                 templateUrl: "views/user/user/templates/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
@@ -123,7 +123,10 @@
             .loggedIn()
             .then(function (user) {
                 if(user != '0') {
-                    $location.url('/profile');
+                    if(user.role == "ADMIN")
+                        $location.url('/admin');
+                    else
+                        $location.url('/profile');
                     deferred.reject();
                 } else {
                     deferred.resolve(user);

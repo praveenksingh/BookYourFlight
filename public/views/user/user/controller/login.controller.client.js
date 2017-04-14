@@ -7,27 +7,16 @@
         var vm = this;
         vm.login = login;
 
-        // function login(user) {
-        //     var promise = UserService.findUserByCredentials(user.username, user.password);
-        //     promise
-        //         .success(function (user) {
-        //             var loginUser = user;
-        //             if(loginUser != null) {
-        //                 $location.url('/user/' + loginUser._id);
-        //             } else {
-        //                 vm.error = 'user not found';
-        //             }
-        //         })
-        //         .error(function(err) {
-        //             vm.error = 'user not found';
-        //         });
-        // }
         function login(user) {
             UserService
                 .login(user)
                 .then(function (user) {
                     if(user) {
-                        $location.url('/profile');
+                        console.log(user);
+                        if(user.role == 'ADMIN')
+                            $location.url('/admin');
+                        else
+                            $location.url('/profile');
                     }
                 }, function (err) {
                     vm.error = err.statusText;
