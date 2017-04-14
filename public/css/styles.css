@@ -208,4 +208,7 @@ html {
     padding: 1em;
 }
 
+.glyphicon.glyphicon-remove {
+    font-size: 25px;
+}
 
