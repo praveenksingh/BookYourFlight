@@ -127,13 +127,5 @@
                 });
         }
 
-        // function deleteUser(userId) {
-        //     return $http.delete("/api/user/"+userId);
-        // }
-        //
-        // function createUser(user) {
-        //     return $http.post("/api/user", user);
-        // }
-
     }
 })();

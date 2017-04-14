@@ -48,16 +48,24 @@
 
         function update (newUser) {
             if(vm.userPassword != undefined){
-                if(vm.userPassword == vm.userPasswordConfirm)
-                    newUser.password = vm.userPassword;
-            }
+                if(vm.userPassword == vm.userPasswordConfirm) {
+                    newUser.userPassword = vm.userPassword;
+                    newUser.userPasswordConfirm = vm.userPasswordConfirm;
+                    updateServiceWrapper(vm.user._id, newUser);
+                }else
+                    vm.error = "Passwords do not match";
+            }else
+                updateServiceWrapper(vm.user._id, newUser);
+        }
+
+        function updateServiceWrapper(userId, newUser){
             UserService
-                .updateUser(vm.user._id, newUser)
+                .updateUser(userId, newUser)
                 .then(function (user) {
                     angular.copy(vm.userProfile, vm.user);
                     vm.message = "user successfully updated";
                 }, function (err) {
-                    vm.error = "unable to update user";
+                    vm.error = err.data;
                 });
         }
 

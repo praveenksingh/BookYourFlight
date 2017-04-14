@@ -136,16 +136,29 @@ module.exports = function (app, utils, model, passport) {
     function updateUser(req, res) {
         if(req.user  && (req.user._id == req.body._id) || req.user.role=='ADMIN') {
             var updatedUser = req.body;
-            if(updatedUser.password)
-                updatedUser.password = bcrypt.hashSync(updatedUser.password);
-            userModel
-                .updateUser(req.body._id, updatedUser)
-                .then(function (user) {
-                    res.json(user);
-                });
-        } else {
+            if(updatedUser.userPassword) {
+                if (updatedUser.userPassword === updatedUser.userPasswordConfirm) {
+                    updatedUser.password = bcrypt.hashSync(updatedUser.userPassword);
+                    res.json(updateWrapper(req.body._id, updatedUser));
+                } else {
+                    res.status(400).send("passwords do not match");
+                }
+            }else {
+                res.json(updateWrapper(req.body._id, updatedUser));
+            }
+        } else
             res.status(401).send();
-        }
+
+    }
+
+    function updateWrapper(userId, updatedUser){
+        userModel
+            .updateUser(userId, updatedUser)
+            .then(function (user) {
+                return user;
+            }, function (err) {
+                return err;
+            });
     }
 
     function updateProfile(req, res) {
@@ -192,22 +205,28 @@ module.exports = function (app, utils, model, passport) {
 
     function register(req, res) {
         var user = req.body;
-        user.password = bcrypt.hashSync(user.password);
-        if(user.image == undefined)
-            user.image = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
-        userModel
-            .createUser(user)
-            .then(function (user) {
-                if(user) {
-                    req.login(user, function (err) {
-                        if (err) {
-                            res.status(500).send();
-                        }else {
-                            res.json(user);
-                        }
-                    });
-                }
-            });
+        if(user.password === user.password2) {
+            user.password = bcrypt.hashSync(user.password);
+            if (user.image == undefined)
+                user.image = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
+            userModel
+                .createUser(user)
+                .then(function (user) {
+                    if (user) {
+                        req.login(user, function (err) {
+                            if (err) {
+                                res.status(500).send();
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                }, function (err) {
+                    res.status(500).send(err.message);
+                });
+        }else{
+            res.status(500).json({"message":"Passwords do not match"});
+        }
     }
 
     function findAllUsers(req, res) {
@@ -247,7 +266,7 @@ module.exports = function (app, utils, model, passport) {
                         res.status(404).send('User not found for username: ' + username);
                     }
                 }, function (err) {
-                    res.sendStatus(500).send(err);
+                    res.sendStatus(200).send(err);
                 });
 
         }
