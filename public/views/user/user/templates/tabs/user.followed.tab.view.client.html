@@ -1,23 +1,6 @@
 <br />
 <div ng-if="!model.user.followed.length"> No Followers </div>
 
-<!--<ul class="list-group">-->
-    <!--<li class="list-group-item" ng-repeat="following in model.user.followed" ng-controller="UserDetails">-->
-        <!--<div class="row">-->
-            <!--<div class="col-xs-4" ng-bind="user.firstName |  date:'medium'"></div>-->
-            <!--<div class="col-xs-2" ng-bind="user.lastName"></div>-->
-            <!--<div class="col-xs-3 hidden-xs">-->
-                <!--<div class="col s2">-->
-                    <!--<img src="{{user.image}}" class="circle responsive-img">-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-xs-3">-->
-                <!--<a ng-click="model.removeFollower(following)" class="btn red darken-4">Remove</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</li>-->
-<!--</ul>-->
-
 <div class="row">
     <ul>
         <li class="col s12 m6" ng-repeat="following in model.user.followed"
@@ -26,7 +9,7 @@
                 <div class="card-image">
                     <img src="{{userModel.user.image}}">
                     <span class="card-title md-body-2">
-                    <a ng-href="#/profile/{{user._id}}" class="black-text md-title"
+                    <a ng-href="#/profile/{{userModel.user._id}}" class="black-text md-title"
                        ng-bind="(userModel.user.firstName)+' '+(userModel.user.lastName)"></a>
                 </span>
                 </div>
