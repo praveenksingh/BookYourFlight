@@ -92,7 +92,25 @@ module.exports = function () {
     }
 
     function deleteUser(userId) {
-        return userModel.remove({_id: userId});
+        var deferred = q.defer();
+        userModel
+            .findOne({'_id': userId})
+            .exec(function(err, user){
+                if(err) {
+                    deferred.abort(err);
+                } else {
+                    user.remove();
+                    userModel.remove({_id: userId}, function (err, status) {
+                        if(err) {
+                            deferred.abort(err);
+                        } else {
+                            deferred.resolve(status);
+                        }
+                    });
+                }
+            });
+        return deferred.promise;
+        // return userModel.remove({_id: userId});
     }
 
     function findAllUsers() {

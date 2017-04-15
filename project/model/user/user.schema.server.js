@@ -18,8 +18,22 @@ module.exports = function () {
         dateCreated : { type: Date, default: Date.now },
         tickets : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectTickets'}],
         comments : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectComments'}],
-        // airports : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoProjectAirports'}]
     }, {collection: 'webdev.mongo.project.users'});
+
+    userSchema.pre('remove',  function(next) {
+        var comments = this.model('Comments');
+        comments.find({_user: this._id})
+            .exec(function(err, commentList){
+                if(err) {
+                    deferred.abort(err);
+                } else {
+                    for(var w in commentList) {
+                        comments.remove({_id: commentList[w]._id}).exec();
+                    }
+                }
+            });
+        next();
+    });
 
     return userSchema;
 };
