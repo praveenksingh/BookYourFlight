@@ -8,7 +8,7 @@
         vm.createUser = createUser;
 
         function createUser(user) {
-            if(user.password !== user.password2) {
+            if(user.password === user.password2) {
                 UserService
                     .findUserByUserName(user.username)
                     .success(function (user) {
