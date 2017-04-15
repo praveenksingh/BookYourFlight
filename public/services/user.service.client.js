@@ -20,7 +20,8 @@
             "addUserFollowingList": addUserFollowingList,
             "removeFollowerById": removeFollowerById,
             "unFollowUserById": unFollowUserById,
-            "findAllUsers": findAllUsers
+            "findAllUsers": findAllUsers,
+            "registerByAdmin": registerByAdmin
         };
         return api;
 
@@ -75,6 +76,13 @@
 
         function register(user) {
             return $http.post('/api/register', user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function registerByAdmin(user) {
+            return $http.post('/api/registerByAdmin', user)
                 .then(function (response) {
                     return response.data;
                 });

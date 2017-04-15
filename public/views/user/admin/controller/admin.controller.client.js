@@ -3,7 +3,7 @@
         .module("BookYourTrip")
         .controller("AdminController", adminController);
 
-    function adminController($location, UserService, adminUser, CommentsService) {
+    function adminController($location, $uibModal, UserService, adminUser, CommentsService) {
         var vm = this;
         vm.logout = logout;
         vm.user = adminUser;
@@ -13,6 +13,7 @@
         vm.loadAllComments = loadAllComments;
         vm.updateProfile = updateProfile;
         vm.deleteUser = deleteUser;
+        vm.createUserModal = createUserModal;
 
         function init() {
             if(vm.user.image == undefined)
@@ -21,6 +22,14 @@
             loadAllComments();
         }
         init();
+
+        function createUserModal() {
+            $uibModal.open({
+                templateUrl: 'views/user/admin/templates/modal/create.user.admin.modal.view.client.html',
+                controller: [ '$uibModal','UserService',createUserController],
+                controllerAs: 'model'
+            });
+        }
 
         function logout() {
             UserService
@@ -86,6 +95,43 @@
                 }, function (err) {
                     vm.error = "Error Deleting"
                 })
+        }
+
+    }
+
+    function createUserController($uibModal, UserService) {
+        var vm = this;
+        vm.createUser = createUser;
+
+        function createUser(user) {
+            if(user && user.password && user.password2) {
+                if (user.password === user.password2) {
+                    UserService
+                        .findUserByUserName(user.username)
+                        .success(function (user) {
+                            vm.error = "Sorry username '" + user.username + "' is already taken"
+                        })
+                        .error(function () {
+                            UserService
+                                .registerByAdmin(user)
+                                .then(function (user) {
+                                    vm.message = "User Created Successfully";
+                                    vm.user = undefined;
+                                    //TODO close modal
+                                }, function (err) {
+                                    vm.error = err.data.message;
+                                });
+                        });
+                } else
+                    vm.error = "passwords do not match";
+            }else {
+                vm.error = "please enter details";
+            }
+
+        }
+
+        function close() {
+            $uibModal.close();
         }
 
     }

@@ -11,6 +11,7 @@ module.exports = function (app, utils, model, passport) {
     app.post('/api/loggedin', loggedin);
     app.post('/api/logout', logout);
     app.post('/api/register', register);
+    app.post('/api/registerByAdmin', registerByAdmin);
     app.post('/api/isAdmin', isAdmin);
     app.get('/api/allUsers', findAllUsers);
     app.delete('/api/user/:userId', deleteUser);
@@ -220,6 +221,26 @@ module.exports = function (app, utils, model, passport) {
                                 res.json(user);
                             }
                         });
+                    }
+                }, function (err) {
+                    res.status(500).send(err.message);
+                });
+        }else{
+            res.status(500).json({"message":"Passwords do not match"});
+        }
+    }
+
+    function registerByAdmin(req, res) {
+        var user = req.body;
+        if(user.password === user.password2) {
+            user.password = bcrypt.hashSync(user.password);
+            if (user.image == undefined)
+                user.image = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
+            userModel
+                .createUser(user)
+                .then(function (user) {
+                    if (user) {
+                        res.json(user)
                     }
                 }, function (err) {
                     res.status(500).send(err.message);
