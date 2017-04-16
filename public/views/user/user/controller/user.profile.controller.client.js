@@ -8,7 +8,15 @@
         vm.currentUser = currentUser;
         vm.userId = $routeParams['userId'];
         vm.followUser = followUser;
+        vm.logout = logout;
 
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url('/');
+                });
+        }
 
         function init() {
             UserService
